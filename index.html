@@ -1,461 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAIJACP.NG | Top-up & Vouchers</title>
-<style>
-  /* Basic styling */
-  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #fff; margin: 0; padding: 0; }
-  header { background: #1f1f1f; padding: 20px; text-align: center; border-bottom: 2px solid #e53935; position: relative; }
-  .ticker { background: #e53935; color: white; padding: 5px; font-weight: bold; }
-  .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-  h2 { border-bottom: 2px solid #e53935; padding-bottom: 10px; display: inline-block; }
-  
-  /* Grid System */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-top: 20px; }
-  .card { background: #1f1f1f; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: 0.3s; }
-  .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(229, 57, 53, 0.4); }
-  .card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; background: #333; }
-  
-  /* Modals */
-  .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; overflow-y: auto;}
-  .modal-content { background: #1f1f1f; padding: 20px; border-radius: 8px; width: 90%; max-width: 500px; margin: auto; margin-top: 50px; position: relative; }
-  .close { position: absolute; right: 20px; top: 15px; cursor: pointer; font-size: 24px; color: #e53935; }
-  
-  /* Forms & Inputs */
-  input, select, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #333; box-sizing: border-box; }
-  input, select { background: #2a2a2a; color: #fff; }
-  button { background: #e53935; color: white; border: none; cursor: pointer; font-weight: bold; transition: 0.2s; }
-  button:hover { background: #d32f2f; }
-  
-  /* Sections */
-  .section-box { background: #1f1f1f; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
-  
-  /* Admin Panel */
-  .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  @media(max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAIJACP.NG - Game Top-Up Center</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --primary: #ff6600;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); }
+        
+        /* Header & Navigation */
+        header { background-color: var(--card-bg); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary); letter-spacing: 1px; }
+        .nav-buttons button { background: transparent; color: var(--text-main); border: 1px solid var(--primary); padding: 8px 12px; border-radius: 4px; cursor: pointer; margin-left: 10px; font-size: 14px; transition: 0.3s; }
+        .nav-buttons button:hover { background: var(--primary); color: #fff; }
+        
+        /* Marquee Ticker */
+        .ticker-wrap { background: #000; padding: 8px 0; overflow: hidden; font-size: 14px; color: var(--primary); }
+        .ticker { display: inline-block; white-space: nowrap; animation: ticker 20s linear infinite; }
+        @keyframes ticker { 0% { transform: translate3d(100vw, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* Game Catalog Grid */
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .section-title { margin-bottom: 20px; font-size: 22px; border-left: 4px solid var(--primary); padding-left: 10px; }
+        .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); border-radius: 10px; padding: 15px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #333; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3); border-color: var(--primary); }
+        .card img { width: 100%; height: auto; aspect-ratio: 1/1; border-radius: 20%; object-fit: cover; margin-bottom: 10px; }
+        .card h3 { font-size: 14px; margin-bottom: 5px; }
+
+        /* Modals (Popups) */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-content { background: var(--card-bg); width: 90%; max-width: 500px; padding: 25px; border-radius: 12px; border: 1px solid #333; position: relative; max-height: 90vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+        .close-btn:hover { color: var(--primary); }
+        .modal-title { font-size: 20px; margin-bottom: 20px; color: var(--primary); border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        /* Forms & Inputs */
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 14px; color: var(--text-muted); }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #444; background: #111; color: #fff; font-size: 14px; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
+        .bank-details { background: #111; padding: 15px; border-radius: 6px; border-left: 4px solid var(--primary); margin: 15px 0; font-family: monospace; font-size: 15px; }
+        .btn-primary { width: 100%; background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-primary:hover { background: #e65c00; }
+        
+        /* Utility */
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+    </style>
 </head>
 <body>
 
-<!-- Top Announcement Ticker -->
-<div class="ticker">
-  <marquee id="ticker-text">Welcome to NAIJACP.NG - Top up PUBG, Free Fire, CODM, EAFC, and more instantly!</marquee>
-</div>
-
-<header>
-  <h1>NAIJACP.NG</h1>
-  <p>Nigeria's #1 Gaming Top-up & Voucher Platform</p>
-  <button style="width:auto; padding:5px 15px; font-size:12px; position:absolute; top:20px; right:20px;" onclick="document.getElementById('admin-login-modal').style.display='flex'">Admin Portal</button>
-</header>
-
-<div class="container">
-
-  <!-- Main Game Catalog -->
-  <section class="section-box">
-    <h2>Game Catalog</h2>
-    <div class="grid">
-      <!-- Existing Offerings -->
-      <div class="card" onclick="openCheckout('PUBG Mobile')">
-        <img src="https://via.placeholder.com/80/FFA500/FFFFFF?text=PUBG" alt="PUBG Mobile">
-        <h3>PUBG Mobile</h3>
-      </div>
-      <div class="card" onclick="openCheckout('Free Fire')">
-        <img src="https://via.placeholder.com/80/FF0000/FFFFFF?text=FF" alt="Free Fire">
-        <h3>Free Fire</h3>
-      </div>
-      <div class="card" onclick="openCheckout('CODM')">
-        <img src="https://via.placeholder.com/80/555555/FFFFFF?text=CODM" alt="CODM">
-        <h3>Call of Duty</h3>
-      </div>
-      <div class="card" onclick="openCheckout('eFootball')">
-        <img src="https://via.placeholder.com/80/0000FF/FFFFFF?text=PES" alt="eFootball">
-        <h3>eFootball</h3>
-      </div>
-      <!-- New Offerings -->
-      <div class="card" onclick="openCheckout('TikTok')">
-        <img src="https://via.placeholder.com/80/000000/FFFFFF?text=TikTok" alt="TikTok">
-        <h3>TikTok Coins</h3>
-      </div>
-      <div class="card" onclick="openCheckout('DLS 25')">
-        <img src="https://via.placeholder.com/80/008000/FFFFFF?text=DLS25" alt="DLS 25">
-        <h3>DLS 25</h3>
-      </div>
-      <div class="card" onclick="openCheckout('Blood Strike')">
-        <img src="https://via.placeholder.com/80/8B0000/FFFFFF?text=Blood" alt="Blood Strike">
-        <h3>Blood Strike</h3>
-      </div>
-      <div class="card" onclick="openCheckout('Delta Force')">
-        <img src="https://via.placeholder.com/80/4682B4/FFFFFF?text=Delta" alt="Delta Force">
-        <h3>Delta Force</h3>
-      </div>
-      <div class="card" onclick="openCheckout('MLBB')">
-        <img src="https://via.placeholder.com/80/800080/FFFFFF?text=MLBB" alt="MLBB">
-        <h3>MLBB</h3>
-      </div>
-      <div class="card" onclick="openCheckout('EA FC Mobile')">
-        <img src="https://via.placeholder.com/80/00FF00/FFFFFF?text=EAFC" alt="EA FC Mobile">
-        <h3>EA FC Mobile</h3>
-      </div>
-    </div>
-  </section>
-
-  <!-- Order Tracking Section -->
-  <section class="section-box">
-    <h2>Track Your Order</h2>
-    <input type="text" id="track-id" placeholder="Enter Player ID or Reference Code">
-    <button onclick="trackOrder()">Track Order</button>
-    <p id="track-result" style="display:none; color: #4caf50; font-weight: bold; margin-top: 10px;"></p>
-  </section>
-
-  <!-- Free Fire Sensi Tool -->
-  <section class="section-box">
-    <h2>Free Fire Sensi Tool (Headshot Generator)</h2>
-    <p>Unlock the best sensitivity settings for perfect headshots by sharing our platform to WhatsApp!</p>
-    <button onclick="unlockSensi()">Share to WhatsApp to Unlock</button>
-    <div id="sensi-results" style="display:none; background: #2a2a2a; padding: 15px; margin-top: 15px; border-radius: 5px;">
-      <p><strong>General:</strong> 100</p>
-      <p><strong>Red Dot:</strong> 95</p>
-      <p><strong>2x Scope:</strong> 90</p>
-      <p><strong>4x Scope:</strong> 85</p>
-      <p><strong>Sniper Scope:</strong> 50</p>
-      <p><strong>Free Look:</strong> 70</p>
-    </div>
-  </section>
-
-</div>
-
-<!-- Checkout Modal -->
-<div id="checkout-modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="document.getElementById('checkout-modal').style.display='none'">&times;</span>
-    <h2 id="checkout-title">Top-up</h2>
-    
-    <label>Select Package:</label>
-    <select id="package-select" onchange="updatePrice()"></select>
-    
-    <label>Player ID / Username:</label>
-    <input type="text" id="player-id" placeholder="Enter Player ID">
-    
-    <div style="background: #2a2a2a; padding: 10px; border-radius: 5px; margin: 15px 0;">
-      <p><strong>Total Amount:</strong> ₦<span id="display-price">0</span></p>
-      <p><strong>Bank:</strong> <span id="bank-name">Opay</span></p>
-      <p><strong>Account Name:</strong> <span id="bank-acc-name">NAIJACP</span></p>
-      <p><strong>Account Number:</strong> <span id="bank-acc-number">1234567890</span></p>
-    </div>
-    
-    <label>Upload Payment Receipt (Screenshot):</label>
-    <input type="file" id="receipt-upload" accept="image/*">
-    
-    <button onclick="submitOrder()">Confirm & Submit Order</button>
-  </div>
-</div>
-
-<!-- Admin Login Modal -->
-<div id="admin-login-modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="document.getElementById('admin-login-modal').style.display='none'">&times;</span>
-    <h2>Admin Authorization</h2>
-    <input type="text" id="admin-user" placeholder="Username">
-    <input type="password" id="admin-pass" placeholder="Password">
-    <button onclick="verifyAdmin()">Login</button>
-  </div>
-</div>
-
-<!-- Admin Dashboard Modal -->
-<div id="admin-dashboard-modal" class="modal">
-  <div class="modal-content" style="max-width: 800px; width:95%;">
-    <span class="close" onclick="document.getElementById('admin-dashboard-modal').style.display='none'">&times;</span>
-    <h2>Admin Dashboard</h2>
-    
-    <div class="admin-grid">
-      <!-- Ticker Settings -->
-      <div class="section-box" style="margin-bottom:0;">
-        <h3>Site Layout Settings</h3>
-        <label>Announcement Ticker Text:</label>
-        <input type="text" id="admin-ticker" value="Welcome to NAIJACP.NG - Top up PUBG, Free Fire, CODM, EAFC, and more instantly!">
-        <button onclick="updateTicker()">Update Ticker</button>
-        
-        <label style="margin-top:15px; display:block;">Bank Name:</label>
-        <input type="text" id="admin-bank" value="Opay">
-        <label>Account Number:</label>
-        <input type="text" id="admin-acc-num" value="1234567890">
-        <button onclick="updateBank()">Update Bank Details</button>
-      </div>
-
-      <!-- Live Dynamic Package Pricing Manager -->
-      <div class="section-box" style="margin-bottom:0;">
-        <h3>Manage Packages & Prices Live</h3>
-        <label>Select Game to Edit:</label>
-        <select id="admin-game-select" onchange="loadAdminPackages()">
-          <option value="Free Fire">Free Fire</option>
-          <option value="EA FC Mobile">EA FC Mobile</option>
-          <option value="TikTok">TikTok</option>
-          <option value="DLS 25">DLS 25</option>
-          <option value="Blood Strike">Blood Strike</option>
-          <option value="Delta Force">Delta Force</option>
-          <option value="MLBB">MLBB</option>
-          <option value="PUBG Mobile">PUBG Mobile</option>
-          <option value="CODM">CODM</option>
-          <option value="eFootball">eFootball</option>
-        </select>
-        
-        <div id="admin-packages-list" style="margin: 10px 0; background: #2a2a2a; padding: 10px; border-radius: 5px; max-height: 150px; overflow-y: auto;">
-          <!-- Live editable packages load here -->
+    <header>
+        <div class="logo">NAIJACP.NG</div>
+        <div class="nav-buttons">
+            <button onclick="openModal('trackModal')">Track Order</button>
+            <button onclick="openModal('sensiModal')">FF Sensi Tool</button>
+            <button onclick="openModal('adminLoginModal')">Admin Portal</button>
         </div>
+    </header>
 
-        <h4>Add New Package</h4>
-        <input type="text" id="new-pkg-name" placeholder="Package Name (e.g., 1000 Points)">
-        <input type="number" id="new-pkg-price" placeholder="Price (₦)">
-        <button onclick="addNewPackage()">Add Package to Store</button>
-      </div>
+    <div class="ticker-wrap">
+        <div class="ticker" id="tickerText">Welcome to NAIJACP.NG! | Fast & Secure Game Top-ups | 100% Reliable | Updated Free Fire Prices Now Active!</div>
     </div>
-    
-    <!-- View Orders -->
-    <div class="section-box" style="margin-top:20px;">
-      <h3>Recent Orders Tracker</h3>
-      <div id="admin-orders" style="background: #2a2a2a; padding: 10px; border-radius: 5px; max-height: 200px; overflow-y: auto;">
-        <p>No new orders yet.</p>
-      </div>
+
+    <div class="container">
+        <h2 class="section-title">Select Game</h2>
+        <div class="catalog">
+            <div class="card" onclick="openCheckout('Free Fire')">
+                <img src="IMG_3875.jpeg" alt="Free Fire">
+                <h3>Free Fire</h3>
+            </div>
+            <div class="card" onclick="openCheckout('PUBG Mobile')">
+                <img src="IMG_3876.jpeg" alt="PUBG Mobile">
+                <h3>PUBG Mobile</h3>
+            </div>
+            <div class="card" onclick="openCheckout('Call of Duty Mobile')">
+                <img src="IMG_3877.jpeg" alt="Call of Duty Mobile">
+                <h3>CODM</h3>
+            </div>
+            <div class="card" onclick="openCheckout('eFootball')">
+                <img src="IMG_3878.jpeg" alt="eFootball">
+                <h3>eFootball</h3>
+            </div>
+            <div class="card" onclick="openCheckout('TikTok')">
+                <img src="IMG_3879.jpeg" alt="TikTok">
+                <h3>TikTok</h3>
+            </div>
+            <div class="card" onclick="openCheckout('DLS 25')">
+                <img src="IMG_3881.jpeg" alt="DLS 25">
+                <h3>DLS 25</h3>
+            </div>
+            <div class="card" onclick="openCheckout('EA FC Mobile')">
+                <img src="IMG_3882.jpeg" alt="EA FC Mobile">
+                <h3>EA FC Mobile</h3>
+            </div>
+            <div class="card" onclick="openCheckout('Blood Strike')">
+                <img src="IMG_3883.jpeg" alt="Blood Strike">
+                <h3>Blood Strike</h3>
+            </div>
+            <div class="card" onclick="openCheckout('Mobile Legends')">
+                <img src="IMG_3884.jpeg" alt="Mobile Legends">
+                <h3>Mobile Legends</h3>
+            </div>
+            <div class="card" onclick="openCheckout('Delta Force')">
+                <img src="IMG_3885.jpeg" alt="Delta Force">
+                <h3>Delta Force</h3>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<script>
-  // Dynamic JSON Configuration Storage (Loads Defaults or Saves Edits Locally)
-  let siteData = {
-    bank: { name: "Opay", accName: "NAIJACP", accNum: "1234567890" },
-    ticker: "Welcome to NAIJACP.NG - Top up PUBG, Free Fire, CODM, EAFC, and more instantly!",
-    packages: {
-      "Free Fire": [
-        { name: "110 Diamonds", price: 1000 },
-        { name: "231 Diamonds", price: 2000 },
-        { name: "583 Diamonds", price: 4500 },
-        { name: "1188 Diamonds", price: 8500 },
-        { name: "2420 Diamonds", price: 17000 },
-        { name: "Booyah Pass", price: 4500 },
-        { name: "Weekly Subscription", price: 2500 },
-        { name: "Monthly Subscription", price: 8000 }
-      ],
-      "EA FC Mobile": [
-        { name: "1000 FC Points", price: 5000 },
-        { name: "2000 FC Points", price: 9500 }
-      ],
-      "PUBG Mobile": [{ name: "60 UC", price: 1000 }, { name: "325 UC", price: 4500 }],
-      "CODM": [{ name: "80 CP", price: 1000 }, { name: "420 CP", price: 4500 }],
-      "eFootball": [{ name: "300 Coins", price: 2500 }],
-      "TikTok": [{ name: "70 Coins", price: 1000 }],
-      "DLS 25": [{ name: "500 Gems", price: 3000 }],
-      "Blood Strike": [{ name: "100 Gold", price: 1000 }],
-      "Delta Force": [{ name: "Standard Pack", price: 2000 }],
-      "MLBB": [{ name: "50 Diamonds", price: 1000 }]
-    },
-    orders: []
-  };
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('checkoutModal')">&times;</span>
+            <h2 class="modal-title" id="checkoutTitle">Top Up</h2>
+            <form id="checkoutForm" onsubmit="processOrder(event)">
+                <div class="form-group">
+                    <label>Select Package</label>
+                    <select id="packageSelect" required>
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Player ID / Username</label>
+                    <input type="text" id="playerId" placeholder="Enter your game ID" required>
+                </div>
+                
+                <div class="bank-details" id="bankInfoDisplay">
+                    <p style="color:var(--text-muted); font-size:12px; margin-bottom:5px;">Make payment to:</p>
+                    <strong id="displayBankName">Opay</strong><br>
+                    <strong id="displayAccNum">8148811831</strong><br>
+                    <span id="displayAccName">Merlin</span>
+                </div>
 
-  // Persist Live Changes dynamically without source code edits
-  if(localStorage.getItem('naijacpData')) {
-    siteData = JSON.parse(localStorage.getItem('naijacpData'));
-  }
+                <div class="form-group">
+                    <label>Upload Payment Receipt (Screenshot)</label>
+                    <input type="file" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn-primary">Place Order</button>
+            </form>
+        </div>
+    </div>
 
-  // Initialize Page Setup
-  function initSite() {
-    document.getElementById('ticker-text').innerText = siteData.ticker;
-    document.getElementById('bank-name').innerText = siteData.bank.name;
-    document.getElementById('bank-acc-name').innerText = siteData.bank.accName;
-    document.getElementById('bank-acc-number').innerText = siteData.bank.accNum;
-  }
+    <!-- Track Order Modal -->
+    <div id="trackModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('trackModal')">&times;</span>
+            <h2 class="modal-title">Track Order</h2>
+            <div class="form-group">
+                <label>Order Reference Code</label>
+                <input type="text" id="trackCode" placeholder="e.g. NJP-123456">
+            </div>
+            <button class="btn-primary" onclick="trackOrder()">Check Status</button>
+            <p id="trackResult" style="margin-top:15px; font-weight:bold; color:var(--primary); text-align:center;"></p>
+        </div>
+    </div>
 
-  let currentGame = "";
+    <!-- FF Sensi Tool Modal -->
+    <div id="sensiModal" class="modal-overlay">
+        <div class="modal-content text-center">
+            <span class="close-btn" onclick="closeModal('sensiModal')">&times;</span>
+            <h2 class="modal-title">VIP Headshot Sensi</h2>
+            <p style="margin-bottom: 20px; font-size: 14px; color: var(--text-muted);">Share NAIJACP.NG to 5 WhatsApp groups to unlock the VIP auto-headshot sensitivity settings.</p>
+            <button class="btn-primary" id="shareBtn" onclick="handleWhatsAppShare()" style="background:#25D366; margin-bottom:15px;">Share to WhatsApp (0/5)</button>
+            <div id="sensiSecret" class="hidden bank-details text-left">
+                <strong>Unlocked Settings:</strong><br><br>
+                General: 100<br>
+                Red Dot: 95<br>
+                2x Scope: 90<br>
+                4x Scope: 85<br>
+                Sniper Scope: 50<br>
+                Free Look: 75<br><br>
+                <em>DPI: 500 - 600</em>
+            </div>
+        </div>
+    </div>
 
-  // Checkout Operations
-  function openCheckout(game) {
-    currentGame = game;
-    document.getElementById('checkout-title').innerText = game + " Top-up";
-    
-    const select = document.getElementById('package-select');
-    select.innerHTML = "";
-    
-    let pkgs = siteData.packages[game] || [];
-    if(pkgs.length === 0) {
-      select.innerHTML = "<option value='0'>No packages currently available</option>";
-    } else {
-      pkgs.forEach((pkg) => {
-        let opt = document.createElement('option');
-        opt.value = pkg.price;
-        opt.text = pkg.name + " - ₦" + pkg.price.toLocaleString();
-        select.appendChild(opt);
-      });
-    }
-    
-    updatePrice();
-    document.getElementById('checkout-modal').style.display = 'flex';
-  }
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('adminLoginModal')">&times;</span>
+            <h2 class="modal-title">Admin Login</h2>
+            <form onsubmit="adminLogin(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="adminUser" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="adminPass" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
 
-  function updatePrice() {
-    const select = document.getElementById('package-select');
-    document.getElementById('display-price').innerText = Number(select.value).toLocaleString();
-  }
+    <!-- Admin Dashboard Modal -->
+    <div id="adminDashboardModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('adminDashboardModal')">&times;</span>
+            <h2 class="modal-title">Admin Dashboard</h2>
+            
+            <div class="form-group">
+                <label>Update Bank Name</label>
+                <input type="text" id="adminBankName" value="Opay">
+            </div>
+            <div class="form-group">
+                <label>Update Account Number</label>
+                <input type="text" id="adminAccNum" value="8148811831">
+            </div>
+            <div class="form-group">
+                <label>Update Account Name</label>
+                <input type="text" id="adminAccName" value="Merlin">
+            </div>
+            <button class="btn-primary" onclick="updateBankDetails()" style="margin-bottom: 20px;">Save Bank Details</button>
 
-  function submitOrder() {
-    const playerID = document.getElementById('player-id').value;
-    const select = document.getElementById('package-select');
-    const file = document.getElementById('receipt-upload').files[0];
-    
-    if(!playerID || !file) {
-      alert("Please enter Player ID and upload a receipt screenshot.");
-      return;
-    }
+            <div class="form-group">
+                <label>Update Marquee Ticker</label>
+                <input type="text" id="adminTicker" value="Welcome to NAIJACP.NG! | Fast & Secure Game Top-ups | 100% Reliable | Updated Free Fire Prices Now Active!">
+            </div>
+            <button class="btn-primary" onclick="updateTicker()">Update Ticker</button>
+        </div>
+    </div>
 
-    const ref = "REF" + Math.floor(Math.random() * 1000000);
-    const order = {
-      ref: ref,
-      game: currentGame,
-      package: select.options[select.selectedIndex].text,
-      playerID: playerID,
-      status: "Pending Verification"
-    };
+    <script>
+        // Database for Game Packages
+        const gamePackages = {
+            "Free Fire": [
+                { name: "110 Diamonds", price: "₦1,000" },
+                { name: "341 Diamonds", price: "₦3,000" },
+                { name: "572 Diamonds", price: "₦5,000" },
+                { name: "Weekly Subscription", price: "₦2,500" },
+                { name: "Monthly Subscription", price: "₦8,000" }
+            ],
+            "PUBG Mobile": [
+                { name: "60 UC", price: "₦1,500" },
+                { name: "325 UC", price: "₦6,000" },
+                { name: "660 UC", price: "₦12,000" }
+            ],
+            "Call of Duty Mobile": [
+                { name: "80 CP", price: "₦1,500" },
+                { name: "420 CP", price: "₦6,500" },
+                { name: "880 CP", price: "₦13,000" }
+            ],
+            "eFootball": [
+                { name: "100 Coins", price: "₦1,200" },
+                { name: "1050 Coins", price: "₦10,000" }
+            ],
+            "TikTok": [
+                { name: "100 Coins", price: "₦1,500" },
+                { name: "500 Coins", price: "₦7,000" }
+            ],
+            "DLS 25": [
+                { name: "Season Pass", price: "₦4,000" },
+                { name: "Mega Pack", price: "₦8,500" }
+            ],
+            "EA FC Mobile": [
+                { name: "100 FC Points", price: "₦1,500" },
+                { name: "1050 FC Points", price: "₦12,000" }
+            ],
+            "Blood Strike": [
+                { name: "100 Gold", price: "₦1,000" },
+                { name: "500 Gold", price: "₦4,500" }
+            ],
+            "Mobile Legends": [
+                { name: "86 Diamonds", price: "₦1,500" },
+                { name: "257 Diamonds", price: "₦4,500" }
+            ],
+            "Delta Force": [
+                { name: "Standard Pack", price: "₦2,000" },
+                { name: "Premium Pack", price: "₦5,000" }
+            ]
+        };
 
-    siteData.orders.push(order);
-    saveData();
+        // Modal Controls
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-    alert("Order Submitted Successfully!\nYour Tracking Reference is: " + ref);
-    document.getElementById('checkout-modal').style.display = 'none';
-    document.getElementById('player-id').value = "";
-  }
+        // Checkout Logic
+        function openCheckout(game) {
+            document.getElementById('checkoutTitle').innerText = game + " Top Up";
+            const select = document.getElementById('packageSelect');
+            select.innerHTML = '<option value="" disabled selected>Select a package...</option>';
+            
+            if(gamePackages[game]) {
+                gamePackages[game].forEach(pkg => {
+                    const opt = document.createElement('option');
+                    opt.value = `${pkg.name} - ${pkg.price}`;
+                    opt.innerText = `${pkg.name} - ${pkg.price}`;
+                    select.appendChild(opt);
+                });
+            }
+            openModal('checkoutModal');
+        }
 
-  // Tracking System
-  function trackOrder() {
-    const id = document.getElementById('track-id').value.trim();
-    const result = document.getElementById('track-result');
-    if(!id) return;
+        function processOrder(e) {
+            e.preventDefault();
+            const ref = 'NJP-' + Math.floor(100000 + Math.random() * 900000);
+            alert(`Order Placed Successfully!\n\nYour Order Reference is: ${ref}\n\nKeep this code to track your order. Processing takes 5-15 minutes after payment confirmation.`);
+            document.getElementById('checkoutForm').reset();
+            closeModal('checkoutModal');
+        }
 
-    const order = siteData.orders.find(o => o.ref === id || o.playerID === id);
-    if(order) {
-      result.innerText = `Order: ${order.game} (${order.package}) - Status: ${order.status}`;
-      result.style.color = "#4caf50";
-    } else {
-      result.innerText = "Order not found. Please check your details.";
-      result.style.color = "#e53935";
-    }
-    result.style.display = 'block';
-  }
+        // Track Order Logic
+        function trackOrder() {
+            const code = document.getElementById('trackCode').value;
+            const result = document.getElementById('trackResult');
+            if(!code) {
+                result.innerText = "Please enter a reference code.";
+                result.style.color = "red";
+                return;
+            }
+            result.style.color = "var(--primary)";
+            result.innerText = "Status: Pending Payment Verification";
+        }
 
-  // Sensi Tool System
-  function unlockSensi() {
-    const text = encodeURIComponent("Check out NAIJACP.NG for the best Game Top-ups and Free Fire Sensi settings!");
-    window.open("https://wa.me/?text=" + text, "_blank");
-    setTimeout(() => {
-      document.getElementById('sensi-results').style.display = 'block';
-    }, 3000); // Emulates share check delay
-  }
+        // FF Sensi Logic
+        let shareCount = 0;
+        function handleWhatsAppShare() {
+            if(shareCount < 5) {
+                window.open(`https://api.whatsapp.com/send?text=Get cheap game topups at NAIJACP.NG! Fast and secure.`, '_blank');
+                shareCount++;
+                document.getElementById('shareBtn').innerText = `Share to WhatsApp (${shareCount}/5)`;
+            }
+            if(shareCount >= 5) {
+                document.getElementById('shareBtn').classList.add('hidden');
+                document.getElementById('sensiSecret').classList.remove('hidden');
+            }
+        }
 
-  /* Admin System Architecture */
-  function verifyAdmin() {
-    const user = document.getElementById('admin-user').value;
-    const pass = document.getElementById('admin-pass').value;
-    
-    if(user === "Merlin" && pass === "merlin1") {
-      document.getElementById('admin-login-modal').style.display = 'none';
-      document.getElementById('admin-dashboard-modal').style.display = 'flex';
-      
-      // Clear fields
-      document.getElementById('admin-user').value = "";
-      document.getElementById('admin-pass').value = "";
-      
-      loadAdminDashboard();
-    } else {
-      alert("Access Denied. Invalid credentials.");
-    }
-  }
+        // Admin Logic
+        function adminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('adminUser').value;
+            const p = document.getElementById('adminPass').value;
+            if(u === 'Merlin' && p === 'merlin1') {
+                closeModal('adminLoginModal');
+                openModal('adminDashboardModal');
+                document.getElementById('adminUser').value = '';
+                document.getElementById('adminPass').value = '';
+            } else {
+                alert("Invalid Credentials!");
+            }
+        }
 
-  function loadAdminDashboard() {
-    // Populate Latest Orders
-    const ordersDiv = document.getElementById('admin-orders');
-    if(siteData.orders.length === 0) {
-      ordersDiv.innerHTML = "<p>No new orders yet.</p>";
-    } else {
-      let html = "";
-      siteData.orders.forEach(o => {
-        html += `<p style="border-bottom:1px solid #444; padding-bottom:5px;"><strong>${o.ref}</strong> | ${o.game} | UID: ${o.playerID} | ${o.package} <br><span style="color:#e53935; font-size:12px;">Status: ${o.status}</span></p>`;
-      });
-      ordersDiv.innerHTML = html;
-    }
+        function updateBankDetails() {
+            document.getElementById('displayBankName').innerText = document.getElementById('adminBankName').value;
+            document.getElementById('displayAccNum').innerText = document.getElementById('adminAccNum').value;
+            document.getElementById('displayAccName').innerText = document.getElementById('adminAccName').value;
+            alert("Bank details updated successfully!");
+        }
 
-    // Default package loader
-    loadAdminPackages();
-  }
-
-  function loadAdminPackages() {
-    const game = document.getElementById('admin-game-select').value;
-    const listDiv = document.getElementById('admin-packages-list');
-    let pkgs = siteData.packages[game] || [];
-    
-    if(pkgs.length === 0) {
-      listDiv.innerHTML = "No packages set for this game.";
-      return;
-    }
-
-    let html = "<ul style='list-style:none; padding:0; margin:0;'>";
-    pkgs.forEach((p, i) => {
-      html += `<li style="margin-bottom:8px; display:flex; justify-content:space-between;">
-                 <span>${p.name} - ₦${p.price.toLocaleString()}</span>
-                 <button style="width:auto; padding:2px 8px; margin:0; background:#d32f2f; font-size:12px;" onclick="deletePackage('${game}', ${i})">Delete</button>
-               </li>`;
-    });
-    html += "</ul>";
-    listDiv.innerHTML = html;
-  }
-
-  function addNewPackage() {
-    const game = document.getElementById('admin-game-select').value;
-    const name = document.getElementById('new-pkg-name').value;
-    const price = parseInt(document.getElementById('new-pkg-price').value);
-
-    if(!name || !price) {
-      alert("Please enter a valid package name and price.");
-      return;
-    }
-
-    if(!siteData.packages[game]) siteData.packages[game] = [];
-    siteData.packages[game].push({ name, price });
-    saveData();
-    loadAdminPackages();
-    document.getElementById('new-pkg-name').value = "";
-    document.getElementById('new-pkg-price').value = "";
-    alert("Package successfully added to store!");
-  }
-
-  function deletePackage(game, index) {
-    if(confirm("Delete this package?")) {
-      siteData.packages[game].splice(index, 1);
-      saveData();
-      loadAdminPackages();
-    }
-  }
-
-  function updateTicker() {
-    siteData.ticker = document.getElementById('admin-ticker').value;
-    saveData();
-    initSite();
-    alert("Announcement Ticker updated live!");
-  }
-
-  function updateBank() {
-    siteData.bank.name = document.getElementById('admin-bank').value;
-    siteData.bank.accNum = document.getElementById('admin-acc-num').value;
-    saveData();
-    initSite();
-    alert("Bank deposit information updated live!");
-  }
-
-  function saveData() {
-    localStorage.setItem('naijacpData', JSON.stringify(siteData));
-  }
-
-  // Run initialization on load
-  initSite();
-</script>
+        function updateTicker() {
+            document.getElementById('tickerText').innerText = document.getElementById('adminTicker').value;
+            alert("Ticker updated successfully!");
+        }
+    </script>
 </body>
 </html>
