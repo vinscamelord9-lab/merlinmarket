@@ -235,7 +235,7 @@
   </header>
 
   <!-- MAIN CATALOG SECTION -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 flex-grow">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 flex-grow" id="games">
 
     <!-- Filter Tabs -->
     <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-8">
@@ -300,8 +300,8 @@
       <div class="flex items-center justify-center gap-4 mt-4">
         <p>© 2026 NAIJACP Hub. All rights reserved.</p>
         <!-- HIDDEN ADMIN TRIGGER -->
-        <button onclick="openAdminModal()" class="text-slate-700 hover:text-pink-500 transition ml-4" title="Admin Access">
-          <i class="fa-solid fa-lock"></i>
+        <button onclick="openAdminModal()" class="text-slate-800 hover:text-pink-500 transition ml-2" title="Admin">
+          <i class="fa-solid fa-lock text-xs"></i>
         </button>
       </div>
     </div>
@@ -506,23 +506,80 @@
     </div>
   </div>
 
-  <!-- ADMIN DASHBOARD MODAL (HIDDEN BY DEFAULT) -->
+  <!-- ADMIN MODAL (PASSWORD PROTECTED) -->
   <div id="adminModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-md">
-    <div class="glass-modal w-full max-w-3xl max-h-[80vh] rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-pink-500/50 flex flex-col">
+    <div class="glass-modal w-full max-w-3xl max-h-[85vh] rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-pink-500/50 flex flex-col">
       <button onclick="closeModal('adminModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800/80 flex items-center justify-center">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-        <h3 class="text-xl font-extrabold text-white"><i class="fa-solid fa-user-tie text-pink-400"></i> Admin Panel - Recent Orders</h3>
-        <button onclick="clearAllOrders()" class="bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition">
-          Clear All Orders
-        </button>
+      <!-- VIEW 1: ADMIN LOGIN FORM -->
+      <div id="adminLoginForm" class="py-6 text-center max-w-sm mx-auto w-full">
+        <div class="w-14 h-14 bg-pink-500/20 text-pink-400 rounded-2xl border border-pink-500/30 flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 class="text-xl font-extrabold text-white">Admin Authentication</h3>
+        <p class="text-xs text-slate-400 mt-1 mb-6">Restricted access section</p>
+
+        <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+          <div>
+            <label class="block text-xs font-bold text-slate-400 mb-1">Username</label>
+            <input type="text" id="adminUser" placeholder="Username" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-400 mb-1">Password</label>
+            <input type="password" id="adminPass" placeholder="Password" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+          </div>
+          <p id="adminLoginErr" class="text-xs text-red-400 hidden font-bold text-center">Invalid Username or Password!</p>
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-pink-500 hover:bg-pink-400 text-black font-extrabold text-sm transition">
+            Login to Admin
+          </button>
+        </form>
       </div>
 
-      <div class="overflow-y-auto flex-grow pr-2" id="adminOrdersContainer">
-        <!-- Admin orders populate here -->
+      <!-- VIEW 2: ADMIN DASHBOARD (HIDDEN UNTIL AUTHENTICATED) -->
+      <div id="adminDashboard" class="hidden flex-col h-full">
+        <!-- Admin Header -->
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+          <div>
+            <h3 class="text-xl font-extrabold text-white flex items-center gap-2">
+              <i class="fa-solid fa-user-tie text-pink-400"></i> Admin Panel
+            </h3>
+            <p class="text-xs text-slate-400">Logged in as: <span class="text-pink-400 font-bold">merlin</span></p>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <button onclick="clearAllOrders()" class="bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold transition">
+              <i class="fa-solid fa-trash-can"></i> Clear All
+            </button>
+            <button onclick="adminLogout()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-xl text-xs font-bold transition">
+              Logout
+            </button>
+          </div>
+        </div>
+
+        <!-- Metrics Overview Bar -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+          <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl">
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">Total Orders</span>
+            <span id="adminStatCount" class="text-xl font-black text-white">0</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl">
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">Total Sales Revenue</span>
+            <span id="adminStatRev" class="text-xl font-black text-pink-400">₦0</span>
+          </div>
+          <div class="col-span-2 sm:col-span-1 bg-slate-900/90 border border-slate-800 p-3 rounded-2xl">
+            <span class="text-[10px] text-slate-400 font-bold uppercase block">Pending Delivery</span>
+            <span id="adminStatPending" class="text-xl font-black text-amber-400">0</span>
+          </div>
+        </div>
+
+        <!-- Orders Table Container -->
+        <div class="overflow-y-auto flex-grow pr-1 space-y-3" id="adminOrdersContainer">
+          <!-- Populated via JS -->
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -539,7 +596,7 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    // DATA SOURCE FOR GAMES & PACKAGES (UNCHANGED)
+    // DATA SOURCE FOR GAMES & PACKAGES
     const gamesData = [
       {
         id: 'pubg',
@@ -669,6 +726,7 @@
     let selectedGame = null;
     let selectedPackage = null;
     let recentOrders = JSON.parse(localStorage.getItem('naijaCP_orders') || '[]');
+    let isAdminAuth = false;
 
     // INITIAL RENDER
     window.addEventListener('DOMContentLoaded', () => {
@@ -801,7 +859,6 @@
         return;
       }
 
-      // Close TopUp Modal & Open Payment Modal
       closeModal('topupModal');
 
       document.getElementById('checkoutItem').innerText = `${selectedGame.name} - ${selectedPackage.amount}`;
@@ -852,7 +909,7 @@
       document.getElementById('receiptTarget').innerText = playerId;
       document.getElementById('receiptAmount').innerText = `₦${selectedPackage.price.toLocaleString()}`;
 
-      // Store in local storage for tracking & Admin page
+      // Save to localStorage
       const newOrder = {
         ref: refCode,
         game: selectedGame.name,
@@ -870,7 +927,7 @@
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#f472b6', '#ec4899', '#be185d'] // Pink confetti colors
+        colors: ['#f472b6', '#ec4899', '#be185d']
       });
 
       document.getElementById('receiptModal').classList.remove('hidden');
@@ -890,11 +947,15 @@
       const found = recentOrders.find(o => o.ref.toLowerCase() === q || o.target.toLowerCase() === q);
 
       if (found) {
+        let statusColor = 'text-amber-400';
+        if(found.status === 'Completed') statusColor = 'text-emerald-400';
+        if(found.status === 'Rejected') statusColor = 'text-red-400';
+
         res.innerHTML = `
           <div class="p-4 rounded-2xl bg-slate-900 border border-pink-500/40 text-xs space-y-2">
             <div class="flex justify-between font-bold text-white">
               <span>Order Ref: ${found.ref}</span>
-              <span class="text-amber-400 uppercase">${found.status}</span>
+              <span class="${statusColor} uppercase">${found.status}</span>
             </div>
             <div class="text-slate-400">Item: ${found.game} (${found.pkg})</div>
             <div class="text-slate-400">Target ID: ${found.target}</div>
@@ -910,39 +971,126 @@
       }
     }
 
-    // --- ADMIN PAGE LOGIC ---
+    // --- SECURE ADMIN SYSTEM ---
     function openAdminModal() {
-      renderAdminOrders();
       document.getElementById('adminModal').classList.remove('hidden');
+      if (isAdminAuth) {
+        showAdminDashboard();
+      } else {
+        document.getElementById('adminLoginForm').classList.remove('hidden');
+        document.getElementById('adminDashboard').classList.add('hidden');
+      }
     }
 
-    function renderAdminOrders() {
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('adminUser').value.trim();
+      const pass = document.getElementById('adminPass').value.trim();
+      const err = document.getElementById('adminLoginErr');
+
+      // VERIFY CREDENTIALS
+      if (user === 'merlin' && pass === 'merlin16') {
+        isAdminAuth = true;
+        err.classList.add('hidden');
+        document.getElementById('adminUser').value = '';
+        document.getElementById('adminPass').value = '';
+        showAdminDashboard();
+      } else {
+        err.classList.remove('hidden');
+      }
+    }
+
+    function showAdminDashboard() {
+      document.getElementById('adminLoginForm').classList.add('hidden');
+      document.getElementById('adminDashboard').classList.remove('hidden');
+      document.getElementById('adminDashboard').classList.add('flex');
+      renderAdminDashboard();
+    }
+
+    function adminLogout() {
+      isAdminAuth = false;
+      document.getElementById('adminDashboard').classList.add('hidden');
+      document.getElementById('adminLoginForm').classList.remove('hidden');
+    }
+
+    function renderAdminDashboard() {
       const container = document.getElementById('adminOrdersContainer');
       container.innerHTML = '';
-      
+
+      // Stats Calculation
+      let totalRev = 0;
+      let pendingCount = 0;
+
+      recentOrders.forEach(o => {
+        totalRev += o.amount;
+        if (o.status === 'Awaiting Proof') pendingCount++;
+      });
+
+      document.getElementById('adminStatCount').innerText = recentOrders.length;
+      document.getElementById('adminStatRev').innerText = `₦${totalRev.toLocaleString()}`;
+      document.getElementById('adminStatPending').innerText = pendingCount;
+
       if (recentOrders.length === 0) {
-        container.innerHTML = `<div class="text-center py-10 text-slate-500 text-sm">No orders received yet.</div>`;
+        container.innerHTML = `<div class="text-center py-12 text-slate-500 text-sm">No orders recorded yet.</div>`;
         return;
       }
 
-      recentOrders.forEach(order => {
+      recentOrders.forEach((order, index) => {
         const orderDiv = document.createElement('div');
-        orderDiv.className = "bg-slate-900 border border-slate-800 rounded-xl p-4 mb-3 text-sm grid grid-cols-2 sm:grid-cols-4 gap-3";
+        orderDiv.className = "bg-slate-900 border border-slate-800/80 rounded-2xl p-4 text-xs space-y-3";
+        
+        let statusBadgeClass = 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+        if (order.status === 'Completed') statusBadgeClass = 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+        if (order.status === 'Rejected') statusBadgeClass = 'bg-red-500/20 text-red-400 border-red-500/30';
+
         orderDiv.innerHTML = `
-          <div><span class="block text-[10px] text-slate-500 uppercase">Ref Code</span><span class="text-white font-bold">${order.ref}</span></div>
-          <div><span class="block text-[10px] text-slate-500 uppercase">Player ID</span><span class="text-white">${order.target}</span></div>
-          <div><span class="block text-[10px] text-slate-500 uppercase">Package</span><span class="text-white">${order.pkg}</span></div>
-          <div><span class="block text-[10px] text-slate-500 uppercase">Amount & Status</span><span class="text-pink-400 font-bold">₦${order.amount.toLocaleString()}</span> <br><span class="text-[10px] text-amber-400">${order.status}</span></div>
+          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+            <span class="font-mono text-pink-400 font-extrabold">${order.ref}</span>
+            <span class="px-2 py-0.5 rounded-md border text-[10px] font-bold ${statusBadgeClass}">${order.status}</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-slate-300">
+            <div><span class="text-slate-500 block text-[10px]">Game:</span><strong>${order.game}</strong></div>
+            <div><span class="text-slate-500 block text-[10px]">Package:</span><strong>${order.pkg}</strong></div>
+            <div><span class="text-slate-500 block text-[10px]">Player ID:</span><strong class="font-mono">${order.target}</strong></div>
+            <div><span class="text-slate-500 block text-[10px]">Price:</span><strong class="text-pink-400">₦${order.amount.toLocaleString()}</strong></div>
+          </div>
+
+          <!-- ADMIN CONTROL ACTIONS -->
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/80">
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] text-slate-500">Update Status:</span>
+              <button onclick="updateOrderStatus(${index}, 'Completed')" class="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-black px-2 py-1 rounded-lg text-[10px] font-bold transition">Complete</button>
+              <button onclick="updateOrderStatus(${index}, 'Rejected')" class="bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white px-2 py-1 rounded-lg text-[10px] font-bold transition">Reject</button>
+            </div>
+            <button onclick="deleteSingleOrder(${index})" class="text-slate-500 hover:text-red-400 p-1 transition" title="Delete Order">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
         `;
         container.appendChild(orderDiv);
       });
     }
 
+    function updateOrderStatus(index, newStatus) {
+      recentOrders[index].status = newStatus;
+      localStorage.setItem('naijaCP_orders', JSON.stringify(recentOrders));
+      renderAdminDashboard();
+    }
+
+    function deleteSingleOrder(index) {
+      if (confirm('Delete this order entry?')) {
+        recentOrders.splice(index, 1);
+        localStorage.setItem('naijaCP_orders', JSON.stringify(recentOrders));
+        renderAdminDashboard();
+      }
+    }
+
     function clearAllOrders() {
-      if(confirm("Are you sure you want to clear all user orders from the system?")) {
+      if (confirm("Are you sure you want to delete ALL orders from the database?")) {
         recentOrders = [];
         localStorage.removeItem('naijaCP_orders');
-        renderAdminOrders();
+        renderAdminDashboard();
       }
     }
 
@@ -961,7 +1109,7 @@
       const counter = document.getElementById('liveCounter');
       setInterval(() => {
         let current = parseInt(counter.innerText.replace(/,/g, ''));
-        let change = Math.floor(Math.random() * 7) - 3; // -3 to +3
+        let change = Math.floor(Math.random() * 7) - 3;
         current = Math.max(1200, current + change);
         counter.innerText = current.toLocaleString();
       }, 5000);
@@ -975,7 +1123,7 @@
       const prefixes = ['0803', '0812', '0905', '0706', '0810', '0913'];
 
       setInterval(() => {
-        if(Math.random() > 0.6) { // 40% chance to show toast every 10s
+        if(Math.random() > 0.6) {
           const randomGame = gamesData[Math.floor(Math.random() * gamesData.length)];
           const randomPkg = randomGame.packages[Math.floor(Math.random() * randomGame.packages.length)];
           const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
@@ -989,7 +1137,6 @@
             toast.classList.remove('opacity-0', 'translate-y-10');
           }, 100);
 
-          // Hide after 4 seconds
           setTimeout(() => {
             toast.classList.add('opacity-0', 'translate-y-10');
             setTimeout(() => toast.classList.add('hidden'), 500);
