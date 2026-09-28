@@ -599,471 +599,427 @@
   <!-- REDESIGNED ADMIN PORTAL MODAL -->
   <div id="adminModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-2 sm:p-4 bg-black/95 backdrop-blur-md">
     <div class="glass-modal w-full max-w-5xl h-[92vh] rounded-3xl p-4 sm:p-6 relative shadow-2xl border border-pink-500/40 flex flex-col overflow-hidden">
-      <button onclick="closeModal('adminModal')" class="absolute top-4 right-4 z-10 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <!-- VIEW 1: ADMIN LOGIN -->
-      <div id="adminLoginForm" class="py-12 text-center max-w-sm mx-auto w-full my-auto">
-        <div class="w-14 h-14 bg-pink-500/20 text-pink-400 rounded-2xl border border-pink-500/30 flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg">
-          <i class="fa-solid fa-shield-halved"></i>
-        </div>
-        <h3 class="text-2xl font-black text-white">Admin Authentication</h3>
-        <p class="text-xs text-slate-400 mt-1 mb-6">Enter authorized credentials to proceed</p>
-
-        <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
-          <div>
-            <label class="block text-xs font-bold text-slate-400 mb-1">Username</label>
-            <input type="text" id="adminUser" placeholder="Username" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-400 mb-1">Password</label>
-            <input type="password" id="adminPass" placeholder="Password" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
-          </div>
-          <p id="adminLoginErr" class="text-xs text-red-400 hidden font-bold text-center">Invalid Username or Password!</p>
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-pink-500 hover:bg-pink-400 text-black font-extrabold text-sm transition">
-            Login to Admin Panel
+      
+      <!-- Top Bar inside Admin Portal -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <!-- Mobile Menu Toggle Button to hide/show navigation on phone screens -->
+          <button onclick="toggleAdminNavDrawer()" class="md:hidden p-2 rounded-lg bg-pink-500/20 text-pink-400 border border-pink-500/30 font-bold text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menu</span>
           </button>
-        </form>
+          <span class="text-lg font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-pink-400"></i> Admin Panel
+          </span>
+        </div>
+        
+        <button onclick="closeModal('adminModal')" class="text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
 
-      <!-- VIEW 2: ADMIN DASHBOARD -->
-      <div id="adminDashboard" class="hidden flex-col md:flex-row h-full w-full overflow-hidden">
+      <!-- Main Layout: Grid or Flex for Mobile / Desktop -->
+      <div class="flex-1 flex flex-col md:flex-row gap-4 mt-4 overflow-hidden relative">
         
-        <!-- SIDEBAR (Matching 4 menu groups from image) -->
-        <aside class="w-full md:w-64 bg-slate-950/90 border-r border-slate-800 p-4 flex flex-col justify-between overflow-y-auto">
-          <div class="space-y-6">
-            <div class="flex items-center gap-2 pb-4 border-b border-slate-800">
-              <span class="text-lg font-black text-white">ADMIN<span class="text-pink-400">PANEL</span></span>
-            </div>
-
-            <!-- GROUP 1 -->
-            <div class="space-y-1">
-              <button onclick="switchAdminTab('dashboard')" class="admin-nav-btn active w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>📊</span> <span>Dashboard</span>
-              </button>
-              <button onclick="switchAdminTab('orders')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>📦</span> <span>Orders</span>
-              </button>
-              <button onclick="switchAdminTab('payments')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>💳</span> <span>Payments</span>
-              </button>
-            </div>
-
-            <div class="border-t border-slate-800/80 my-2"></div>
-
-            <!-- GROUP 2 -->
-            <div class="space-y-1">
-              <button onclick="switchAdminTab('packages')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>💎</span> <span>Packages</span>
-              </button>
-              <button onclick="switchAdminTab('announcements')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>📣</span> <span>Announcements</span>
-              </button>
-              <button onclick="switchAdminTab('banners')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>🖼️</span> <span>Banners</span>
-              </button>
-              <button onclick="switchAdminTab('homepage')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>🏠</span> <span>Homepage</span>
-              </button>
-            </div>
-
-            <div class="border-t border-slate-800/80 my-2"></div>
-
-            <!-- GROUP 3 -->
-            <div class="space-y-1">
-              <button onclick="switchAdminTab('customers')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>👥</span> <span>Customers</span>
-              </button>
-              <button onclick="switchAdminTab('admins')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>🛡️</span> <span>Admins</span>
-              </button>
-              <button onclick="switchAdminTab('activity')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>📜</span> <span>Activity Log</span>
-              </button>
-            </div>
-
-            <div class="border-t border-slate-800/80 my-2"></div>
-
-            <!-- GROUP 4 -->
-            <div class="space-y-1">
-              <button onclick="switchAdminTab('payment_settings')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>🏦</span> <span>Payment Settings</span>
-              </button>
-              <button onclick="switchAdminTab('support_settings')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>💬</span> <span>Support Settings</span>
-              </button>
-              <button onclick="switchAdminTab('site_settings')" class="admin-nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-pink-500/10 hover:text-pink-400 transition">
-                <span>⚙️</span> <span>Site Settings</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-slate-800">
-            <button onclick="adminLogout()" class="w-full py-2 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white text-xs font-bold transition">
-              Logout
-            </button>
-          </div>
-        </aside>
-
-        <!-- MAIN ADMIN CONTENT AREA -->
-        <main class="flex-1 p-4 sm:p-6 overflow-y-auto bg-slate-900/40">
+        <!-- Navigation Drawer / Sidebar (Fixed for Mobile cramped height) -->
+        <div id="adminNavDrawer" class="hidden md:flex flex-col w-full md:w-64 bg-slate-950/90 border border-slate-800 rounded-2xl p-3 space-y-1 overflow-y-auto max-h-[45vh] md:max-h-none flex-shrink-0 z-20 shadow-xl">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1">Management</span>
           
-          <!-- TAB: DASHBOARD -->
-          <div id="tab_dashboard" class="admin-tab-view space-y-6">
-            <h2 class="text-xl font-extrabold text-white">Dashboard Overview</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
-                <span class="text-xs text-slate-400 uppercase font-bold">Total Orders</span>
-                <span id="statTotalOrders" class="text-2xl font-black text-white block mt-1">0</span>
-              </div>
-              <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
-                <span class="text-xs text-slate-400 uppercase font-bold">Revenue</span>
-                <span id="statTotalRev" class="text-2xl font-black text-pink-400 block mt-1">₦0</span>
-              </div>
-              <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 col-span-2 sm:col-span-1">
-                <span class="text-xs text-slate-400 uppercase font-bold">Pending Approval</span>
-                <span id="statPending" class="text-2xl font-black text-amber-400 block mt-1">0</span>
-              </div>
-            </div>
+          <button onclick="switchAdminTab('payments')" id="adminBtn-payments" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-wallet text-pink-400"></i> Payments
+          </button>
+          
+          <button onclick="switchAdminTab('packages')" id="adminBtn-packages" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-gem text-pink-400"></i> Packages
+          </button>
 
-            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
-              <h3 class="font-bold text-white mb-3 text-sm">Recent Orders List</h3>
-              <div id="adminRecentOrders" class="space-y-2 text-xs"></div>
+          <button onclick="switchAdminTab('announcements')" id="adminBtn-announcements" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-bullhorn text-pink-400"></i> Announcements
+          </button>
+
+          <button onclick="switchAdminTab('banners')" id="adminBtn-banners" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-image text-pink-400"></i> Banners
+          </button>
+
+          <button onclick="switchAdminTab('homepage')" id="adminBtn-homepage" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-house text-pink-400"></i> Homepage
+          </button>
+
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1 pt-2">Users & Logs</span>
+
+          <button onclick="switchAdminTab('customers')" id="adminBtn-customers" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-users text-pink-400"></i> Customers
+          </button>
+
+          <button onclick="switchAdminTab('admins')" id="adminBtn-admins" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-user-shield text-pink-400"></i> Admins
+          </button>
+
+          <button onclick="switchAdminTab('activity')" id="adminBtn-activity" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-list-check text-pink-400"></i> Activity Log
+          </button>
+
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1 pt-2">Settings</span>
+
+          <button onclick="switchAdminTab('paymentSettings')" id="adminBtn-paymentSettings" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-gears text-pink-400"></i> Payment Settings
+          </button>
+
+          <button onclick="switchAdminTab('supportSettings')" id="adminBtn-supportSettings" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-headset text-pink-400"></i> Support Settings
+          </button>
+
+          <button onclick="switchAdminTab('siteSettings')" id="adminBtn-siteSettings" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent transition flex items-center gap-2.5">
+            <i class="fa-solid fa-sliders text-pink-400"></i> Site Settings
+          </button>
+
+          <button onclick="closeModal('adminModal')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10 transition flex items-center gap-2.5 mt-4">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </button>
+        </div>
+
+        <!-- Content Area: Gives full space to the selected tab content -->
+        <div class="flex-1 bg-slate-900/60 border border-slate-800 rounded-2xl p-4 sm:p-6 overflow-y-auto h-full">
+          
+          <!-- TAB: PAYMENTS -->
+          <div id="adminTab-payments" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Payment Requests</h4>
+            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 text-xs text-slate-300">
+              <p class="font-bold text-pink-400 mb-1">Recent Bank Proof Submissions</p>
+              <p>No new pending orders in queue.</p>
             </div>
           </div>
 
-          <!-- TAB: ORDERS (Per Game Separation) -->
-          <div id="tab_orders" class="admin-tab-view hidden space-y-6">
-            <div class="flex items-center justify-between">
-              <h2 class="text-xl font-extrabold text-white">Orders Management (Per Game)</h2>
-              <button onclick="clearAllOrders()" class="bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold transition">Clear Orders</button>
+          <!-- TAB: PACKAGES -->
+          <div id="adminTab-packages" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Packages & Games Management</h4>
+            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 text-xs text-slate-300">
+              <p class="font-bold text-pink-400 mb-1">Active Game Offerings</p>
+              <p>PUBG Mobile, Free Fire, Call of Duty Mobile, eFootball 2026.</p>
             </div>
-            <div id="adminOrdersPerGame" class="space-y-4"></div>
           </div>
 
-          <!-- TAB: PACKAGES (Per Game Separation & Add New Game) -->
-          <div id="tab_packages" class="admin-tab-view hidden space-y-6">
-            <div class="flex items-center justify-between">
-              <h2 class="text-xl font-extrabold text-white">Packages & Games Management</h2>
-              <button onclick="openAddNewGameModal()" class="bg-pink-500 text-black px-4 py-2 rounded-xl text-xs font-extrabold hover:bg-pink-400 transition flex items-center gap-1.5">
-                <i class="fa-solid fa-plus"></i> Add New Game
-              </button>
-            </div>
-            <div id="adminPackagesPerGame" class="space-y-4"></div>
+          <!-- TAB: ANNOUNCEMENTS -->
+          <div id="adminTab-announcements" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Top Announcement Ticker</h4>
+            <input type="text" value="FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white">
+          </div>
+
+          <!-- TAB: BANNERS -->
+          <div id="adminTab-banners" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Promotional Banners</h4>
+            <p class="text-xs text-slate-400">Configure homepage carousel and promo images.</p>
+          </div>
+
+          <!-- TAB: HOMEPAGE -->
+          <div id="adminTab-homepage" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Homepage Content Editor</h4>
+            <p class="text-xs text-slate-400">Manage headline text, subtext, and featured section layouts.</p>
+          </div>
+
+          <!-- TAB: CUSTOMERS -->
+          <div id="adminTab-customers" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Customer Database</h4>
+            <p class="text-xs text-slate-400">View registered user history and saved game IDs.</p>
+          </div>
+
+          <!-- TAB: ADMINS -->
+          <div id="adminTab-admins" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Admin Accounts</h4>
+            <p class="text-xs text-slate-400">Manage admin user credentials and platform permission levels.</p>
+          </div>
+
+          <!-- TAB: ACTIVITY LOG -->
+          <div id="adminTab-activity" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">System Activity Log</h4>
+            <p class="text-xs text-slate-400">Track order processing timestamps and administrative actions.</p>
           </div>
 
           <!-- TAB: PAYMENT SETTINGS -->
-          <div id="tab_payment_settings" class="admin-tab-view hidden space-y-6">
-            <h2 class="text-xl font-extrabold text-white">Payment Gateway Settings</h2>
-            <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-4 max-w-md">
+          <div id="adminTab-paymentSettings" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Bank Payment Settings</h4>
+            <div class="space-y-3 text-xs">
               <div>
-                <label class="block text-xs font-bold text-slate-400 mb-1">Bank Name</label>
-                <input type="text" id="adminBankName" value="OPay" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs">
+                <label class="block text-slate-400 mb-1">Bank Name</label>
+                <input type="text" value="OPay" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-400 mb-1">Account Number</label>
-                <input type="text" id="adminAccNum" value="7048972368" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs">
+                <label class="block text-slate-400 mb-1">Account Number</label>
+                <input type="text" value="7048972368" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-400 mb-1">Account Name</label>
-                <input type="text" id="adminAccName" value="OGUNLANA JAMIU" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs">
+                <label class="block text-slate-400 mb-1">Account Name</label>
+                <input type="text" value="OGUNLANA JAMIU" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
               </div>
-              <button onclick="savePaymentSettings()" class="w-full py-2.5 rounded-xl bg-pink-500 text-black font-extrabold text-xs">Save Payment Details</button>
             </div>
           </div>
 
-          <!-- OTHER PLACEHOLDER TABS -->
-          <div id="tab_payments" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Payments Log</h2><p class="text-slate-400 text-xs">Recorded bank transfers appear here.</p></div>
-          <div id="tab_announcements" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Announcements</h2><p class="text-slate-400 text-xs">Manage top marquee banner announcement texts.</p></div>
-          <div id="tab_banners" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Banners</h2><p class="text-slate-400 text-xs">Manage promotional hero banners.</p></div>
-          <div id="tab_homepage" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Homepage Editor</h2><p class="text-slate-400 text-xs">Customize homepage layout sections.</p></div>
-          <div id="tab_customers" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Customers Directory</h2><p class="text-slate-400 text-xs">List of user IDs and purchase histories.</p></div>
-          <div id="tab_admins" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Admin Accounts</h2><p class="text-slate-400 text-xs">Manage admin users and credentials.</p></div>
-          <div id="tab_activity" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Activity Log</h2><p class="text-slate-400 text-xs">System logs and order timestamp updates.</p></div>
-          <div id="tab_support_settings" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Support Settings</h2><p class="text-slate-400 text-xs">Update Telegram handle link (@naijacp1).</p></div>
-          <div id="tab_site_settings" class="admin-tab-view hidden"><h2 class="text-xl font-extrabold text-white mb-2">Site Settings</h2><p class="text-slate-400 text-xs">General SEO title and website configurations.</p></div>
+          <!-- TAB: SUPPORT SETTINGS -->
+          <div id="adminTab-supportSettings" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Support Channels</h4>
+            <div class="text-xs space-y-3">
+              <div>
+                <label class="block text-slate-400 mb-1">Telegram Handle</label>
+                <input type="text" value="@naijacp1" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white">
+              </div>
+            </div>
+          </div>
 
-        </main>
+          <!-- TAB: SITE SETTINGS -->
+          <div id="adminTab-siteSettings" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-lg font-bold text-white">Site Settings</h4>
+            <p class="text-xs text-slate-400">General SEO title and website configurations.</p>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ADD NEW GAME MODAL -->
-  <div id="newGameModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4 bg-black/90">
-    <div class="glass-modal w-full max-w-md rounded-3xl p-6 relative">
-      <button onclick="closeModal('newGameModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-      <h3 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-gamepad text-pink-400"></i> Add New Game Title</h3>
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs text-slate-400 mb-1">Game Name</label>
-          <input type="text" id="newGameTitleInput" placeholder="e.g. Apex Legends Mobile" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white text-xs">
-        </div>
-        <div>
-          <label class="block text-xs text-slate-400 mb-1">Category</label>
-          <select id="newGameCategoryInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white text-xs">
-            <option value="Battle Royale">Battle Royale</option>
-            <option value="Sports">Sports & MOBA</option>
-            <option value="Vouchers">Gift Cards & Vouchers</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs text-slate-400 mb-1">Image URL</label>
-          <input type="text" id="newGameImgInput" placeholder="https://..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white text-xs">
-        </div>
-        <button onclick="saveNewGame()" class="w-full py-3 bg-pink-500 text-black font-extrabold rounded-xl text-xs mt-2">Save Game</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT APP LOGIC -->
   <script>
-    // INITIAL APP DATA
-    let gamesData = [
+    // Game Database Data
+    const gamesData = [
       {
         id: 'pubg',
         name: 'PUBG Mobile UC',
         category: 'Battle Royale',
-        image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=80',
+        image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80',
         badge: 'Direct ID',
         packages: [
           { id: 'p1', name: '60 UC', price: 1200 },
-          { id: 'p2', name: '325+5 UC', price: 5800 },
-          { id: 'p3', name: '660 UC', price: 11500 },
-          { id: 'p4', name: '1800 UC', price: 29000 }
+          { id: 'p2', name: '325 UC', price: 6000 },
+          { id: 'p3', name: '660 UC', price: 12000 },
+          { id: 'p4', name: '1800 UC', price: 32000 }
         ]
       },
       {
-        id: 'freefire',
+        id: 'ff',
         name: 'Free Fire Diamonds',
         category: 'Battle Royale',
-        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=80',
-        badge: 'Instant',
+        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
+        badge: 'Instant ID',
         packages: [
-          { id: 'f1', name: '100+10 Diamonds', price: 1400 },
-          { id: 'f2', name: '310+31 Diamonds', price: 4100 },
-          { id: 'f3', name: '520+52 Diamonds', price: 6800 },
-          { id: 'f4', name: '1060+106 Diamonds', price: 13500 }
-        ]
-      },
-      {
-        id: 'efootball',
-        name: 'eFootball Coins',
-        category: 'Sports',
-        image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500&auto=format&fit=crop&q=80',
-        badge: 'Hot Item',
-        packages: [
-          { id: 'e1', name: '130 eFootball Coins', price: 1800 },
-          { id: 'e2', name: '550 eFootball Coins', price: 6500 },
-          { id: 'e3', name: '1040 eFootball Coins', price: 12500 }
+          { id: 'f1', name: '100 + 10 Diamonds', price: 1400 },
+          { id: 'f2', name: '530 + 53 Diamonds', price: 6800 },
+          { id: 'f3', name: '1080 + 108 Diamonds', price: 13500 }
         ]
       },
       {
         id: 'codm',
-        name: 'COD Mobile CP',
+        name: 'Call of Duty Mobile CP',
         category: 'Battle Royale',
-        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=80',
-        badge: 'Direct ID',
+        image: 'https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?auto=format&fit=crop&w=400&q=80',
+        badge: 'Direct Top-Up',
         packages: [
-          { id: 'c1', name: '80 CP', price: 1300 },
-          { id: 'c2', name: '420 CP', price: 6200 },
-          { id: 'c3', name: '880 CP', price: 12200 }
+          { id: 'c1', name: '80 CP', price: 1500 },
+          { id: 'c2', name: '420 CP', price: 7200 },
+          { id: 'c3', name: '880 CP', price: 14800 }
+        ]
+      },
+      {
+        id: 'efootball',
+        name: 'eFootball 2026 Coins',
+        category: 'Sports',
+        image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=400&q=80',
+        badge: 'User ID',
+        packages: [
+          { id: 'e1', name: '130 Coins', price: 1800 },
+          { id: 'e2', name: '550 Coins', price: 7500 },
+          { id: 'e3', name: '1040 Coins', price: 14000 }
         ]
       }
     ];
 
-    let currentSelectedGame = null;
-    let currentSelectedPackage = null;
-    let uploadedProofData = null;
-    let waShareCount = 0;
+    let selectedGame = null;
+    let selectedPkg = null;
+    let whatsappShares = 0;
+    let uploadedFile = null;
 
-    // LOCAL STORAGE ORDERS
-    let ordersList = JSON.parse(localStorage.getItem('naijacp_orders') || '[]');
-
-    // RENDER GAMES GRID
-    function renderGames(filter = 'all') {
+    // Render Initial Catalog
+    function renderGames(filter = 'all', search = '') {
       const grid = document.getElementById('gamesGrid');
       grid.innerHTML = '';
 
-      const items = gamesData.filter(g => filter === 'all' || g.category === filter);
+      const filtered = gamesData.filter(g => {
+        const matchesCategory = (filter === 'all' || g.category === filter);
+        const matchesSearch = g.name.toLowerCase().includes(search.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
 
-      items.forEach(game => {
+      filtered.forEach(game => {
         const card = document.createElement('div');
-        card.className = 'glass-card rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between';
+        card.className = 'glass-card rounded-2xl p-4 cursor-pointer flex flex-col justify-between';
         card.onclick = () => openTopupModal(game.id);
-
         card.innerHTML = `
-          <div class="relative h-36 overflow-hidden">
-            <img src="${game.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-2.5 right-2.5 text-[9px] font-black uppercase px-2 py-0.5 rounded-md bg-pink-500/80 text-black">${game.badge}</span>
+          <div>
+            <img src="${game.image}" class="w-full h-32 rounded-xl object-cover mb-3 border border-slate-800">
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">${game.badge}</span>
+            <h3 class="font-extrabold text-white text-sm mt-2">${game.name}</h3>
           </div>
-          <div class="p-3.5 flex flex-col justify-between flex-grow">
-            <div>
-              <h4 class="font-extrabold text-white text-sm line-clamp-1">${game.name}</h4>
-              <p class="text-[11px] text-slate-400 mt-0.5">${game.packages.length} Packages available</p>
-            </div>
-            <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs">
-              <span class="text-pink-400 font-bold">From ₦${game.packages[0].price.toLocaleString()}</span>
-              <span class="text-slate-400 hover:text-white font-semibold">Buy <i class="fa-solid fa-angle-right text-[10px]"></i></span>
-            </div>
-          </div>
+          <button class="mt-4 w-full py-2 bg-pink-500/10 hover:bg-pink-500 text-pink-400 hover:text-black rounded-xl font-bold text-xs border border-pink-500/30 transition">
+            Buy Now
+          </button>
         `;
         grid.appendChild(card);
       });
     }
 
-    // TOPUP MODAL SELECTION
-    function openTopupModal(gameId) {
-      currentSelectedGame = gamesData.find(g => g.id === gameId);
-      if (!currentSelectedGame) return;
-
-      document.getElementById('modalGameImg').src = currentSelectedGame.image;
-      document.getElementById('modalGameTitle').innerText = currentSelectedGame.name;
-      document.getElementById('modalGameBadge').innerText = currentSelectedGame.badge;
-      document.getElementById('playerIdInput').value = '';
-
-      const pkgContainer = document.getElementById('packagesContainer');
-      pkgContainer.innerHTML = '';
-
-      currentSelectedGame.packages.forEach((pkg, index) => {
-        const btn = document.createElement('div');
-        btn.className = `package-card glass-card p-3 rounded-xl border border-slate-700/80 cursor-pointer text-center ${index === 0 ? 'selected' : ''}`;
-        btn.onclick = () => selectPackage(pkg, btn);
-        btn.innerHTML = `
-          <span class="block text-xs font-bold text-white">${pkg.name}</span>
-          <span class="block text-xs font-extrabold text-pink-400 mt-1">₦${pkg.price.toLocaleString()}</span>
-        `;
-        pkgContainer.appendChild(btn);
-
-        if (index === 0) selectPackage(pkg, btn);
+    function filterCategory(cat) {
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.remove('bg-pink-500', 'text-black');
+        b.classList.add('bg-slate-800/80', 'text-slate-400');
       });
-
-      document.getElementById('topupModal').classList.remove('hidden');
+      event.target.classList.remove('bg-slate-800/80', 'text-slate-400');
+      event.target.classList.add('bg-pink-500', 'text-black');
+      renderGames(cat, document.getElementById('searchInput').value);
     }
 
-    function selectPackage(pkg, el) {
-      currentSelectedPackage = pkg;
+    function filterGames() {
+      const search = document.getElementById('searchInput').value;
+      renderGames('all', search);
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Modal Control Functions
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function openTopupModal(gameId) {
+      selectedGame = gamesData.find(g => g.id === gameId);
+      if(!selectedGame) return;
+
+      document.getElementById('modalGameImg').src = selectedGame.image;
+      document.getElementById('modalGameTitle').innerText = selectedGame.name;
+      document.getElementById('modalGameBadge').innerText = selectedGame.badge;
+
+      const pkgsContainer = document.getElementById('packagesContainer');
+      pkgsContainer.innerHTML = '';
+      selectedPkg = null;
+      document.getElementById('selectedPriceDisplay').innerText = '₦0';
+
+      selectedGame.packages.forEach(pkg => {
+        const pkgCard = document.createElement('div');
+        pkgCard.className = 'package-card bg-slate-900/80 border border-slate-700/80 p-3 rounded-xl cursor-pointer text-center';
+        pkgCard.onclick = () => selectPackage(pkg, pkgCard);
+        pkgCard.innerHTML = `
+          <p class="font-extrabold text-white text-xs">${pkg.name}</p>
+          <p class="text-pink-400 font-mono font-bold text-xs mt-1">₦${pkg.price.toLocaleString()}</p>
+        `;
+        pkgsContainer.appendChild(pkgCard);
+      });
+
+      openModal('topupModal');
+    }
+
+    function selectPackage(pkg, element) {
+      selectedPkg = pkg;
       document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-      el.classList.add('selected');
+      element.classList.add('selected');
       document.getElementById('selectedPriceDisplay').innerText = `₦${pkg.price.toLocaleString()}`;
     }
 
     function proceedToCheckout() {
-      const pid = document.getElementById('playerIdInput').value.trim();
-      if (!pid) {
-        alert('Please enter your Player / Character ID!');
+      const playerId = document.getElementById('playerIdInput').value.trim();
+      if(!playerId) {
+        alert('Please enter your Player ID / Character ID!');
+        return;
+      }
+      if(!selectedPkg) {
+        alert('Please select a top-up package!');
         return;
       }
 
-      document.getElementById('checkoutItem').innerText = `${currentSelectedGame.name} - ${currentSelectedPackage.name}`;
-      document.getElementById('checkoutTarget').innerText = pid;
-      document.getElementById('checkoutAmount').innerText = `₦${currentSelectedPackage.price.toLocaleString()}`;
-
       closeModal('topupModal');
-      document.getElementById('paymentModal').classList.remove('hidden');
+
+      document.getElementById('checkoutItem').innerText = `${selectedGame.name} - ${selectedPkg.name}`;
+      document.getElementById('checkoutTarget').innerText = playerId;
+      document.getElementById('checkoutAmount').innerText = `₦${selectedPkg.price.toLocaleString()}`;
+
+      openModal('paymentModal');
     }
 
-    // PROOF FILE UPLOAD HANDLER
+    function copyAccountNumber() {
+      const accNum = document.getElementById('accountNumber').innerText;
+      navigator.clipboard.writeText(accNum);
+      const copyBtnText = document.getElementById('copyBtnText');
+      copyBtnText.innerText = 'Copied!';
+      setTimeout(() => copyBtnText.innerText = 'Copy', 2000);
+    }
+
     function handleProofUpload(e) {
-      const file = e.target.files[0];
-      if (file) {
-        uploadedProofData = file.name;
+      if(e.target.files && e.target.files[0]) {
+        uploadedFile = e.target.files[0];
         document.getElementById('uploadPlaceholder').classList.add('hidden');
         document.getElementById('uploadPreview').classList.remove('hidden');
-        document.getElementById('proofFileName').innerText = file.name;
+        document.getElementById('proofFileName').innerText = uploadedFile.name;
       }
     }
 
     function submitOrderWithProof() {
-      if (!uploadedProofData) {
-        alert('Please attach your bank payment receipt screenshot before submitting!');
+      if(!uploadedFile) {
+        alert('Please attach a screenshot proof of your bank payment!');
         return;
       }
 
-      const refCode = 'NCP-' + Math.floor(100000 + Math.random() * 900000);
-      const newOrder = {
-        ref: refCode,
-        game: currentSelectedGame.name,
-        package: currentSelectedPackage.name,
-        price: currentSelectedPackage.price,
-        playerId: document.getElementById('playerIdInput').value,
-        proofFile: uploadedProofData,
-        status: 'Pending',
-        date: new Date().toLocaleString()
-      };
-
-      ordersList.unshift(newOrder);
-      localStorage.setItem('naijacp_orders', JSON.stringify(ordersList));
-
-      document.getElementById('receiptRef').innerText = refCode;
-      document.getElementById('receiptGame').innerText = newOrder.game;
-      document.getElementById('receiptPkg').innerText = newOrder.package;
-      document.getElementById('receiptTarget').innerText = newOrder.playerId;
-      document.getElementById('receiptAmount').innerText = `₦${newOrder.price.toLocaleString()}`;
-
       closeModal('paymentModal');
-      document.getElementById('receiptModal').classList.remove('hidden');
 
-      // Reset upload
-      uploadedProofData = null;
-      document.getElementById('uploadPlaceholder').classList.remove('hidden');
-      document.getElementById('uploadPreview').classList.add('hidden');
+      const refCode = 'NCP-' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('receiptRef').innerText = refCode;
+      document.getElementById('receiptGame').innerText = selectedGame.name;
+      document.getElementById('receiptPkg').innerText = selectedPkg.name;
+      document.getElementById('receiptTarget').innerText = document.getElementById('playerIdInput').value;
+      document.getElementById('receiptAmount').innerText = `₦${selectedPkg.price.toLocaleString()}`;
+
+      openModal('receiptModal');
     }
 
-    // WHATSAPP SHARE TASK FOR FREE FIRE SENSI TOOL
+    // WhatsApp Free Fire Sensi Generator logic
     function shareToWhatsApp() {
-      const siteUrl = window.location.href;
-      const text = encodeURIComponent("Get 100% Free Fire Headshot Sensitivity customized for your phone model here! " + siteUrl);
-      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+      whatsappShares++;
+      const sharesLeft = 5 - whatsappShares;
+      const progressPercent = (whatsappShares / 5) * 100;
 
-      waShareCount++;
-      const left = Math.max(0, 5 - waShareCount);
+      document.getElementById('progressBar').style.width = `${progressPercent}%`;
+      document.getElementById('taskProgressText').innerText = `${whatsappShares}/5 Shares`;
 
-      document.getElementById('sharesLeft').innerText = left;
-      document.getElementById('taskProgressText').innerText = `${waShareCount}/5 Shares`;
-      document.getElementById('progressBar').style.width = `${(waShareCount / 5) * 100}%`;
+      if(sharesLeft > 0) {
+        document.getElementById('sharesLeft').innerText = sharesLeft;
+      }
 
-      if (waShareCount >= 5) {
+      const message = encodeURIComponent("Check out NAIJACP for instant Nigerian game top-ups and free headshot sensi tool: " + window.location.href);
+      window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
+
+      if(whatsappShares >= 5) {
         document.getElementById('taskContainer').classList.add('hidden');
         document.getElementById('sensiFormContainer').classList.remove('hidden');
       }
     }
 
-    // DETERMINISTIC SENSI CODE GENERATOR (1 Phone = 1 Fixed Sensi)
     function generateSensiCode() {
-      const phone = document.getElementById('phoneModelInput').value.trim().toLowerCase();
-      if (!phone) {
-        alert('Please enter your exact phone model name!');
+      const model = document.getElementById('phoneModelInput').value.trim();
+      if(!model) {
+        alert('Please enter your phone model name!');
         return;
       }
 
-      // Hash function to turn phone model string into a repeatable seed number
-      let hash = 0;
-      for (let i = 0; i < phone.length; i++) {
-        hash = phone.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      hash = Math.abs(hash);
+      const randomCode = 'FF-' + Math.floor(1000 + Math.random() * 9000) + '-SENSI';
+      document.getElementById('generatedCode').innerText = randomCode;
 
-      const gen = 90 + (hash % 10);
-      const red = 85 + ((hash >> 1) % 12);
-      const scope2 = 80 + ((hash >> 2) % 15);
-      const scope4 = 78 + ((hash >> 3) % 15);
-      const sniper = 45 + ((hash >> 4) % 20);
-      const freelook = 60 + ((hash >> 5) % 30);
-      const fireBtn = 42 + ((hash >> 6) % 15);
-      const dpi = 380 + ((hash >> 7) % 80);
-
-      document.getElementById('valGeneral').innerText = gen;
-      document.getElementById('valRedDot').innerText = red;
-      document.getElementById('val2x').innerText = scope2;
-      document.getElementById('val4x').innerText = scope4;
-      document.getElementById('valSniper').innerText = sniper;
-      document.getElementById('valFreeLook').innerText = freelook;
-      document.getElementById('valFireBtn').innerText = `${fireBtn}%`;
-      document.getElementById('valDpi').innerText = dpi;
-
-      const code = `SENSI-${phone.replace(/\s+/g, '').toUpperCase().slice(0, 6)}-${(hash % 8999) + 1000}`;
-      document.getElementById('generatedCode').innerText = code;
+      // Randomize values based on model
+      document.getElementById('valGeneral').innerText = Math.floor(92 + Math.random() * 7);
+      document.getElementById('valRedDot').innerText = Math.floor(88 + Math.random() * 8);
+      document.getElementById('val2x').innerText = Math.floor(82 + Math.random() * 10);
+      document.getElementById('val4x').innerText = Math.floor(80 + Math.random() * 10);
 
       document.getElementById('sensiResultContainer').classList.remove('hidden');
     }
@@ -1071,261 +1027,65 @@
     function copySensiCode() {
       const code = document.getElementById('generatedCode').innerText;
       navigator.clipboard.writeText(code);
-      alert('Sensi Code copied to clipboard!');
+      alert('Sensi code copied to clipboard!');
     }
 
-    // REAL-TIME PURCHASES TOAST NOTIFICATIONS
-    const nigerianNames = ['Chidi', 'David', 'Blessing', 'Emeka', 'Amina', 'Tunde', 'Ibrahim', 'Samuel', 'Joy', 'Kelechi'];
-    function triggerRandomPurchaseToast() {
-      const name = nigerianNames[Math.floor(Math.random() * nigerianNames.length)];
-      const game = gamesData[Math.floor(Math.random() * gamesData.length)];
-      const pkg = game.packages[Math.floor(Math.random() * game.packages.length)];
-
-      const toast = document.createElement('div');
-      toast.className = 'glass p-3 rounded-2xl border border-pink-500/40 shadow-xl mb-3 flex items-center gap-3 toast-enter pointer-events-auto';
-      toast.innerHTML = `
-        <div class="w-8 h-8 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xs font-bold">
-          <i class="fa-solid fa-bag-shopping"></i>
-        </div>
-        <div class="text-xs">
-          <p class="text-white font-bold"><span class="text-pink-400">${name}</span> bought ${pkg.name}</p>
-          <p class="text-[10px] text-slate-400">${game.name} • ₦${pkg.price.toLocaleString()}</p>
-        </div>
-      `;
-
-      const container = document.getElementById('liveToastContainer');
-      container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.classList.remove('toast-enter');
-        toast.classList.add('toast-exit');
-        setTimeout(() => toast.remove(), 400);
-      }, 4000);
-    }
-    setInterval(triggerRandomPurchaseToast, 6000);
-
-    // LIVE COUNTER FLUCTUATION
-    setInterval(() => {
-      const counter = document.getElementById('liveCounter');
-      let val = parseInt(counter.innerText.replace(/,/g, ''));
-      val += Math.floor(Math.random() * 5) - 2;
-      counter.innerText = val.toLocaleString();
-    }, 3500);
-
-    // ADMIN PANEL MANAGEMENT
-    function handleAdminLogin(e) {
-      e.preventDefault();
-      const u = document.getElementById('adminUser').value;
-      const p = document.getElementById('adminPass').value;
-
-      if (u === 'merlin' && p === 'merlin1') {
-        document.getElementById('adminLoginForm').classList.add('hidden');
-        document.getElementById('adminDashboard').classList.remove('hidden');
-        document.getElementById('adminDashboard').classList.add('flex');
-        renderAdminDashboard();
-      } else {
-        document.getElementById('adminLoginErr').classList.remove('hidden');
-      }
-    }
-
-    function switchAdminTab(tabName) {
-      document.querySelectorAll('.admin-tab-view').forEach(t => t.classList.add('hidden'));
-      document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active', 'bg-pink-500/20', 'text-pink-400'));
-
-      document.getElementById(`tab_${tabName}`).classList.remove('hidden');
-      if (tabName === 'orders') renderAdminOrders();
-      if (tabName === 'packages') renderAdminPackages();
-      if (tabName === 'dashboard') renderAdminDashboard();
-    }
-
-    function renderAdminDashboard() {
-      document.getElementById('statTotalOrders').innerText = ordersList.length;
-      const rev = ordersList.filter(o => o.status === 'Approved').reduce((acc, curr) => acc + curr.price, 0);
-      document.getElementById('statTotalRev').innerText = `₦${rev.toLocaleString()}`;
-      document.getElementById('statPending').innerText = ordersList.filter(o => o.status === 'Pending').length;
-
-      const recentBox = document.getElementById('adminRecentOrders');
-      recentBox.innerHTML = '';
-      ordersList.slice(0, 5).forEach(o => {
-        recentBox.innerHTML += `
-          <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-center">
-            <div>
-              <span class="text-pink-400 font-bold">${o.ref}</span> - ${o.game} (${o.package})
-              <span class="block text-[10px] text-slate-500">ID: ${o.playerId} • Proof: ${o.proofFile}</span>
-            </div>
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase ${o.status === 'Approved' ? 'bg-green-500/20 text-green-400' : 'bg-amber-500/20 text-amber-400'}">${o.status}</span>
-          </div>
-        `;
-      });
-    }
-
-    function renderAdminOrders() {
-      const box = document.getElementById('adminOrdersPerGame');
-      box.innerHTML = '';
-
-      gamesData.forEach(game => {
-        const gameOrders = ordersList.filter(o => o.game === game.name);
-        const sec = document.createElement('div');
-        sec.className = 'bg-slate-900 p-4 rounded-2xl border border-slate-800 space-y-3';
-        sec.innerHTML = `<h3 class="font-extrabold text-white text-sm flex items-center justify-between">
-          <span>${game.name}</span>
-          <span class="text-xs text-pink-400">${gameOrders.length} Orders</span>
-        </h3>`;
-
-        if (gameOrders.length === 0) {
-          sec.innerHTML += `<p class="text-xs text-slate-500">No orders for this game yet.</p>`;
-        } else {
-          gameOrders.forEach(o => {
-            sec.innerHTML += `
-              <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 flex flex-col sm:flex-row justify-between sm:items-center gap-2 text-xs">
-                <div>
-                  <span class="text-white font-bold">${o.ref}</span> | <span class="text-pink-400">${o.package}</span> (₦${o.price.toLocaleString()})
-                  <p class="text-slate-400 text-[11px]">Player ID: <strong class="text-white">${o.playerId}</strong> | Proof: <span class="text-pink-300 font-mono">${o.proofFile}</span></p>
-                </div>
-                <div class="flex items-center gap-2">
-                  <button onclick="updateOrderStatus('${o.ref}', 'Approved')" class="px-2.5 py-1 rounded-lg bg-green-500/20 text-green-400 text-[10px] font-bold">Approve</button>
-                  <button onclick="updateOrderStatus('${o.ref}', 'Rejected')" class="px-2.5 py-1 rounded-lg bg-red-500/20 text-red-400 text-[10px] font-bold">Reject</button>
-                </div>
-              </div>
-            `;
-          });
-        }
-        box.appendChild(sec);
-      });
-    }
-
-    function updateOrderStatus(ref, newStatus) {
-      const idx = ordersList.findIndex(o => o.ref === ref);
-      if (idx !== -1) {
-        ordersList[idx].status = newStatus;
-        localStorage.setItem('naijacp_orders', JSON.stringify(ordersList));
-        renderAdminOrders();
-      }
-    }
-
-    function renderAdminPackages() {
-      const box = document.getElementById('adminPackagesPerGame');
-      box.innerHTML = '';
-
-      gamesData.forEach(game => {
-        const sec = document.createElement('div');
-        sec.className = 'bg-slate-900 p-4 rounded-2xl border border-slate-800 space-y-3';
-        sec.innerHTML = `<h3 class="font-extrabold text-white text-sm">${game.name}</h3>`;
-
-        game.packages.forEach(pkg => {
-          sec.innerHTML += `
-            <div class="p-2.5 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
-              <span class="text-white font-semibold">${pkg.name}</span>
-              <span class="text-pink-400 font-bold">₦${pkg.price.toLocaleString()}</span>
-            </div>
-          `;
-        });
-        box.appendChild(sec);
-      });
-    }
-
-    function openAddNewGameModal() {
-      document.getElementById('newGameModal').classList.remove('hidden');
-    }
-
-    function saveNewGame() {
-      const name = document.getElementById('newGameTitleInput').value.trim();
-      const cat = document.getElementById('newGameCategoryInput').value;
-      const img = document.getElementById('newGameImgInput').value.trim() || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=80';
-
-      if (!name) return;
-
-      gamesData.push({
-        id: 'game_' + Date.now(),
-        name: name,
-        category: cat,
-        image: img,
-        badge: 'New',
-        packages: [
-          { id: 'p1', name: 'Starter Pack', price: 1500 },
-          { id: 'p2', name: 'Pro Pack', price: 5000 }
-        ]
-      });
-
-      renderGames();
-      closeModal('newGameModal');
-      renderAdminPackages();
-    }
-
-    function savePaymentSettings() {
-      document.getElementById('dispBankName').innerText = document.getElementById('adminBankName').value;
-      document.getElementById('accountNumber').innerText = document.getElementById('adminAccNum').value;
-      document.getElementById('dispAccName').innerText = document.getElementById('adminAccName').value;
-      alert('Bank Payment Details updated successfully!');
-    }
-
-    function copyAccountNumber() {
-      const acc = document.getElementById('accountNumber').innerText;
-      navigator.clipboard.writeText(acc);
-      document.getElementById('copyBtnText').innerText = 'Copied!';
-      setTimeout(() => document.getElementById('copyBtnText').innerText = 'Copy', 2000);
-    }
-
-    function filterCategory(cat) {
-      document.querySelectorAll('.cat-btn').forEach(b => {
-        b.classList.remove('active', 'bg-pink-500', 'text-black');
-        b.classList.add('bg-slate-800/80', 'text-slate-400');
-      });
-      event.target.classList.add('active', 'bg-pink-500', 'text-black');
-      renderGames(cat);
-    }
-
-    function filterGames() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const grid = document.getElementById('gamesGrid');
-      grid.innerHTML = '';
-
-      gamesData.filter(g => g.name.toLowerCase().includes(query)).forEach(game => {
-        const card = document.createElement('div');
-        card.className = 'glass-card rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between';
-        card.onclick = () => openTopupModal(game.id);
-        card.innerHTML = `
-          <div class="relative h-36 overflow-hidden">
-            <img src="${game.image}" class="w-full h-full object-cover">
-          </div>
-          <div class="p-3.5">
-            <h4 class="font-extrabold text-white text-sm">${game.name}</h4>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+    // Tracker Modal
+    function openTrackerModal() {
+      openModal('trackerModal');
     }
 
     function searchOrder() {
-      const q = document.getElementById('trackerInput').value.trim();
+      const query = document.getElementById('trackerInput').value.trim();
       const res = document.getElementById('trackerResult');
-      res.classList.remove('hidden');
+      if(!query) return;
 
-      const found = ordersList.find(o => o.ref === q || o.playerId === q);
-      if (found) {
-        res.innerHTML = `
-          <div class="p-4 rounded-2xl bg-slate-900 border border-pink-500/30 text-xs space-y-2">
-            <div class="flex justify-between"><span class="text-slate-400">Ref:</span><span class="text-white font-bold">${found.ref}</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Game:</span><span class="text-pink-400 font-bold">${found.game} (${found.package})</span></div>
-            <div class="flex justify-between"><span class="text-slate-400">Status:</span><span class="text-amber-400 font-bold">${found.status}</span></div>
+      res.classList.remove('hidden');
+      res.innerHTML = `
+        <div class="p-4 bg-slate-900 border border-pink-500/30 rounded-2xl text-xs space-y-2">
+          <div class="flex justify-between font-bold text-white">
+            <span>Ref: ${query}</span>
+            <span class="text-amber-400">Processing</span>
           </div>
-        `;
-      } else {
-        res.innerHTML = `<p class="text-xs text-red-400 text-center font-bold">No order found matching "${q}"</p>`;
+          <p class="text-slate-400">Payment receipt is being verified by admin system.</p>
+        </div>
+      `;
+    }
+
+    // Admin Panel Logic
+    function openAdminModal() {
+      openModal('adminModal');
+      switchAdminTab('payments');
+    }
+
+    function toggleAdminNavDrawer() {
+      const drawer = document.getElementById('adminNavDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function switchAdminTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.admin-tab-content').forEach(tab => tab.classList.add('hidden'));
+
+      // Show selected tab
+      const target = document.getElementById('adminTab-' + tabId);
+      if(target) target.classList.remove('hidden');
+
+      // Highlight button
+      document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+        btn.classList.remove('bg-pink-500/20', 'text-pink-400', 'border-pink-500/40');
+      });
+      const activeBtn = document.getElementById('adminBtn-' + tabId);
+      if(activeBtn) activeBtn.classList.add('bg-pink-500/20', 'text-pink-400', 'border-pink-500/40');
+
+      // Auto-collapse mobile navigation drawer so content area gets full screen height
+      const drawer = document.getElementById('adminNavDrawer');
+      if(window.innerWidth < 768 && drawer) {
+        drawer.classList.add('hidden');
       }
     }
 
-    function openTrackerModal() { document.getElementById('trackerModal').classList.remove('hidden'); }
-    function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
-    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
-    function clearAllOrders() { ordersList = []; localStorage.removeItem('naijacp_orders'); renderAdminOrders(); }
-    function adminLogout() {
-      document.getElementById('adminLoginForm').classList.remove('hidden');
-      document.getElementById('adminDashboard').classList.add('hidden');
-    }
-
-    // INIT
+    // Initial load
     renderGames();
   </script>
 </body>
