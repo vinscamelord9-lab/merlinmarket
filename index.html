@@ -1142,3 +1142,66 @@
   </script>
 </body>
 </html>
+
+<!-- TikTok -->
+<div class="game-card" onclick="openCheckout('TikTok')">
+  <img src="logos/tiktok.png" alt="TikTok Coins">
+  <h3>TikTok</h3>
+</div>
+
+<!-- Dream League Soccer 25 -->
+<div class="game-card" onclick="openCheckout('DLS25')">
+  <img src="logos/dls25.png" alt="DLS 25">
+  <h3>DLS 25</h3>
+</div>
+
+<!-- Blood Strike -->
+<div class="game-card" onclick="openCheckout('BloodStrike')">
+  <img src="logos/bloodstrike.png" alt="Blood Strike">
+  <h3>Blood Strike</h3>
+</div>
+
+<!-- Delta Force -->
+<div class="game-card" onclick="openCheckout('DeltaForce')">
+  <img src="logos/deltaforce.png" alt="Delta Force">
+  <h3>Delta Force</h3>
+</div>
+
+<!-- Mobile Legends: Bang Bang -->
+<div class="game-card" onclick="openCheckout('MLBB')">
+  <img src="logos/mlbb.png" alt="Mobile Legends">
+  <h3>MLBB</h3>
+</div>
+
+<!-- EA SPORTS FC Mobile -->
+<div class="game-card" onclick="openCheckout('EAFC')">
+  <img src="logos/eafc.png" alt="EA SPORTS FC Mobile">
+  <h3>EA FC Mobile</h3>
+</div>
+
+const freeFirePackages = [
+  { name: "110 Diamonds", price: 1000 },
+  // Add intermediate packages here
+  { name: "Monthly Subscription", price: 8000 }
+];
+
+<div class="admin-section">
+  <h3>EA SPORTS FC Mobile Pricing</h3>
+  <label>Points/Coins Package:</label>
+  <input type="text" id="eafc-package-name" placeholder="e.g., 1000 Points">
+  <label>Price (₦):</label>
+  <input type="number" id="eafc-package-price">
+  <button onclick="updateEAFCPricing()">Update EA FC Price</button>
+</div>
+
+function verifyAdmin() {
+  const user = document.getElementById("admin-user").value;
+  const pass = document.getElementById("admin-pass").value;
+  
+  if (user === "Merlin" && pass === "merlin1") {
+    document.getElementById("admin-login").style.display = "none";
+    document.getElementById("admin-dashboard").style.display = "block";
+  } else {
+    alert("Invalid credentials.");
+  }
+}
