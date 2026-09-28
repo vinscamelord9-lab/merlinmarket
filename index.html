@@ -1,808 +1,938 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus TopUp | Instant Gaming Refills</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            bg: '#09090b',
-                            card: '#121217',
-                            pink: '#ec4899',
-                            pinkLight: '#f472b6',
-                            pinkDark: '#be185d',
-                            glassBorder: 'rgba(236, 72, 153, 0.25)'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #09090b;
-            color: #f4f4f5;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        .pink-glow {
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.35);
-        }
-        .pink-glow-hover:hover {
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.55);
-        }
-        .pink-text-glow {
-            text-shadow: 0 0 12px rgba(236, 72, 153, 0.7);
-        }
-        .glass-card {
-            background: rgba(18, 18, 23, 0.88);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(236, 72, 153, 0.25);
-        }
-        .slashed-price {
-            text-decoration: line-through;
-            color: #71717a;
-            font-size: 0.75rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAIJACP - Nigeria's #1 Game Top-Up & Voucher Hub</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- Custom Styling for Glassmorphism & Neon Effects -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0f19;
+      color: #f3f4f6;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00ff87;
+    }
+
+    /* Glassmorphism Styles */
+    .glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 255, 135, 0.5);
+      box-shadow: 0 10px 30px -10px rgba(0, 255, 135, 0.25);
+    }
+
+    .glass-modal {
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .neon-text-green {
+      color: #00ff87;
+      text-shadow: 0 0 12px rgba(0, 255, 135, 0.4);
+    }
+
+    .neon-border {
+      border: 1px solid #00ff87;
+      box-shadow: 0 0 15px rgba(0, 255, 135, 0.2);
+    }
+
+    .package-card {
+      transition: all 0.2s ease;
+    }
+
+    .package-card.selected {
+      border-color: #00ff87;
+      background: rgba(0, 255, 135, 0.12);
+      box-shadow: 0 0 15px rgba(0, 255, 135, 0.2);
+    }
+
+    /* Pulse Live Dot */
+    .pulse-dot {
+      box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.7);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(0, 255, 135, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 135, 0);
+      }
+    }
+
+    /* Ticker animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 25s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-pink-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
 
-    <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-gradient-to-r from-pink-900/60 via-pink-600/40 to-pink-900/60 border-b border-pink-500/30 text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <span class="flex h-2.5 w-2.5 relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
-        </span>
-        <span>⚡ INSTANT AUTOMATED DELIVERY ACTIVE • 24/7 SUPPORT AVAILABLE</span>
+  <!-- TOP ANNOUNCEMENT TICKER -->
+  <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border-b border-emerald-500/20 py-2 text-xs text-slate-300 overflow-hidden relative z-50">
+    <div class="animate-marquee whitespace-nowrap flex items-center space-x-8">
+      <span class="inline-flex items-center gap-2"><i class="fa-solid fa-bolt text-emerald-400"></i> FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬</span>
+      <span class="inline-flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"></i> 100% SECURE BANK TRANSFERS & INSTANT CREDIT</span>
+      <span class="inline-flex items-center gap-2"><i class="fa-solid fa-gamepad text-emerald-400"></i> PUBG, FREE FIRE, CODM, EFOOTBALL & GIFT CARDS</span>
+      <span class="inline-flex items-center gap-2"><i class="fa-solid fa-headset text-emerald-400"></i> WHATSAPP SUPPORT: +234 812 345 6789</span>
+      <span class="inline-flex items-center gap-2"><i class="fa-solid fa-bolt text-emerald-400"></i> FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬</span>
+      <span class="inline-flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"></i> 100% SECURE BANK TRANSFERS & INSTANT CREDIT</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-40 glass border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-300 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+            <i class="fa-solid fa-gamepad text-slate-950 text-2xl font-black"></i>
+          </div>
+          <div>
+            <span class="text-2xl font-black tracking-wider text-white">NAIJA<span class="neon-text-green">CP</span></span>
+            <span class="block text-[10px] text-slate-400 tracking-widest font-semibold uppercase -mt-1">Top-Up Hub</span>
+          </div>
+        </div>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="#games" class="text-slate-300 hover:text-emerald-400 transition">Game Store</a>
+          <a href="#vouchers" class="text-slate-300 hover:text-emerald-400 transition">Gift Cards</a>
+          <button onclick="openTrackerModal()" class="text-slate-300 hover:text-emerald-400 transition flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass text-xs"></i> Track Order
+          </button>
+          <a href="#faq" class="text-slate-300 hover:text-emerald-400 transition">FAQ</a>
+        </div>
+
+        <!-- Live Users & Support Button -->
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs text-slate-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+            <span id="liveCounter" class="font-bold text-white">1,428</span>
+            <span class="text-slate-400">Gamers Online</span>
+          </div>
+
+          <a href="https://wa.me/2348123456789" target="_blank" class="hidden sm:flex items-center gap-2 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-4 py-2 rounded-xl font-semibold text-sm transition">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Support</span>
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button onclick="toggleMobileMenu()" class="md:hidden text-slate-300 text-xl p-2 focus:outline-none">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- NAVBAR WITH LOGO -->
-    <header class="sticky top-0 z-40 glass-card border-b border-pink-500/20 px-4 lg:px-8 py-3">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <!-- Brand Logo matching attached image -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-pink-950/80 border border-pink-500/50 p-1 pink-glow flex items-center justify-center">
-                    <!-- Pink SVG Icon based on attached image -->
-                    <svg class="w-7 h-7 text-pink-500" viewBox="0 0 100 100" fill="currentColor">
-                        <path d="M20 20 C40 10, 80 30, 80 50 C80 70, 40 90, 20 80 C10 75, 10 25, 20 20 Z" opacity="0.2"/>
-                        <path d="M 30,20 C 60,10 85,35 70,60 C 60,75 35,85 25,70 C 15,55 10,30 30,20 Z M 45,35 C 35,45 40,65 55,60 C 65,55 60,40 45,35 Z" fill="#ec4899"/>
-                    </svg>
-                </div>
-                <div>
-                    <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-pink-200 to-pink-500 bg-clip-text text-transparent">
-                        NEXUS<span class="text-pink-500 pink-text-glow">TOPUP</span>
-                    </span>
-                    <p class="text-[10px] text-zinc-400 font-medium tracking-widest uppercase">Instant Game Refills</p>
-                </div>
-            </a>
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 bg-slate-900/95 px-4 pt-3 pb-6 space-y-3 text-center">
+      <a href="#games" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-emerald-400 font-medium">Game Store</a>
+      <a href="#vouchers" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-emerald-400 font-medium">Gift Cards</a>
+      <button onclick="toggleMobileMenu(); openTrackerModal();" class="block w-full py-2 text-slate-300 hover:text-emerald-400 font-medium">Track Order</button>
+      <a href="https://wa.me/2348123456789" target="_blank" class="block py-2 text-emerald-400 font-medium"><i class="fa-brands fa-whatsapp"></i> Customer Support</a>
+    </div>
+  </nav>
 
-            <!-- Live Users Counter -->
-            <div class="flex items-center gap-2 bg-zinc-900/90 border border-pink-500/30 px-3 py-1.5 rounded-full">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span id="liveUserCount" class="text-xs sm:text-sm font-bold text-pink-400 font-mono">104,820</span>
-                <span class="text-[11px] text-zinc-400 hidden sm:inline">Active Online</span>
-            </div>
+  <!-- HERO SECTION -->
+  <header class="relative pt-12 pb-20 overflow-hidden">
+    <!-- Ambient Background Glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-            <!-- Admin Shortcut -->
-            <button onclick="openAdminModal()" class="text-xs px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-pink-950/50 text-zinc-400 hover:text-pink-400 border border-zinc-800 hover:border-pink-500/40 transition">
-                <i class="fa-solid fa-lock text-pink-500 mr-1"></i> Admin
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-6 tracking-wide uppercase">
+        <i class="fa-solid fa-fire text-amber-400"></i> Instant Direct ID Top-Up Service
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-tight">
+        Level Up Your Game with <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">Instant Nigerian Top-Ups</span>
+      </h1>
+
+      <p class="mt-5 text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+        Buy PUBG UC, Free Fire Diamonds, COD Points, eFootball Coins, and Gift Cards at unbeatable local prices. Instant delivery via Direct Bank Transfer.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="mt-8 max-w-xl mx-auto relative">
+        <div class="relative flex items-center">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-400 text-lg"></i>
+          <input type="text" id="searchInput" onkeyup="filterGames()" placeholder="Search game (e.g. PUBG, Free Fire, CODM, PSN)..." class="w-full pl-12 pr-4 py-4 rounded-2xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 text-sm sm:text-base shadow-xl backdrop-blur-md">
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-xs text-slate-400">
+        <div class="flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-900/40 border border-slate-800">
+          <i class="fa-solid fa-bolt text-emerald-400 text-base"></i> 1-3 Mins Automated Delivery
+        </div>
+        <div class="flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-900/40 border border-slate-800">
+          <i class="fa-solid fa-building-columns text-emerald-400 text-base"></i> Local Bank Transfers
+        </div>
+        <div class="flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-900/40 border border-slate-800">
+          <i class="fa-solid fa-shield-check text-emerald-400 text-base"></i> 100% Guaranteed Safe
+        </div>
+        <div class="flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-900/40 border border-slate-800">
+          <i class="fa-solid fa-headset text-emerald-400 text-base"></i> 24/7 WhatsApp Help
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CATALOG SECTION -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 flex-grow">
+
+    <!-- Filter Tabs -->
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-8">
+      <div class="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
+        <button onclick="filterCategory('all')" class="cat-btn active px-5 py-2 rounded-xl text-xs font-bold transition bg-emerald-500 text-slate-950">All Items</button>
+        <button onclick="filterCategory('Battle Royale')" class="cat-btn px-5 py-2 rounded-xl text-xs font-bold transition bg-slate-800/80 text-slate-400 hover:text-white">Battle Royale</button>
+        <button onclick="filterCategory('Sports')" class="cat-btn px-5 py-2 rounded-xl text-xs font-bold transition bg-slate-800/80 text-slate-400 hover:text-white">Sports & MOBA</button>
+        <button onclick="filterCategory('Vouchers')" class="cat-btn px-5 py-2 rounded-xl text-xs font-bold transition bg-slate-800/80 text-slate-400 hover:text-white">Gift Cards & Vouchers</button>
+      </div>
+    </div>
+
+    <!-- Games Grid -->
+    <div id="gamesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <!-- Dynamically populated via JS -->
+    </div>
+  </main>
+
+  <!-- FAQ & TRUST SECTION -->
+  <section id="faq" class="border-t border-slate-800 bg-slate-900/40 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">Frequently Asked Questions</h2>
+      
+      <div class="space-y-4">
+        <div class="glass p-5 rounded-2xl border border-slate-800">
+          <h3 class="font-bold text-white text-base mb-2 flex items-center justify-between">
+            <span>How fast do I get my PUBG UC or Diamonds after payment?</span>
+            <i class="fa-solid fa-clock text-emerald-400"></i>
+          </h3>
+          <p class="text-slate-400 text-sm">Delivery is automated! Most top-ups are credited directly to your Player ID within 1 to 3 minutes after bank transfer confirmation.</p>
+        </div>
+
+        <div class="glass p-5 rounded-2xl border border-slate-800">
+          <h3 class="font-bold text-white text-base mb-2 flex items-center justify-between">
+            <span>Do I need to give you my game password?</span>
+            <i class="fa-solid fa-lock text-emerald-400"></i>
+          </h3>
+          <p class="text-slate-400 text-sm">No! Never share your password. We only require your Player User ID (UID) or Character ID to credit your account directly.</p>
+        </div>
+
+        <div class="glass p-5 rounded-2xl border border-slate-800">
+          <h3 class="font-bold text-white text-base mb-2 flex items-center justify-between">
+            <span>What payment methods are supported?</span>
+            <i class="fa-solid fa-credit-card text-emerald-400"></i>
+          </h3>
+          <p class="text-slate-400 text-sm">We support direct Nigerian Bank Transfers (Moniepoint, OPay, Kuda, GTBank, Zenith, FirstBank, etc.) for zero extra charges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-10 text-slate-500 text-xs">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+      <div class="flex justify-center items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+          <i class="fa-solid fa-gamepad"></i>
+        </div>
+        <span class="text-white font-bold text-base">NAIJACP</span>
+      </div>
+      <p class="max-w-md mx-auto text-slate-400">Nigeria's premier gaming top-up store. Instant, reliable, and secure game currency fulfillment nationwide.</p>
+      <p>© 2026 NAIJACP Hub. All rights reserved. Registered trademark of NaijaCP Gaming Services Nigeria.</p>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & DRAWERS ================= -->
+
+  <!-- TOP-UP MODAL (STEP 1: PACKAGE SELECT & PLAYER ID) -->
+  <div id="topupModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+    <div class="glass-modal w-full max-w-2xl rounded-3xl p-6 sm:p-8 relative shadow-2xl my-8 border border-slate-700/60 text-left">
+      <!-- Close Button -->
+      <button onclick="closeModal('topupModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800/80 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- Header Banner -->
+      <div class="flex items-center gap-4 border-b border-slate-800 pb-5">
+        <img id="modalGameImg" src="" alt="Game" class="w-16 h-16 rounded-2xl object-cover border border-slate-700 shadow-md">
+        <div>
+          <span id="modalGameBadge" class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Direct Credit</span>
+          <h3 id="modalGameTitle" class="text-xl font-extrabold text-white mt-1">Game Name</h3>
+          <p class="text-xs text-slate-400">Select package and enter your details below</p>
+        </div>
+      </div>
+
+      <!-- Step 1: Account / Player ID -->
+      <div class="mt-6">
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2" id="idInputLabel">Enter Player ID / User ID</label>
+        <div class="relative">
+          <input type="text" id="playerIdInput" placeholder="e.g. 5123987410" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+          <button onclick="verifyPlayerID()" class="absolute right-2 top-2 bg-slate-800 hover:bg-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg text-emerald-400 border border-slate-600 transition">Verify ID</button>
+        </div>
+        <div id="verifyFeedback" class="mt-2 text-xs font-medium text-emerald-400 hidden flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-check"></i> Account Verified: <span id="verifiedName" class="text-white font-bold">NaijaGamer99</span>
+        </div>
+      </div>
+
+      <!-- Step 2: Select Package -->
+      <div class="mt-6">
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Select Top-Up Amount</label>
+        <div id="packagesContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Step 3: Payment Summary & Action -->
+      <div class="mt-8 pt-5 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-xs text-slate-400 block">Total Payable</span>
+          <span id="selectedPriceDisplay" class="text-2xl font-black text-emerald-400">₦0</span>
+        </div>
+        <button id="proceedPaymentBtn" onclick="proceedToCheckout()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-extrabold text-sm shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+          <span>Proceed to Pay</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT / BANK TRANSFER MODAL -->
+  <div id="paymentModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto">
+    <div class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-slate-700 text-left">
+      <button onclick="closeModal('paymentModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800/80 flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="text-center pb-4 border-b border-slate-800">
+        <div class="w-12 h-12 bg-emerald-500/20 border border-emerald-500/30 rounded-2xl flex items-center justify-center mx-auto mb-3 text-emerald-400 text-xl">
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+        <h3 class="text-xl font-extrabold text-white">Bank Transfer Checkout</h3>
+        <p class="text-xs text-slate-400 mt-1">Transfer exact amount to the automated account below</p>
+      </div>
+
+      <!-- Summary Box -->
+      <div class="my-5 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs space-y-2">
+        <div class="flex justify-between text-slate-400">
+          <span>Item:</span>
+          <span id="checkoutItem" class="text-white font-semibold">PUBG Mobile 660 UC</span>
+        </div>
+        <div class="flex justify-between text-slate-400">
+          <span>Target ID:</span>
+          <span id="checkoutTarget" class="text-white font-mono font-semibold">5123987410</span>
+        </div>
+        <div class="flex justify-between text-slate-400 border-t border-slate-800/80 pt-2 font-bold text-sm">
+          <span>Amount Due:</span>
+          <span id="checkoutAmount" class="text-emerald-400 font-extrabold text-base">₦12,000</span>
+        </div>
+      </div>
+
+      <!-- Bank Details Box -->
+      <div class="p-5 rounded-2xl bg-gradient-to-b from-slate-800/90 to-slate-900 border border-emerald-500/30 relative overflow-hidden space-y-3">
+        <div class="flex justify-between items-center text-xs text-slate-400">
+          <span>Bank Name:</span>
+          <span class="text-white font-bold uppercase tracking-wider">Moniepoint Microfinance Bank</span>
+        </div>
+
+        <div>
+          <span class="text-xs text-slate-400 block mb-1">Account Number:</span>
+          <div class="flex items-center justify-between bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <span id="accountNumber" class="text-2xl font-mono font-extrabold text-emerald-400 tracking-wider">6492018839</span>
+            <button onclick="copyAccountNumber()" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+              <i class="fa-solid fa-copy"></i>
+              <span id="copyBtnText">Copy</span>
             </button>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 flex-grow w-full">
-
-        <div class="text-center mb-10 max-w-3xl mx-auto space-y-3">
-            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
-                Instant Top-Up For Your <br/>
-                <span class="bg-gradient-to-r from-pink-400 via-pink-500 to-purple-400 bg-clip-text text-transparent pink-text-glow">
-                    Favorite Mobile Games
-                </span>
-            </h1>
-            <p class="text-zinc-400 text-sm sm:text-base">
-                Select your package, pay via bank transfer, and send screenshot proof to our Telegram DM for immediate delivery.
-            </p>
+          </div>
         </div>
 
-        <!-- GAME CATALOG -->
-        <div id="gameCatalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- GAME 1: PUBG MOBILE (WITH EXACT PRICES FROM YOUR SCREENSHOT) -->
-            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/pubg.png" alt="PUBG Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
-                        <div>
-                            <h3 class="text-xl font-bold text-white">PUBG Mobile UC</h3>
-                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">Unknown Cash</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter Player ID. Direct in-game voucher top-up.</p>
-
-                    <!-- Exact Screenshot Items & Slashed Pricing -->
-                    <div class="space-y-2.5 mb-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">60 UC</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦1,384.09</span>
-                                    <span class="text-xs font-bold text-pink-400">₦1,258.26</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '60 UC', '1,258.26')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">300 + 25 UC</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦6,951.21</span>
-                                    <span class="text-xs font-bold text-pink-400">₦6,319.28</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '300 + 25 UC', '6,319.28')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">600 + 60 UC</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦13,902.43</span>
-                                    <span class="text-xs font-bold text-pink-400">₦12,638.57</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '600 + 60 UC', '12,638.57')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">1,500 + 300 UC</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦34,756.06</span>
-                                    <span class="text-xs font-bold text-pink-400">₦31,596.42</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '1,500 + 300 UC', '31,596.42')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GAME 2: GARENA FREE FIRE -->
-            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://cdn2.unrealengine.com/free-fire-logo-1024x1024-e1b1d7d20626.png" onerror="this.src='https://img.icons8.com/color/96/free-fire.png'" alt="Free Fire Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Garena Free Fire</h3>
-                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">Diamonds</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter Player UID. Fast auto-credit within 2 minutes.</p>
-
-                    <div class="space-y-2.5 mb-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">💎 100 Diamonds</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦1,350.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦1,200.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Free Fire', '100 Diamonds', '1,200.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">💎 310 Diamonds</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦3,900.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦3,500.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Free Fire', '310 Diamonds', '3,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">💎 520 Diamonds</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦6,400.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦5,800.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Free Fire', '520 Diamonds', '5,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">💎 1,060 Diamonds</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦12,800.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦11,500.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Free Fire', '1,060 Diamonds', '11,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GAME 3: CALL OF DUTY MOBILE -->
-            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/call-of-duty.png" alt="COD Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
-                        <div>
-                            <h3 class="text-xl font-bold text-white">COD Mobile</h3>
-                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">CP Points</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter Player UID. Instant COD Points top-up.</p>
-
-                    <div class="space-y-2.5 mb-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🪙 80 CP</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦1,750.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦1,500.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('COD Mobile', '80 CP', '1,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🪙 420 CP</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦5,800.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦5,200.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('COD Mobile', '420 CP', '5,200.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🪙 880 CP</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦11,800.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦10,500.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('COD Mobile', '880 CP', '10,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🪙 2,400 CP</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦26,500.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦24,000.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('COD Mobile', '2,400 CP', '24,000.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GAME 4: ROBLOX -->
-            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/roblox.png" alt="Roblox Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Roblox</h3>
-                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">Robux</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter Username. Instant Robux deposit.</p>
-
-                    <div class="space-y-2.5 mb-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🟥 400 Robux</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦7,200.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦6,500.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Roblox', '400 Robux', '6,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🟥 800 Robux</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦13,800.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦12,500.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Roblox', '800 Robux', '12,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🟥 1,700 Robux</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦27,500.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦25,000.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Roblox', '1,700 Robux', '25,000.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GAME 5: eFOOTBALL -->
-            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/football.png" alt="eFootball Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
-                        <div>
-                            <h3 class="text-xl font-bold text-white">eFootball Coins</h3>
-                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">eFootball Points</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter KONAMI ID or Game Account.</p>
-
-                    <div class="space-y-2.5 mb-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">⚽ 130 Coins</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦2,000.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦1,800.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('eFootball', '130 Coins', '1,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">⚽ 520 Coins</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦7,500.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦6,800.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('eFootball', '520 Coins', '6,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">⚽ 1,050 Coins</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦14,500.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦13,200.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('eFootball', '1,050 Coins', '13,200.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GAME 6: MOBILE LEGENDS -->
-            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/sword.png" alt="Mobile Legends Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Mobile Legends</h3>
-                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">MLBB Diamonds</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter User ID + Zone ID.</p>
-
-                    <div class="space-y-2.5 mb-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">💎 86 Diamonds</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦1,800.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦1,600.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Mobile Legends', '86 Diamonds', '1,600.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">💎 257 Diamonds</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦5,000.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦4,500.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Mobile Legends', '257 Diamonds', '4,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">💎 706 Diamonds</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="slashed-price">₦13,000.00</span>
-                                    <span class="text-xs font-bold text-pink-400">₦11,800.00</span>
-                                </div>
-                            </div>
-                            <button onclick="startCheckout('Mobile Legends', '706 Diamonds', '11,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="flex justify-between items-center text-xs text-slate-400">
+          <span>Account Name:</span>
+          <span class="text-white font-semibold">NAIJACP Hub - Auto Credit</span>
         </div>
-    </main>
+      </div>
 
-    <!-- CHECKOUT MODAL -->
-    <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-md w-full p-6 border border-pink-500/40 pink-glow relative">
-            
-            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl">
-                &times;
-            </button>
+      <!-- Countdown Timer -->
+      <div class="mt-4 flex items-center justify-center gap-2 text-xs text-amber-400 bg-amber-500/10 py-2 rounded-xl border border-amber-500/20">
+        <i class="fa-solid fa-stopwatch animate-pulse"></i>
+        <span>Account expires in: <strong id="timerDisplay" class="font-mono">09:59</strong></span>
+      </div>
 
-            <!-- STEP 1: PLAYER DETAILS -->
-            <div id="step1">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/40 flex items-center justify-center font-bold text-sm">1</span>
-                    <h3 class="text-lg font-bold text-white">Enter Account Details</h3>
-                </div>
-
-                <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800 mb-4">
-                    <p class="text-xs text-zinc-400">Selected Order:</p>
-                    <p id="modalGameTitle" class="text-sm font-bold text-white"></p>
-                    <p id="modalPackageTitle" class="text-xs text-pink-400 font-semibold"></p>
-                </div>
-
-                <div class="mb-5">
-                    <label class="block text-xs font-medium text-zinc-300 mb-1.5">
-                        Player Game UID / Account ID / Username <span class="text-pink-500">*</span>
-                    </label>
-                    <input type="text" id="playerUID" placeholder="e.g. 583920194 or Username" 
-                           class="w-full bg-zinc-900 border border-pink-500/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500">
-                    <p class="text-[11px] text-zinc-500 mt-1">Please ensure your Player ID is correct.</p>
-                </div>
-
-                <button onclick="goToStep2()" class="w-full py-3 rounded-xl bg-pink-600 hover:bg-pink-500 font-bold text-white shadow-lg transition pink-glow-hover flex items-center justify-center gap-2">
-                    Proceed to Payment <i class="fa-solid fa-arrow-right text-xs"></i>
-                </button>
-            </div>
-
-            <!-- STEP 2: BANK TRANSFER DETAILS -->
-            <div id="step2" class="hidden">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/40 flex items-center justify-center font-bold text-sm">2</span>
-                        <h3 class="text-lg font-bold text-white">Complete Bank Transfer</h3>
-                    </div>
-                    <span id="countdownTimer" class="text-xs font-mono font-bold text-pink-400 bg-pink-950/50 border border-pink-500/30 px-2.5 py-1 rounded-lg">14:59</span>
-                </div>
-
-                <div class="bg-zinc-950 p-4 rounded-xl border border-pink-500/40 space-y-3 mb-4">
-                    <div class="flex justify-between items-center text-xs text-zinc-400 border-b border-zinc-800 pb-2">
-                        <span>Bank Name</span>
-                        <span class="font-bold text-white text-sm">MOMO PSB</span>
-                    </div>
-
-                    <div class="flex justify-between items-center text-xs text-zinc-400 border-b border-zinc-800 pb-2">
-                        <span>Account Number</span>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono font-bold text-pink-400 text-base">7048972368</span>
-                            <button onclick="copyToClipboard('7048972368')" class="text-xs bg-zinc-800 hover:bg-pink-600 text-zinc-200 hover:text-white px-2 py-1 rounded transition">
-                                Copy
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-between items-center text-xs text-zinc-400 border-b border-zinc-800 pb-2">
-                        <span>Account Name</span>
-                        <span class="font-bold text-white text-sm">OGUNLANA JAMIU</span>
-                    </div>
-
-                    <div class="flex justify-between items-center text-xs text-zinc-400">
-                        <span>Amount to Pay</span>
-                        <span id="transferAmount" class="font-bold text-emerald-400 text-base">₦0</span>
-                    </div>
-                </div>
-
-                <div class="bg-pink-950/40 border border-pink-500/30 rounded-xl p-3 mb-5 text-xs text-pink-200 flex items-start gap-2.5">
-                    <i class="fa-solid fa-circle-info text-pink-400 mt-0.5"></i>
-                    <p>After transferring, click <b>"I Have Paid"</b> to send your screenshot proof on Telegram.</p>
-                </div>
-
-                <div class="flex gap-2">
-                    <button onclick="goToStep1()" class="w-1/3 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-300 font-semibold text-xs transition">
-                        Back
-                    </button>
-                    <button onclick="goToStep3()" class="w-2/3 py-3 rounded-xl bg-gradient-to-r from-pink-600 to-pink-500 hover:from-pink-500 hover:to-pink-400 font-bold text-white shadow-lg transition pink-glow-hover flex items-center justify-center gap-2">
-                        I Have Paid <i class="fa-solid fa-check text-xs"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- STEP 3: PROOF VIA TELEGRAM LINK -->
-            <div id="step3" class="hidden text-center space-y-4">
-                <div class="w-16 h-16 rounded-full bg-pink-500/20 border border-pink-500 text-pink-400 mx-auto flex items-center justify-center text-3xl">
-                    <i class="fa-solid fa-paper-plane animate-bounce"></i>
-                </div>
-
-                <h3 class="text-xl font-bold text-white">Send Proof of Payment</h3>
-                <p class="text-xs text-zinc-300 leading-relaxed">
-                    Click below to open Telegram DM. Send your transfer screenshot and UID (<span id="summaryUID" class="text-pink-400 font-mono font-bold"></span>) for instant credit.
-                </p>
-
-                <div class="bg-zinc-900 p-3 rounded-xl border border-zinc-800 text-xs text-left space-y-1">
-                    <p class="text-zinc-400">Order Summary:</p>
-                    <p class="text-white font-bold" id="finalOrderSummary"></p>
-                    <p class="text-emerald-400 font-mono" id="finalAmountSummary"></p>
-                </div>
-
-                <a id="telegramLink" href="https://t.me/your_telegram_username" target="_blank" 
-                   class="w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 font-extrabold text-white shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                    <i class="fa-brands fa-telegram text-lg"></i> Send Screenshot on Telegram
-                </a>
-            </div>
-
-        </div>
+      <!-- Confirmation Button -->
+      <button onclick="confirmPaymentMade()" class="w-full mt-5 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>I Have Made the Transfer</span>
+      </button>
     </div>
+  </div>
 
-    <!-- ADMIN MODAL (merlin / merlin16) -->
-    <div id="adminModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-lg w-full p-6 border border-pink-500/50 relative">
-            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl">&times;</button>
-            
-            <div id="adminLoginView">
-                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-shield-halved text-pink-500"></i> Admin Access
-                </h3>
-                <div class="space-y-3 mb-4">
-                    <div>
-                        <label class="text-xs text-zinc-400">Username</label>
-                        <input type="text" id="adminUser" placeholder="Username" class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white">
-                    </div>
-                    <div>
-                        <label class="text-xs text-zinc-400">Password</label>
-                        <input type="password" id="adminPass" placeholder="Password" class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white">
-                    </div>
-                </div>
-                <button onclick="checkAdminLogin()" class="w-full py-2.5 bg-pink-600 hover:bg-pink-500 rounded-lg text-sm font-bold text-white">
-                    Login
-                </button>
-            </div>
+  <!-- ORDER RECEIPT / SUCCESS MODAL -->
+  <div id="receiptModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md overflow-y-auto">
+    <div class="glass-modal w-full max-w-md rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-slate-700 text-center">
+      
+      <!-- Icon -->
+      <div class="w-16 h-16 bg-emerald-500/20 border-2 border-emerald-400 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg shadow-emerald-500/30">
+        <i class="fa-solid fa-check"></i>
+      </div>
 
-            <div id="adminDashboardView" class="hidden space-y-4">
-                <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
-                    <h3 class="text-lg font-bold text-white">Admin Dashboard</h3>
-                    <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">Active Session</span>
-                </div>
-                <div class="bg-zinc-900/90 p-4 rounded-xl border border-zinc-800">
-                    <p class="text-xs text-zinc-400 mb-1">Bank Account Configuration:</p>
-                    <p class="text-sm font-bold text-white">MOMO PSB | 7048972368 | OGUNLANA JAMIU</p>
-                </div>
-                <div class="bg-zinc-900/90 p-4 rounded-xl border border-zinc-800">
-                    <p class="text-xs text-zinc-400 mb-1">Telegram DM Link:</p>
-                    <input type="text" id="adminTelegramConfig" value="https://t.me/your_telegram_username" class="w-full bg-zinc-950 border border-pink-500/40 rounded px-3 py-1.5 text-xs text-pink-400 font-mono mb-2">
-                    <button onclick="updateTelegramConfig()" class="px-3 py-1 bg-pink-600 text-xs font-bold rounded text-white">Save Link</button>
-                </div>
-                <button onclick="closeAdminModal()" class="w-full py-2 bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-300 rounded">
-                    Close Admin Panel
-                </button>
-            </div>
+      <h3 class="text-2xl font-black text-white">Payment Received!</h3>
+      <p class="text-xs text-slate-400 mt-1">Your top-up order is being processed automatically.</p>
+
+      <!-- Digital Receipt Card -->
+      <div class="mt-6 p-5 rounded-2xl bg-slate-900 border border-slate-800 text-left space-y-3 font-mono text-xs">
+        <div class="flex justify-between pb-2 border-b border-slate-800 text-slate-400">
+          <span>Status:</span>
+          <span class="text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1">
+            <i class="fa-solid fa-spinner animate-spin"></i> Processing
+          </span>
         </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Order Ref:</span>
+          <span id="receiptRef" class="text-white font-bold">NCP-839201</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Game:</span>
+          <span id="receiptGame" class="text-white">PUBG Mobile</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Package:</span>
+          <span id="receiptPkg" class="text-white">660 UC</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Player ID:</span>
+          <span id="receiptTarget" class="text-white">5123987410</span>
+        </div>
+        <div class="flex justify-between border-t border-slate-800 pt-2 text-sm font-sans font-extrabold">
+          <span class="text-slate-400">Amount Paid:</span>
+          <span id="receiptAmount" class="text-emerald-400">₦12,000</span>
+        </div>
+      </div>
+
+      <div class="mt-6 space-y-3">
+        <button onclick="closeModal('receiptModal')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm transition">
+          Done & Return Home
+        </button>
+        <a href="https://wa.me/2348123456789" target="_blank" class="block w-full py-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition">
+          <i class="fa-brands fa-whatsapp"></i> Need Help with this order?
+        </a>
+      </div>
     </div>
+  </div>
 
-    <!-- LIVE BUYER NOTIFICATIONS CONTAINER -->
-    <div id="toastContainer" class="fixed bottom-4 left-4 z-40 max-w-xs w-full pointer-events-none"></div>
+  <!-- ORDER TRACKER MODAL -->
+  <div id="trackerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-slate-700 text-left">
+      <button onclick="closeModal('trackerModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800/80 flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
-    <footer class="glass-card border-t border-pink-500/20 py-6 px-4 text-center text-xs text-zinc-500">
-        <p>&copy; 2026 Nexus TopUp. Instant Gaming Refills.</p>
-    </footer>
+      <h3 class="text-xl font-extrabold text-white mb-2"><i class="fa-solid fa-magnifying-glass text-emerald-400"></i> Track Your Order</h3>
+      <p class="text-xs text-slate-400 mb-6">Enter your Order Reference Number (e.g. NCP-839201) or Player ID below.</p>
 
-    <script>
-        let currentOrder = { game: '', package: '', price: '', uid: '' };
-        let countdownInterval;
+      <div class="flex gap-2">
+        <input type="text" id="trackerInput" placeholder="Enter Ref Code or Player ID..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500">
+        <button onclick="searchOrder()" class="px-5 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold text-sm hover:bg-emerald-400 transition">Search</button>
+      </div>
 
-        function animateUserCounter() {
-            const countEl = document.getElementById('liveUserCount');
-            let current = 104820;
-            setInterval(() => {
-                const diff = Math.floor(Math.random() * 21) - 10;
-                current = Math.max(102000, current + diff);
-                countEl.textContent = current.toLocaleString();
-            }, 3500);
+      <div id="trackerResult" class="mt-6 hidden">
+        <!-- Dynamically rendered -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING RECENT PURCHASE TOAST -->
+  <div id="toastNotification" class="fixed bottom-5 left-5 z-40 hidden sm:flex items-center gap-3 glass p-3.5 rounded-2xl border border-emerald-500/30 shadow-2xl max-w-xs transition-all transform duration-500 translate-y-10 opacity-0">
+    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg flex-shrink-0">
+      <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+    <div class="text-xs">
+      <p id="toastText" class="text-white font-semibold">User 0803***892</p>
+      <p id="toastSub" class="text-slate-400">Bought 660 UC PUBG Mobile • 2m ago</p>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // DATA SOURCE FOR GAMES & PACKAGES
+    const gamesData = [
+      {
+        id: 'pubg',
+        name: 'PUBG Mobile UC',
+        category: 'Battle Royale',
+        image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80',
+        badge: 'Instant Credit',
+        idLabel: 'PUBG Player ID (Character ID)',
+        idPlaceholder: 'e.g. 5123987410',
+        packages: [
+          { amount: '60 UC', price: 1200, bonus: '' },
+          { amount: '325 UC', price: 6000, bonus: '+25 Bonus' },
+          { amount: '660 UC', price: 12000, bonus: '+60 Bonus' },
+          { amount: '1800 UC', price: 31000, bonus: '+300 Bonus' },
+          { amount: '3850 UC', price: 62000, bonus: '+850 Bonus' }
+        ]
+      },
+      {
+        id: 'freefire',
+        name: 'Free Fire Diamonds',
+        category: 'Battle Royale',
+        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
+        badge: 'Popular',
+        idLabel: 'Free Fire Player UID',
+        idPlaceholder: 'e.g. 293847102',
+        packages: [
+          { amount: '100 Diamonds', price: 1100, bonus: '' },
+          { amount: '310 Diamonds', price: 3200, bonus: '+31 Bonus' },
+          { amount: '520 Diamonds', price: 5300, bonus: '+52 Bonus' },
+          { amount: '1060 Diamonds', price: 10500, bonus: '+106 Bonus' },
+          { amount: '2180 Diamonds', price: 21000, bonus: '+218 Bonus' }
+        ]
+      },
+      {
+        id: 'codm',
+        name: 'Call of Duty: Mobile CP',
+        category: 'Battle Royale',
+        image: 'https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=400&q=80',
+        badge: 'Hot',
+        idLabel: 'Activision Player UID',
+        idPlaceholder: 'e.g. 6749201938401',
+        packages: [
+          { amount: '80 CP', price: 1300, bonus: '' },
+          { amount: '420 CP', price: 6200, bonus: '+40 CP' },
+          { amount: '880 CP', price: 12500, bonus: '+80 CP' },
+          { amount: '2400 CP', price: 33000, bonus: '+300 CP' },
+          { amount: '5000 CP', price: 65000, bonus: '+800 CP' }
+        ]
+      },
+      {
+        id: 'efootball',
+        name: 'eFootball 2026 Coins',
+        category: 'Sports',
+        image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=400&q=80',
+        badge: 'Fast',
+        idLabel: 'Konami User ID / Username',
+        idPlaceholder: 'e.g. 984-102-394',
+        packages: [
+          { amount: '130 eFootball Coins', price: 1500, bonus: '' },
+          { amount: '550 eFootball Coins', price: 6500, bonus: '+30 Bonus' },
+          { amount: '1040 eFootball Coins', price: 12000, bonus: '+80 Bonus' },
+          { amount: '2130 eFootball Coins', price: 24000, bonus: '+200 Bonus' }
+        ]
+      },
+      {
+        id: 'mlbb',
+        name: 'Mobile Legends Diamonds',
+        category: 'Sports',
+        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80',
+        badge: 'Auto Credit',
+        idLabel: 'User ID & Zone ID',
+        idPlaceholder: 'e.g. 12345678 (1234)',
+        packages: [
+          { amount: '86 Diamonds', price: 1400, bonus: '' },
+          { amount: '257 Diamonds', price: 4100, bonus: '+26 Bonus' },
+          { amount: '706 Diamonds', price: 11000, bonus: '+87 Bonus' },
+          { amount: '2195 Diamonds', price: 32000, bonus: '+328 Bonus' }
+        ]
+      },
+      {
+        id: 'psn',
+        name: 'PlayStation Network Card',
+        category: 'Vouchers',
+        image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=400&q=80',
+        badge: 'Digital Code',
+        idLabel: 'Email Address for Code Delivery',
+        idPlaceholder: 'e.g. gamer@gmail.com',
+        packages: [
+          { amount: '$10 PSN Gift Card', price: 16500, bonus: 'Instant Email' },
+          { amount: '$25 PSN Gift Card', price: 41000, bonus: 'Instant Email' },
+          { amount: '$50 PSN Gift Card', price: 82000, bonus: 'Instant Email' },
+          { amount: '$100 PSN Gift Card', price: 163000, bonus: 'Instant Email' }
+        ]
+      },
+      {
+        id: 'razer',
+        name: 'Razer Gold PIN',
+        category: 'Vouchers',
+        image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80',
+        badge: 'Global Code',
+        idLabel: 'Email Address for Code Delivery',
+        idPlaceholder: 'e.g. gamer@gmail.com',
+        packages: [
+          { amount: '$5 Razer Gold', price: 8200, bonus: 'Digital Code' },
+          { amount: '$10 Razer Gold', price: 16400, bonus: 'Digital Code' },
+          { amount: '$20 Razer Gold', price: 32800, bonus: 'Digital Code' },
+          { amount: '$50 Razer Gold', price: 82000, bonus: 'Digital Code' }
+        ]
+      },
+      {
+        id: 'steam',
+        name: 'Steam Wallet Voucher',
+        category: 'Vouchers',
+        image: 'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=400&q=80',
+        badge: 'Global Code',
+        idLabel: 'Email Address for Delivery',
+        idPlaceholder: 'e.g. gamer@gmail.com',
+        packages: [
+          { amount: '$10 Steam Voucher', price: 16500, bonus: 'Instant Code' },
+          { amount: '$20 Steam Voucher', price: 33000, bonus: 'Instant Code' },
+          { amount: '$50 Steam Voucher', price: 82500, bonus: 'Instant Code' }
+        ]
+      }
+    ];
+
+    // CURRENT ACTIVE STATE
+    let selectedGame = null;
+    let selectedPackage = null;
+    let recentOrders = JSON.parse(localStorage.getItem('naijaCP_orders') || '[]');
+
+    // INITIAL RENDER
+    window.addEventListener('DOMContentLoaded', () => {
+      renderGames(gamesData);
+      startLiveCounter();
+      startRecentPurchaseToasts();
+    });
+
+    // RENDER GAMES GRID
+    function renderGames(data) {
+      const grid = document.getElementById('gamesGrid');
+      grid.innerHTML = '';
+
+      if (data.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">No games found matching your search.</div>`;
+        return;
+      }
+
+      data.forEach(game => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-3xl p-4 flex flex-col justify-between cursor-pointer group relative overflow-hidden';
+        card.onclick = () => openTopupModal(game.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="relative mb-3 overflow-hidden rounded-2xl aspect-[4/3]">
+              <img src="${game.image}" alt="${game.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+              <span class="absolute top-2.5 right-2.5 text-[10px] font-extrabold uppercase px-2 py-1 rounded-lg bg-slate-950/80 backdrop-blur-md text-emerald-400 border border-emerald-500/30">
+                ${game.badge}
+              </span>
+            </div>
+            <h3 class="text-base font-extrabold text-white group-hover:text-emerald-400 transition line-clamp-1">${game.name}</h3>
+            <p class="text-xs text-slate-400 mt-1">Instant Direct Top-Up</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-300">From ₦${game.packages[0].price.toLocaleString()}</span>
+            <span class="w-8 h-8 rounded-xl bg-emerald-500/10 group-hover:bg-emerald-500 text-emerald-400 group-hover:text-slate-950 flex items-center justify-center transition">
+              <i class="fa-solid fa-plus text-xs"></i>
+            </span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // SEARCH & CATEGORY FILTERS
+    function filterGames() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = gamesData.filter(g => g.name.toLowerCase().includes(query) || g.category.toLowerCase().includes(query));
+      renderGames(filtered);
+    }
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-500', 'text-slate-950');
+        btn.classList.add('bg-slate-800/80', 'text-slate-400');
+      });
+      event.target.classList.remove('bg-slate-800/80', 'text-slate-400');
+      event.target.classList.add('bg-emerald-500', 'text-slate-950');
+
+      if (cat === 'all') {
+        renderGames(gamesData);
+      } else {
+        const filtered = gamesData.filter(g => g.category === cat);
+        renderGames(filtered);
+      }
+    }
+
+    // OPEN TOPUP MODAL
+    function openTopupModal(gameId) {
+      selectedGame = gamesData.find(g => g.id === gameId);
+      selectedPackage = null;
+
+      document.getElementById('modalGameTitle').innerText = selectedGame.name;
+      document.getElementById('modalGameImg').src = selectedGame.image;
+      document.getElementById('modalGameBadge').innerText = selectedGame.badge;
+      document.getElementById('idInputLabel').innerText = selectedGame.idLabel;
+      document.getElementById('playerIdInput').placeholder = selectedGame.idPlaceholder;
+      document.getElementById('playerIdInput').value = '';
+      document.getElementById('verifyFeedback').classList.add('hidden');
+      document.getElementById('selectedPriceDisplay').innerText = '₦0';
+
+      // Render Package Buttons
+      const pkgContainer = document.getElementById('packagesContainer');
+      pkgContainer.innerHTML = '';
+
+      selectedGame.packages.forEach((pkg, idx) => {
+        const pkgDiv = document.createElement('div');
+        pkgDiv.className = 'package-card glass p-3.5 rounded-2xl border border-slate-700/80 cursor-pointer text-left relative overflow-hidden';
+        pkgDiv.onclick = () => selectPackage(pkg, pkgDiv);
+
+        pkgDiv.innerHTML = `
+          ${pkg.bonus ? `<span class="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded-bl-lg">${pkg.bonus}</span>` : ''}
+          <span class="text-xs font-bold text-white block mt-1">${pkg.amount}</span>
+          <span class="text-sm font-extrabold text-emerald-400 block mt-1">₦${pkg.price.toLocaleString()}</span>
+        `;
+        pkgContainer.appendChild(pkgDiv);
+      });
+
+      document.getElementById('topupModal').classList.remove('hidden');
+    }
+
+    function selectPackage(pkg, element) {
+      selectedPackage = pkg;
+      document.querySelectorAll('.package-card').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      document.getElementById('selectedPriceDisplay').innerText = `₦${pkg.price.toLocaleString()}`;
+    }
+
+    function verifyPlayerID() {
+      const input = document.getElementById('playerIdInput').value.trim();
+      if (!input) {
+        alert('Please enter a valid Player ID first.');
+        return;
+      }
+      const names = ['NaijaGamer99', 'ShadowStriker', 'Ovo_Gamer', 'ApexPredator_NG', 'StarBoy_001'];
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      document.getElementById('verifiedName').innerText = randomName;
+      document.getElementById('verifyFeedback').classList.remove('hidden');
+    }
+
+    function proceedToCheckout() {
+      const playerId = document.getElementById('playerIdInput').value.trim();
+      if (!playerId) {
+        alert('Please enter your Player ID / Delivery Email before proceeding.');
+        return;
+      }
+      if (!selectedPackage) {
+        alert('Please select a top-up package!');
+        return;
+      }
+
+      // Close TopUp Modal & Open Payment Modal
+      closeModal('topupModal');
+
+      document.getElementById('checkoutItem').innerText = `${selectedGame.name} - ${selectedPackage.amount}`;
+      document.getElementById('checkoutTarget').innerText = playerId;
+      document.getElementById('checkoutAmount').innerText = `₦${selectedPackage.price.toLocaleString()}`;
+
+      startCheckoutTimer();
+      document.getElementById('paymentModal').classList.remove('hidden');
+    }
+
+    // BANK TRANSFER COUNTDOWN TIMER
+    let timerInterval = null;
+    function startCheckoutTimer() {
+      let seconds = 599; // 10 mins
+      const display = document.getElementById('timerDisplay');
+      if (timerInterval) clearInterval(timerInterval);
+
+      timerInterval = setInterval(() => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        display.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        if (seconds <= 0) {
+          clearInterval(timerInterval);
+          alert('Payment window expired. Please re-initiate.');
+          closeModal('paymentModal');
         }
+        seconds--;
+      }, 1000);
+    }
 
-        const buyerNames = ['Chinedu', 'Tobi', 'Aisha', 'Emmanuel', 'Blessed', 'Kelechi', 'David', 'Fatima', 'Usman', 'Grace'];
-        const buyerLocations = ['Lagos', 'Abuja', 'Ibadan', 'Port Harcourt', 'Kano', 'Enugu'];
-        const buyerPurchases = ['600 + 60 PUBG UC', '520 Free Fire Diamonds', '880 COD CP', '800 Robux', '520 eFootball Coins'];
+    function copyAccountNumber() {
+      const acc = document.getElementById('accountNumber').innerText;
+      navigator.clipboard.writeText(acc);
+      const btnText = document.getElementById('copyBtnText');
+      btnText.innerText = 'Copied!';
+      setTimeout(() => { btnText.innerText = 'Copy'; }, 2000);
+    }
 
-        function showBuyerToast() {
-            const container = document.getElementById('toastContainer');
-            const name = buyerNames[Math.floor(Math.random() * buyerNames.length)];
-            const location = buyerLocations[Math.floor(Math.random() * buyerLocations.length)];
-            const purchase = buyerPurchases[Math.floor(Math.random() * buyerPurchases.length)];
+    function confirmPaymentMade() {
+      closeModal('paymentModal');
+      
+      const refCode = 'NCP-' + Math.floor(100000 + Math.random() * 900000);
+      const playerId = document.getElementById('playerIdInput').value.trim();
 
-            const toast = document.createElement('div');
-            toast.className = 'bg-zinc-950/95 border border-pink-500/40 p-3 rounded-xl shadow-2xl backdrop-blur-md flex items-center gap-3 mb-2';
-            toast.innerHTML = `
-                <div class="w-8 h-8 rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 font-bold text-xs">
-                    ✓
-                </div>
-                <div class="text-left">
-                    <p class="text-xs font-bold text-white">${name} <span class="text-[10px] text-zinc-400">(${location})</span></p>
-                    <p class="text-[11px] text-pink-400 font-medium">Just bought ${purchase}</p>
-                </div>
-            `;
+      document.getElementById('receiptRef').innerText = refCode;
+      document.getElementById('receiptGame').innerText = selectedGame.name;
+      document.getElementById('receiptPkg').innerText = selectedPackage.amount;
+      document.getElementById('receiptTarget').innerText = playerId;
+      document.getElementById('receiptAmount').innerText = `₦${selectedPackage.price.toLocaleString()}`;
 
-            container.appendChild(toast);
-            setTimeout(() => { toast.remove(); }, 4500);
-        }
+      // Store in local storage
+      const newOrder = {
+        ref: refCode,
+        game: selectedGame.name,
+        pkg: selectedPackage.amount,
+        target: playerId,
+        amount: selectedPackage.price,
+        status: 'Processing',
+        date: new Date().toLocaleTimeString()
+      };
+      recentOrders.unshift(newOrder);
+      localStorage.setItem('naijaCP_orders', JSON.stringify(recentOrders));
 
-        setInterval(showBuyerToast, 7000);
+      // Trigger Celebration Confetti
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
 
-        function startCheckout(game, pkg, price) {
-            currentOrder = { game, package: pkg, price, uid: '' };
-            
-            document.getElementById('modalGameTitle').textContent = game;
-            document.getElementById('modalPackageTitle').textContent = pkg + ' — ₦' + price;
-            document.getElementById('transferAmount').textContent = '₦' + price;
-            document.getElementById('playerUID').value = '';
+      document.getElementById('receiptModal').classList.remove('hidden');
+    }
 
-            document.getElementById('step1').classList.remove('hidden');
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.add('hidden');
+    // ORDER TRACKER LOGIC
+    function openTrackerModal() {
+      document.getElementById('trackerModal').classList.remove('hidden');
+      document.getElementById('trackerResult').classList.add('hidden');
+    }
 
-            document.getElementById('checkoutModal').classList.remove('hidden');
-        }
+    function searchOrder() {
+      const q = document.getElementById('trackerInput').value.trim().toLowerCase();
+      const res = document.getElementById('trackerResult');
+      res.classList.remove('hidden');
 
-        function closeCheckoutModal() {
-            document.getElementById('checkoutModal').classList.add('hidden');
-            clearInterval(countdownInterval);
-        }
+      const found = recentOrders.find(o => o.ref.toLowerCase() === q || o.target.toLowerCase() === q);
 
-        function goToStep1() {
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step1').classList.remove('hidden');
-            clearInterval(countdownInterval);
-        }
+      if (found) {
+        res.innerHTML = `
+          <div class="p-4 rounded-2xl bg-slate-900 border border-emerald-500/40 text-xs space-y-2">
+            <div class="flex justify-between font-bold text-white">
+              <span>Order Ref: ${found.ref}</span>
+              <span class="text-emerald-400 uppercase">${found.status}</span>
+            </div>
+            <div class="text-slate-400">Item: ${found.game} (${found.pkg})</div>
+            <div class="text-slate-400">Target ID: ${found.target}</div>
+            <div class="text-slate-400">Amount: ₦${found.amount.toLocaleString()}</div>
+          </div>
+        `;
+      } else {
+        res.innerHTML = `
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-xs text-center text-slate-400">
+            No active order found with that Reference or Player ID.
+          </div>
+        `;
+      }
+    }
 
-        function goToStep2() {
-            const uidInput = document.getElementById('playerUID').value.trim();
-            if (!uidInput) {
-                alert('Please enter your Player ID / Username before proceeding.');
-                return;
-            }
-            currentOrder.uid = uidInput;
+    // MODAL CLOSE HELPER
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
 
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
 
-            startCountdown(15 * 60);
-        }
+    // SIMULATE ONLINE USERS COUNTER
+    function startLiveCounter() {
+      const counter = document.getElementById('liveCounter');
+      setInterval(() => {
+        let current = parseInt(counter.innerText.replace(',', ''));
+        let delta = Math.floor(Math.random() * 7) - 3;
+        counter.innerText = (current + delta).toLocaleString();
+      }, 4000);
+    }
 
-        function goToStep3() {
-            clearInterval(countdownInterval);
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.remove('hidden');
+    // FLOATING RECENT PURCHASE NOTIFICATIONS
+    function startRecentPurchaseToasts() {
+      const toast = document.getElementById('toastNotification');
+      const toastText = document.getElementById('toastText');
+      const toastSub = document.getElementById('toastSub');
 
-            document.getElementById('summaryUID').textContent = currentOrder.uid;
-            document.getElementById('finalOrderSummary').textContent = `${currentOrder.game} - ${currentOrder.package}`;
-            document.getElementById('finalAmountSummary').textContent = `Total Paid: ₦${currentOrder.price}`;
+      const samplePurchases = [
+        { user: '0813***902', pkg: '660 UC PUBG Mobile' },
+        { user: '0906***118', pkg: '520 Free Fire Diamonds' },
+        { user: '0703***441', pkg: '2400 COD Points' },
+        { user: '0812***390', pkg: '1040 eFootball Coins' },
+        { user: '0915***882', pkg: '$25 PSN Gift Card' }
+      ];
 
-            const currentTgLink = document.getElementById('adminTelegramConfig').value.trim();
-            const message = encodeURIComponent(`Hello Admin, I have paid for:\nGame: ${currentOrder.game}\nPackage: ${currentOrder.package}\nPlayer UID: ${currentOrder.uid}\nAmount: ₦${currentOrder.price}\n\nHere is my payment screenshot proof:`);
-            
-            const fullTgUrl = currentTgLink.includes('?') ? `${currentTgLink}&text=${message}` : `${currentTgLink}?text=${message}`;
-            document.getElementById('telegramLink').href = fullTgUrl;
-        }
+      setInterval(() => {
+        const item = samplePurchases[Math.floor(Math.random() * samplePurchases.length)];
+        toastText.innerText = `User ${item.user} just purchased`;
+        toastSub.innerText = `${item.pkg} • Just now`;
 
-        function startCountdown(durationSeconds) {
-            clearInterval(countdownInterval);
-            let timer = durationSeconds;
-            const display = document.getElementById('countdownTimer');
+        toast.classList.remove('hidden', 'translate-y-10', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
 
-            countdownInterval = setInterval(() => {
-                const minutes = Math.floor(timer / 60);
-                const seconds = timer % 60;
-                display.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-                if (--timer < 0) {
-                    clearInterval(countdownInterval);
-                    display.textContent = 'Expired';
-                }
-            }, 1000);
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Account Number copied to clipboard: ' + text);
-            }).catch(() => {
-                alert('Account Number: ' + text);
-            });
-        }
-
-        function openAdminModal() {
-            document.getElementById('adminModal').classList.remove('hidden');
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.add('hidden');
-        }
-
-        function checkAdminLogin() {
-            const u = document.getElementById('adminUser').value;
-            const p = document.getElementById('adminPass').value;
-
-            if (u === 'merlin' && p === 'merlin16') {
-                document.getElementById('adminLoginView').classList.add('hidden');
-                document.getElementById('adminDashboardView').classList.remove('hidden');
-            } else {
-                alert('Invalid Credentials');
-            }
-        }
-
-        function updateTelegramConfig() {
-            alert('Telegram DM link updated successfully!');
-        }
-
-        window.onload = function() {
-            animateUserCounter();
-        };
-    </script>
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-10', 'opacity-0');
+        }, 4000);
+      }, 12000);
+    }
+  </script>
 </body>
 </html>
