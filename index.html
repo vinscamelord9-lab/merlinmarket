@@ -88,7 +88,6 @@
       animation-play-state: paused;
     }
 
-    /* Animated Purchase Toast */
     @keyframes slideInUp {
       from { transform: translateY(120%) scale(0.9); opacity: 0; }
       to { transform: translateY(0) scale(1); opacity: 1; }
@@ -128,7 +127,7 @@
         </span>
       </div>
 
-      <!-- Header Navigation Links -->
+      <!-- Navigation Links -->
       <div class="flex items-center gap-5 sm:gap-8">
         <a href="#games" class="flex flex-col sm:flex-row items-center gap-1 text-slate-300 hover:text-pink-400 transition">
           <i class="fa-solid fa-store text-pink-500 text-lg"></i>
@@ -160,7 +159,7 @@
       </div>
 
       <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-6 font-medium">
-        Buy UC, Diamonds, Coins, Call of Duty CP & Vouchers directly with Nigerian Bank Transfer.
+        Buy UC, Diamonds, Coins, Call of Duty CP, TikTok Coins & Vouchers directly with Nigerian Bank Transfer.
       </p>
 
       <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-2xl mx-auto border border-pink-500/30 shadow-2xl">
@@ -189,27 +188,30 @@
           <i class="fa-solid fa-gamepad"></i>
         </div>
         <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
-          Popular Game Catalog
+          Popular Game Catalog & Services
         </h2>
       </div>
 
       <!-- Filter Tabs -->
       <div class="flex items-center gap-2.5 overflow-x-auto py-2 scrollbar-none">
         <button onclick="filterCategory('all')" id="btn-cat-all" class="cat-btn px-6 py-2.5 rounded-2xl text-xs font-black transition bg-pink-500 text-black shadow-lg shadow-pink-500/20 whitespace-nowrap">
-          All Games
+          All Services
         </button>
         <button onclick="filterCategory('Battle Royale')" id="btn-cat-Battle Royale" class="cat-btn px-6 py-2.5 rounded-2xl text-xs font-bold transition bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800 whitespace-nowrap">
           Battle Royale
         </button>
-        <button onclick="filterCategory('Sports')" id="btn-cat-Sports" class="cat-btn px-6 py-2.5 rounded-2xl text-xs font-bold transition bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800 whitespace-nowrap">
+        <button onclick="filterCategory('Sports & MOBA')" id="btn-cat-Sports & MOBA" class="cat-btn px-6 py-2.5 rounded-2xl text-xs font-bold transition bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800 whitespace-nowrap">
           Sports & MOBA
+        </button>
+        <button onclick="filterCategory('Social & Vouchers')" id="btn-cat-Social & Vouchers" class="cat-btn px-6 py-2.5 rounded-2xl text-xs font-bold transition bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800 whitespace-nowrap">
+          Social & Vouchers
         </button>
       </div>
     </div>
 
     <!-- Games Grid -->
     <div id="gamesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-      <!-- Dynamic rendering via JS -->
+      <!-- Populated dynamically -->
     </div>
   </main>
 
@@ -328,9 +330,7 @@
   <!-- REAL-TIME TOAST CONTAINER -->
   <div id="liveToastContainer" class="fixed bottom-5 left-5 z-50 max-w-xs w-full pointer-events-none"></div>
 
-  <!-- ================= MODALS ================= -->
-
-  <!-- TOP-UP SELECTION MODAL -->
+  <!-- MODALS -->
   <div id="topupModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="glass-modal w-full max-w-2xl rounded-3xl p-6 sm:p-8 relative shadow-2xl my-8 text-left">
       <button onclick="closeModal('topupModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
@@ -346,8 +346,8 @@
       </div>
 
       <div class="mt-6">
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Enter Player ID / Character ID</label>
-        <input type="text" id="playerIdInput" placeholder="e.g. 5123987410" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Enter Player ID / Account Username</label>
+        <input type="text" id="playerIdInput" placeholder="e.g. 5123987410 or @username" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
       </div>
 
       <div class="mt-6">
@@ -368,7 +368,6 @@
     </div>
   </div>
 
-  <!-- CHECKOUT & SCREENSHOT PROOF MODAL -->
   <div id="paymentModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
     <div class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl text-left">
       <button onclick="closeModal('paymentModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
@@ -415,7 +414,6 @@
         </div>
       </div>
 
-      <!-- Screenshot Proof Upload -->
       <div class="mt-5">
         <label class="block text-xs font-bold text-pink-400 uppercase tracking-wider mb-2">
           <i class="fa-solid fa-file-arrow-up mr-1"></i> Upload Payment Proof Screenshot
@@ -439,7 +437,6 @@
     </div>
   </div>
 
-  <!-- ORDER RECEIPT MODAL -->
   <div id="receiptModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
     <div class="glass-modal w-full max-w-md rounded-3xl p-6 sm:p-8 relative shadow-2xl text-center">
       <div class="w-16 h-16 bg-pink-500/20 border-2 border-pink-400 text-pink-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
@@ -458,7 +455,7 @@
           <span id="receiptRef" class="text-white font-bold">NCP-839201</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-400">Game:</span>
+          <span class="text-slate-400">Game/Service:</span>
           <span id="receiptGame" class="text-white">PUBG Mobile</span>
         </div>
         <div class="flex justify-between">
@@ -477,7 +474,6 @@
     </div>
   </div>
 
-  <!-- ORDER TRACKER MODAL -->
   <div id="trackerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl text-left">
       <button onclick="closeModal('trackerModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
@@ -496,7 +492,6 @@
     </div>
   </div>
 
-  <!-- ADMIN AUTH GATE MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
     <div class="glass-modal w-full max-w-sm rounded-3xl p-6 text-center border border-pink-500/40 relative">
       <button onclick="closeModal('adminAuthModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
@@ -521,7 +516,6 @@
     </div>
   </div>
 
-  <!-- ADMIN PORTAL MODAL -->
   <div id="adminModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-2 sm:p-4 bg-black/95 backdrop-blur-md">
     <div class="glass-modal w-full max-w-5xl h-[92vh] rounded-3xl p-4 sm:p-6 relative shadow-2xl border border-pink-500/40 flex flex-col overflow-hidden">
       
@@ -540,7 +534,6 @@
       </div>
 
       <div class="flex-1 flex flex-col md:flex-row gap-4 mt-4 overflow-hidden relative">
-        <!-- Overlay Drawer / Desktop Sidebar -->
         <div id="adminNavDrawer" class="hidden md:flex flex-col w-full md:w-64 bg-slate-950 border border-slate-800 rounded-2xl p-3 space-y-1 overflow-y-auto flex-shrink-0 absolute md:relative top-0 left-0 right-0 z-20 max-h-[80%] shadow-2xl md:shadow-none md:max-h-none">
           <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1">Management</span>
           
@@ -566,7 +559,6 @@
 
         <div class="flex-1 bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-6 overflow-y-auto h-full text-xs">
           
-          <!-- TAB 1: PAYMENTS -->
           <div id="adminTab-payments" class="admin-tab-content space-y-4">
             <h4 class="text-base font-bold text-white">Submitted Customer Proofs</h4>
             <div id="adminOrdersList" class="space-y-3">
@@ -576,7 +568,6 @@
             </div>
           </div>
 
-          <!-- TAB 2: PACKAGES & PRICING MANAGER (FULL INTERACTIVE CONTROL) -->
           <div id="adminTab-packages" class="admin-tab-content hidden space-y-6">
             <div class="flex items-center justify-between">
               <div>
@@ -587,12 +578,9 @@
                 <i class="fa-solid fa-rotate text-xs"></i> Refresh
               </button>
             </div>
-
-            <!-- Dynamic Admin Package List -->
             <div id="adminPackagesList" class="space-y-6"></div>
           </div>
 
-          <!-- TAB 3: TICKER -->
           <div id="adminTab-announcements" class="admin-tab-content hidden space-y-4">
             <h4 class="text-base font-bold text-white">Top Ticker Announcement</h4>
             <input type="text" id="tickerInputText" value="FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
@@ -601,7 +589,6 @@
             </button>
           </div>
 
-          <!-- TAB 4: BANK SETTINGS -->
           <div id="adminTab-paymentSettings" class="admin-tab-content hidden space-y-3">
             <h4 class="text-base font-bold text-white">Bank Account Configuration</h4>
             <div>
@@ -626,9 +613,9 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // Games Database
+    // Updated Complete Games & Services Database with correct pictures and prices
     let gamesData = [
       {
         id: 'pubg',
@@ -637,11 +624,11 @@
         badge: 'Direct UC Credit',
         image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '60 UC', price: 1200 },
-          { name: '325 UC', price: 6000 },
-          { name: '660 UC', price: 12000 },
-          { name: '1800 UC', price: 31000 },
-          { name: '3850 UC', price: 62000 }
+          { name: '60 UC', price: 1500 },
+          { name: '325 UC', price: 6500 },
+          { name: '660 UC', price: 13000 },
+          { name: '1800 UC', price: 34000 },
+          { name: '3850 UC', price: 68000 }
         ]
       },
       {
@@ -651,11 +638,12 @@
         badge: 'Direct ID Top-Up',
         image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '100 + 10 Diamonds', price: 1100 },
-          { name: '210 + 21 Diamonds', price: 2200 },
-          { name: '530 + 53 Diamonds', price: 5400 },
-          { name: '1080 + 108 Diamonds', price: 10800 },
-          { name: '2200 + 220 Diamonds', price: 21500 }
+          { name: '110 Diamonds', price: 1000 },
+          { name: '231 Diamonds', price: 2000 },
+          { name: '583 Diamonds', price: 4500 },
+          { name: '1,188 Diamonds', price: 8500 },
+          { name: '2,420 Diamonds', price: 17000 },
+          { name: 'Monthly Subscription', price: 8000 }
         ]
       },
       {
@@ -665,34 +653,84 @@
         badge: 'Direct CP Top-Up',
         image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '80 CP', price: 1400 },
-          { name: '420 CP', price: 6800 },
-          { name: '880 CP', price: 13500 },
-          { name: '2400 CP', price: 34000 }
+          { name: '80 CP', price: 1500 },
+          { name: '420 CP', price: 7200 },
+          { name: '880 CP', price: 14000 },
+          { name: '2400 CP', price: 36000 }
         ]
       },
       {
         id: 'efootball',
         name: 'eFootball 2026',
-        category: 'Sports',
+        category: 'Sports & MOBA',
         badge: 'Direct Coins',
         image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '130 Coins', price: 1600 },
-          { name: '550 Coins', price: 6500 },
-          { name: '1040 Coins', price: 12500 },
-          { name: '2130 Coins', price: 24000 }
+          { name: '137 Coins', price: 1800 },
+          { name: '550 Coins', price: 6800 },
+          { name: '1040 Coins', price: 13000 },
+          { name: '2130 Coins', price: 25000 }
+        ]
+      },
+      {
+        id: 'mlbb',
+        name: 'Mobile Legends: Bang Bang',
+        category: 'Sports & MOBA',
+        badge: 'Direct ID Top-Up',
+        image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: '86 Diamonds', price: 1000 },
+          { name: '172 Diamonds', price: 2000 },
+          { name: '257 Diamonds', price: 3000 },
+          { name: '706 Diamonds', price: 8200 },
+          { name: '2120 Diamonds', price: 24500 }
+        ]
+      },
+      {
+        id: 'tiktok',
+        name: 'TikTok Coins',
+        category: 'Social & Vouchers',
+        badge: 'Instant Recharge',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: '70 Coins', price: 1200 },
+          { name: '350 Coins', price: 5800 },
+          { name: '700 Coins', price: 11500 },
+          { name: '1400 Coins', price: 23000 }
+        ]
+      },
+      {
+        id: 'dls',
+        name: 'Dream League Soccer 25',
+        category: 'Sports & MOBA',
+        badge: 'Game Coins',
+        image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: '400 Coins', price: 1500 },
+          { name: '930 Coins', price: 3200 },
+          { name: '2150 Coins', price: 7000 },
+          { name: '4500 Coins', price: 13500 }
+        ]
+      },
+      {
+        id: 'eafc',
+        name: 'EA Sports FC Mobile',
+        category: 'Sports & MOBA',
+        badge: 'FC Points',
+        image: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: '100 Points', price: 1400 },
+          { name: '520 Points', price: 6500 },
+          { name: '1050 Points', price: 12800 },
+          { name: '2200 Points', price: 26000 }
         ]
       }
     ];
 
-    // Global State
     let selectedGame = null;
     let selectedPkg = null;
-    let shareCount = 0;
     let userOrders = JSON.parse(localStorage.getItem('naijacp_orders') || '[]');
 
-    // Render Store Front Games
     function renderGames(filter = 'all') {
       const grid = document.getElementById('gamesGrid');
       grid.innerHTML = '';
@@ -723,7 +761,6 @@
       });
     }
 
-    // Category Filter Handler
     function filterCategory(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.className = 'cat-btn px-6 py-2.5 rounded-2xl text-xs font-bold transition bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800 whitespace-nowrap';
@@ -735,7 +772,6 @@
       renderGames(cat);
     }
 
-    // Modal Operations
     function openModal(modalId) {
       document.getElementById(modalId).classList.remove('hidden');
     }
@@ -744,7 +780,6 @@
       document.getElementById(modalId).classList.add('hidden');
     }
 
-    // Open Top-Up Selection
     function openTopupModal(gameId) {
       selectedGame = gamesData.find(g => g.id === gameId);
       if (!selectedGame) return;
@@ -779,15 +814,14 @@
       openModal('topupModal');
     }
 
-    // Proceed to Payment Modal
     function proceedToCheckout() {
       const playerID = document.getElementById('playerIdInput').value.trim();
       if (!playerID) {
-        alert('Please enter your Player ID / Character ID!');
+        alert('Please enter your Player ID / Username!');
         return;
       }
       if (!selectedPkg) {
-        alert('Please select a top-up package!');
+        alert('Please select a package!');
         return;
       }
 
@@ -799,14 +833,12 @@
       openModal('paymentModal');
     }
 
-    // Copy Account Number
     function copyAccountNumber() {
       const acc = document.getElementById('accountNumber').innerText;
       navigator.clipboard.writeText(acc);
       showToast('Account Number copied to clipboard!');
     }
 
-    // Screenshot Proof Upload Preview
     function handleProofUpload(e) {
       const file = e.target.files[0];
       if (file) {
@@ -816,7 +848,6 @@
       }
     }
 
-    // Submit Order
     function submitOrderWithProof() {
       const proofInput = document.getElementById('proofFileInput');
       if (!proofInput.files || proofInput.files.length === 0) {
@@ -849,7 +880,6 @@
       openModal('receiptModal');
     }
 
-    // Order Tracker Search
     function openTrackerModal() {
       document.getElementById('trackerInput').value = '';
       document.getElementById('trackerResult').classList.add('hidden');
@@ -882,7 +912,7 @@
       }
     }
 
-    // Free Fire Sensi Generator
+    let shareCount = 0;
     function shareToWhatsApp() {
       shareCount = Math.min(5, shareCount + 1);
       const remaining = 5 - shareCount;
@@ -912,7 +942,6 @@
 
       const code = 'FF-' + Math.floor(1000 + Math.random() * 9000) + '-SENSI';
       document.getElementById('generatedCode').innerText = code;
-
       document.getElementById('valGeneral').innerText = Math.floor(92 + Math.random() * 8);
       document.getElementById('valRedDot').innerText = Math.floor(88 + Math.random() * 10);
       document.getElementById('val2x').innerText = Math.floor(85 + Math.random() * 10);
@@ -927,7 +956,6 @@
       showToast('Sensi Code copied to clipboard!');
     }
 
-    // Admin Access Gate
     function promptAdminPassword() {
       document.getElementById('adminUserInput').value = '';
       document.getElementById('adminPassInput').value = '';
@@ -966,17 +994,10 @@
         activeBtn.className = 'admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-pink-400 bg-pink-500/10 transition flex items-center gap-2.5';
       }
 
-      if (tab === 'packages') {
-        renderAdminPackages();
-      }
-
-      if (window.innerWidth < 768) {
-        const drawer = document.getElementById('adminNavDrawer');
-        if (drawer) drawer.classList.add('hidden');
-      }
+      if (tab === 'packages') renderAdminPackages();
+      if (window.innerWidth < 768) document.getElementById('adminNavDrawer').classList.add('hidden');
     }
 
-    // Render Submitted Payments in Admin
     function renderAdminOrders() {
       const list = document.getElementById('adminOrdersList');
       if (userOrders.length === 0) {
@@ -1006,7 +1027,6 @@
       }
     }
 
-    // ================= DYNAMIC ADMIN PACKAGE MANAGER =================
     function renderAdminPackages() {
       const container = document.getElementById('adminPackagesList');
       container.innerHTML = '';
@@ -1025,7 +1045,7 @@
             <button onclick="updatePackagePrice(${gIndex}, ${pIndex})" class="px-2.5 py-1 bg-pink-500/20 text-pink-400 hover:bg-pink-500 hover:text-black font-extrabold rounded-lg text-[11px] transition">
               Save
             </button>
-            <button onclick="deletePackage(${gIndex}, ${pIndex})" class="px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 rounded-lg text-[11px] transition" title="Delete">
+            <button onclick="deletePackage(${gIndex}, ${pIndex})" class="px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 rounded-lg text-[11px] transition">
               <i class="fa-solid fa-trash-can"></i>
             </button>
           </div>
@@ -1039,21 +1059,15 @@
             </div>
             <span class="text-[10px] text-pink-400 font-bold bg-pink-500/10 px-2 py-0.5 rounded border border-pink-500/20">${game.packages.length} Items</span>
           </div>
-
-          <div class="space-y-2">
-            ${packagesHTML}
-          </div>
-
-          <!-- Add New Package Form -->
+          <div class="space-y-2">${packagesHTML}</div>
           <div class="pt-2 border-t border-slate-800/80 flex items-center gap-2">
-            <input type="text" id="newName-${gIndex}" placeholder="New Pkg Name (e.g. 500 UC)" class="w-1/2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
+            <input type="text" id="newName-${gIndex}" placeholder="New Pkg Name" class="w-1/2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
             <input type="number" id="newPrice-${gIndex}" placeholder="Price (₦)" class="w-1/3 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
             <button onclick="addPackage(${gIndex})" class="px-3 py-1.5 bg-green-500/20 text-green-400 hover:bg-green-500 hover:text-black font-extrabold rounded-lg text-xs transition whitespace-nowrap">
               + Add
             </button>
           </div>
         `;
-
         container.appendChild(gameBlock);
       });
     }
@@ -1061,39 +1075,35 @@
     function updatePackagePrice(gIndex, pIndex) {
       const input = document.getElementById(`priceInput-${gIndex}-${pIndex}`);
       const newPrice = parseInt(input.value);
-
       if (isNaN(newPrice) || newPrice <= 0) {
         alert('Please enter a valid price!');
         return;
       }
-
       gamesData[gIndex].packages[pIndex].price = newPrice;
-      renderGames(); // Update storefront live
-      showToast(`Updated ${gamesData[gIndex].name} ${gamesData[gIndex].packages[pIndex].name} price!`);
+      renderGames();
+      showToast(`Updated ${gamesData[gIndex].name} price!`);
     }
 
     function addPackage(gIndex) {
       const nameInput = document.getElementById(`newName-${gIndex}`);
       const priceInput = document.getElementById(`newPrice-${gIndex}`);
-
       const pkgName = nameInput.value.trim();
       const pkgPrice = parseInt(priceInput.value);
 
       if (!pkgName || isNaN(pkgPrice) || pkgPrice <= 0) {
-        alert('Please enter both a package name and a valid price!');
+        alert('Please enter a valid name and price!');
         return;
       }
-
       gamesData[gIndex].packages.push({ name: pkgName, price: pkgPrice });
-      renderGames(); // Update storefront live
+      renderGames();
       renderAdminPackages();
-      showToast(`Added new package to ${gamesData[gIndex].name}!`);
+      showToast('Package added successfully!');
     }
 
     function deletePackage(gIndex, pIndex) {
-      if (confirm('Are you sure you want to delete this package?')) {
+      if (confirm('Delete this package?')) {
         gamesData[gIndex].packages.splice(pIndex, 1);
-        renderGames(); // Update storefront live
+        renderGames();
         renderAdminPackages();
         showToast('Package deleted!');
       }
@@ -1111,13 +1121,11 @@
       }
     }
 
-    // Toast Notification System
     function showToast(message) {
       const container = document.getElementById('liveToastContainer');
       const toast = document.createElement('div');
       toast.className = 'toast-enter p-3 rounded-2xl bg-slate-900 border border-pink-500/40 text-white text-xs shadow-xl flex items-center gap-2.5 mb-2';
       toast.innerHTML = `<i class="fa-solid fa-circle-check text-pink-400 text-sm"></i> <span>${message}</span>`;
-      
       container.appendChild(toast);
       setTimeout(() => {
         toast.className = 'toast-exit p-3 rounded-2xl bg-slate-900 border border-pink-500/40 text-white text-xs shadow-xl flex items-center gap-2.5 mb-2';
@@ -1125,7 +1133,6 @@
       }, 3000);
     }
 
-    // Live User Counter
     setInterval(() => {
       const counterEl = document.getElementById('liveUserCounter');
       if (counterEl) {
@@ -1135,7 +1142,6 @@
       }
     }, 4000);
 
-    // Initial Load
     window.addEventListener('DOMContentLoaded', () => {
       renderGames();
     });
