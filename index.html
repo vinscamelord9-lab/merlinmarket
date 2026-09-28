@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus TopUp | Instant Game Refills</title>
+    <title>Nexus TopUp | Instant Gaming Refills</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
@@ -32,7 +32,7 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .pink-glow {
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.35);
         }
         .pink-glow-hover:hover {
             box-shadow: 0 0 25px rgba(236, 72, 153, 0.55);
@@ -41,16 +41,14 @@
             text-shadow: 0 0 12px rgba(236, 72, 153, 0.7);
         }
         .glass-card {
-            background: rgba(18, 18, 23, 0.85);
+            background: rgba(18, 18, 23, 0.88);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(236, 72, 153, 0.25);
         }
-        @keyframes pulseSlow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.85; transform: scale(1.02); }
-        }
-        .pulse-live {
-            animation: pulseSlow 3s infinite ease-in-out;
+        .slashed-price {
+            text-decoration: line-through;
+            color: #71717a;
+            font-size: 0.75rem;
         }
     </style>
 </head>
@@ -65,35 +63,34 @@
         <span>⚡ INSTANT AUTOMATED DELIVERY ACTIVE • 24/7 SUPPORT AVAILABLE</span>
     </div>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR WITH LOGO -->
     <header class="sticky top-0 z-40 glass-card border-b border-pink-500/20 px-4 lg:px-8 py-3">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <!-- Brand Logo -->
+            <!-- Brand Logo matching attached image -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-purple-900 p-0.5 pink-glow group-hover:scale-105 transition-transform">
-                    <div class="w-full h-full bg-zinc-950 rounded-[10px] flex items-center justify-center overflow-hidden">
-                        <!-- Custom Brand Logo Graphic -->
-                        <svg class="w-6 h-6 text-pink-500" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
+                <div class="w-10 h-10 rounded-xl bg-pink-950/80 border border-pink-500/50 p-1 pink-glow flex items-center justify-center">
+                    <!-- Pink SVG Icon based on attached image -->
+                    <svg class="w-7 h-7 text-pink-500" viewBox="0 0 100 100" fill="currentColor">
+                        <path d="M20 20 C40 10, 80 30, 80 50 C80 70, 40 90, 20 80 C10 75, 10 25, 20 20 Z" opacity="0.2"/>
+                        <path d="M 30,20 C 60,10 85,35 70,60 C 60,75 35,85 25,70 C 15,55 10,30 30,20 Z M 45,35 C 35,45 40,65 55,60 C 65,55 60,40 45,35 Z" fill="#ec4899"/>
+                    </svg>
                 </div>
                 <div>
                     <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-pink-200 to-pink-500 bg-clip-text text-transparent">
                         NEXUS<span class="text-pink-500 pink-text-glow">TOPUP</span>
                     </span>
-                    <p class="text-[10px] text-zinc-400 font-medium tracking-widest uppercase">Official Gaming Hub</p>
+                    <p class="text-[10px] text-zinc-400 font-medium tracking-widest uppercase">Instant Game Refills</p>
                 </div>
             </a>
 
-            <!-- Live Users Counter Pill -->
-            <div class="flex items-center gap-2 bg-zinc-900/90 border border-pink-500/30 px-3 py-1.5 rounded-full shadow-inner">
+            <!-- Live Users Counter -->
+            <div class="flex items-center gap-2 bg-zinc-900/90 border border-pink-500/30 px-3 py-1.5 rounded-full">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span id="liveUserCount" class="text-xs sm:text-sm font-bold text-pink-400 font-mono">104,820</span>
                 <span class="text-[11px] text-zinc-400 hidden sm:inline">Active Online</span>
             </div>
 
-            <!-- Admin Shortcut Button -->
+            <!-- Admin Shortcut -->
             <button onclick="openAdminModal()" class="text-xs px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-pink-950/50 text-zinc-400 hover:text-pink-400 border border-zinc-800 hover:border-pink-500/40 transition">
                 <i class="fa-solid fa-lock text-pink-500 mr-1"></i> Admin
             </button>
@@ -103,29 +100,95 @@
     <!-- MAIN CONTENT -->
     <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 flex-grow w-full">
 
-        <!-- HERO SECTION -->
-        <div class="text-center mb-10 max-w-3xl mx-auto space-y-4">
-            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+        <div class="text-center mb-10 max-w-3xl mx-auto space-y-3">
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
                 Instant Top-Up For Your <br/>
                 <span class="bg-gradient-to-r from-pink-400 via-pink-500 to-purple-400 bg-clip-text text-transparent pink-text-glow">
                     Favorite Mobile Games
                 </span>
             </h1>
             <p class="text-zinc-400 text-sm sm:text-base">
-                Select your package, complete bank transfer, and send payment confirmation screenshot directly to our Telegram DM for instant delivery.
+                Select your package, pay via bank transfer, and send screenshot proof to our Telegram DM for immediate delivery.
             </p>
         </div>
 
-        <!-- GAME CATALOG & INDIVIDUAL PURCHASE CARDS -->
+        <!-- GAME CATALOG -->
         <div id="gameCatalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- GAME 1: FREE FIRE -->
+            <!-- GAME 1: PUBG MOBILE (WITH EXACT PRICES FROM YOUR SCREENSHOT) -->
             <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4">
-                        <img src="https://cdn2.unrealengine.com/free-fire-logo-1024x1024-e1b1d7d20626.png" 
-                             onerror="this.src='https://img.icons8.com/color/96/free-fire.png'" 
-                             alt="Free Fire Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
+                        <img src="https://img.icons8.com/color/96/pubg.png" alt="PUBG Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
+                        <div>
+                            <h3 class="text-xl font-bold text-white">PUBG Mobile UC</h3>
+                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">Unknown Cash</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-400 mb-4">Enter Player ID. Direct in-game voucher top-up.</p>
+
+                    <!-- Exact Screenshot Items & Slashed Pricing -->
+                    <div class="space-y-2.5 mb-4">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                            <div>
+                                <p class="text-sm font-bold text-white">60 UC</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦1,384.09</span>
+                                    <span class="text-xs font-bold text-pink-400">₦1,258.26</span>
+                                </div>
+                            </div>
+                            <button onclick="startCheckout('PUBG Mobile', '60 UC', '1,258.26')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                                Buy Now
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                            <div>
+                                <p class="text-sm font-bold text-white">300 + 25 UC</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦6,951.21</span>
+                                    <span class="text-xs font-bold text-pink-400">₦6,319.28</span>
+                                </div>
+                            </div>
+                            <button onclick="startCheckout('PUBG Mobile', '300 + 25 UC', '6,319.28')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                                Buy Now
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                            <div>
+                                <p class="text-sm font-bold text-white">600 + 60 UC</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦13,902.43</span>
+                                    <span class="text-xs font-bold text-pink-400">₦12,638.57</span>
+                                </div>
+                            </div>
+                            <button onclick="startCheckout('PUBG Mobile', '600 + 60 UC', '12,638.57')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                                Buy Now
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                            <div>
+                                <p class="text-sm font-bold text-white">1,500 + 300 UC</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦34,756.06</span>
+                                    <span class="text-xs font-bold text-pink-400">₦31,596.42</span>
+                                </div>
+                            </div>
+                            <button onclick="startCheckout('PUBG Mobile', '1,500 + 300 UC', '31,596.42')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME 2: GARENA FREE FIRE -->
+            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="https://cdn2.unrealengine.com/free-fire-logo-1024x1024-e1b1d7d20626.png" onerror="this.src='https://img.icons8.com/color/96/free-fire.png'" alt="Free Fire Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
                         <div>
                             <h3 class="text-xl font-bold text-white">Garena Free Fire</h3>
                             <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">Diamonds</span>
@@ -133,41 +196,55 @@
                     </div>
                     <p class="text-xs text-zinc-400 mb-4">Enter Player UID. Fast auto-credit within 2 minutes.</p>
 
-                    <!-- Packages with Dedicated Purchase Buttons -->
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                    <div class="space-y-2.5 mb-4">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">💎 100 Diamonds</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦1,200</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦1,350.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦1,200.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Free Fire', '100 Diamonds', 1200)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Free Fire', '100 Diamonds', '1,200.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">💎 310 Diamonds</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦3,500</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦3,900.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦3,500.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Free Fire', '310 Diamonds', 3500)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Free Fire', '310 Diamonds', '3,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">💎 520 Diamonds</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦5,800</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦6,400.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦5,800.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Free Fire', '520 Diamonds', 5800)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Free Fire', '520 Diamonds', '5,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">💎 1,060 Diamonds</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦11,500</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦12,800.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦11,500.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Free Fire', '1,060 Diamonds', 11500)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Free Fire', '1,060 Diamonds', '11,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
@@ -175,111 +252,67 @@
                 </div>
             </div>
 
-            <!-- GAME 2: CALL OF DUTY MOBILE -->
+            <!-- GAME 3: CALL OF DUTY MOBILE -->
             <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/call-of-duty.png" 
-                             onerror="this.src='https://img.icons8.com/fluency/96/game-controller.png'" 
-                             alt="COD Mobile Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
+                        <img src="https://img.icons8.com/color/96/call-of-duty.png" alt="COD Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
                         <div>
                             <h3 class="text-xl font-bold text-white">COD Mobile</h3>
                             <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">CP Points</span>
                         </div>
                     </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter Player UID. Direct in-game COD Points top-up.</p>
+                    <p class="text-xs text-zinc-400 mb-4">Enter Player UID. Instant COD Points top-up.</p>
 
-                    <!-- Packages -->
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                    <div class="space-y-2.5 mb-4">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">🪙 80 CP</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦1,500</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦1,750.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦1,500.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('COD Mobile', '80 CP', 1500)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('COD Mobile', '80 CP', '1,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">🪙 420 CP</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦5,200</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦5,800.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦5,200.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('COD Mobile', '420 CP', 5200)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('COD Mobile', '420 CP', '5,200.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">🪙 880 CP</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦10,500</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦11,800.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦10,500.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('COD Mobile', '880 CP', 10500)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('COD Mobile', '880 CP', '10,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">🪙 2,400 CP</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦24,000</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦26,500.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦24,000.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('COD Mobile', '2,400 CP', 24000)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GAME 3: PUBG MOBILE -->
-            <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/pubg.png" 
-                             onerror="this.src='https://img.icons8.com/fluency/96/target.png'" 
-                             alt="PUBG Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
-                        <div>
-                            <h3 class="text-xl font-bold text-white">PUBG Mobile</h3>
-                            <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">Unknown Cash (UC)</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter Player ID. Instant UC voucher transfer.</p>
-
-                    <!-- Packages -->
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🟡 60 UC</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦1,400</p>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '60 UC', 1400)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🟡 325 UC</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦6,200</p>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '325 UC', 6200)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🟡 660 UC</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦12,000</p>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '660 UC', 12000)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
-                                Buy Now
-                            </button>
-                        </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
-                            <div>
-                                <p class="text-sm font-bold text-white">🟡 1,800 UC</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦31,000</p>
-                            </div>
-                            <button onclick="startCheckout('PUBG Mobile', '1,800 UC', 31000)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('COD Mobile', '2,400 CP', '24,000.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
@@ -291,42 +324,50 @@
             <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/roblox.png" 
-                             onerror="this.src='https://img.icons8.com/fluency/96/cube.png'" 
-                             alt="Roblox Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
+                        <img src="https://img.icons8.com/color/96/roblox.png" alt="Roblox Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
                         <div>
                             <h3 class="text-xl font-bold text-white">Roblox</h3>
                             <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">Robux</span>
                         </div>
                     </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter Roblox Username. Gift / Direct top-up.</p>
+                    <p class="text-xs text-zinc-400 mb-4">Enter Username. Instant Robux deposit.</p>
 
-                    <!-- Packages -->
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                    <div class="space-y-2.5 mb-4">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">🟥 400 Robux</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦6,500</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦7,200.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦6,500.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Roblox', '400 Robux', 6500)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Roblox', '400 Robux', '6,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">🟥 800 Robux</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦12,500</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦13,800.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦12,500.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Roblox', '800 Robux', 12500)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Roblox', '800 Robux', '12,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">🟥 1,700 Robux</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦25,000</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦27,500.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦25,000.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Roblox', '1,700 Robux', 25000)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Roblox', '1,700 Robux', '25,000.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
@@ -334,45 +375,54 @@
                 </div>
             </div>
 
-            <!-- GAME 5: eFOOTBALL MOBILE -->
+            <!-- GAME 5: eFOOTBALL -->
             <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/football.png" 
-                             alt="eFootball Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
+                        <img src="https://img.icons8.com/color/96/football.png" alt="eFootball Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
                         <div>
                             <h3 class="text-xl font-bold text-white">eFootball Coins</h3>
                             <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">eFootball Points</span>
                         </div>
                     </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter KONAMI ID or Game Account details.</p>
+                    <p class="text-xs text-zinc-400 mb-4">Enter KONAMI ID or Game Account.</p>
 
-                    <!-- Packages -->
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                    <div class="space-y-2.5 mb-4">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">⚽ 130 Coins</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦1,800</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦2,000.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦1,800.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('eFootball', '130 Coins', 1800)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('eFootball', '130 Coins', '1,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">⚽ 520 Coins</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦6,800</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦7,500.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦6,800.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('eFootball', '520 Coins', 6800)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('eFootball', '520 Coins', '6,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">⚽ 1,050 Coins</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦13,200</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦14,500.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦13,200.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('eFootball', '1,050 Coins', 13200)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('eFootball', '1,050 Coins', '13,200.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
@@ -384,41 +434,50 @@
             <div class="glass-card rounded-2xl p-5 border border-pink-500/30 hover:border-pink-500 transition-all duration-300 pink-glow-hover flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4">
-                        <img src="https://img.icons8.com/color/96/sword.png" 
-                             alt="Mobile Legends Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
+                        <img src="https://img.icons8.com/color/96/sword.png" alt="Mobile Legends Logo" class="w-14 h-14 rounded-xl object-cover border border-pink-500/40 p-0.5 bg-zinc-900" />
                         <div>
                             <h3 class="text-xl font-bold text-white">Mobile Legends</h3>
                             <span class="text-xs px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">MLBB Diamonds</span>
                         </div>
                     </div>
-                    <p class="text-xs text-zinc-400 mb-4">Enter User ID + Zone ID (e.g. 12345678 (1234)).</p>
+                    <p class="text-xs text-zinc-400 mb-4">Enter User ID + Zone ID.</p>
 
-                    <!-- Packages -->
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+                    <div class="space-y-2.5 mb-4">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">💎 86 Diamonds</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦1,600</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦1,800.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦1,600.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Mobile Legends', '86 Diamonds', 1600)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Mobile Legends', '86 Diamonds', '1,600.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">💎 257 Diamonds</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦4,500</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦5,000.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦4,500.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Mobile Legends', '257 Diamonds', 4500)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Mobile Legends', '257 Diamonds', '4,500.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
-                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-900/90 border border-zinc-800">
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/90 border border-zinc-800">
                             <div>
                                 <p class="text-sm font-bold text-white">💎 706 Diamonds</p>
-                                <p class="text-xs text-pink-400 font-semibold">₦11,800</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="slashed-price">₦13,000.00</span>
+                                    <span class="text-xs font-bold text-pink-400">₦11,800.00</span>
+                                </div>
                             </div>
-                            <button onclick="startCheckout('Mobile Legends', '706 Diamonds', 11800)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
+                            <button onclick="startCheckout('Mobile Legends', '706 Diamonds', '11,800.00')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-pink-600 hover:bg-pink-500 text-white transition">
                                 Buy Now
                             </button>
                         </div>
@@ -429,11 +488,10 @@
         </div>
     </main>
 
-    <!-- CHECKOUT / PAYMENT MODAL -->
+    <!-- CHECKOUT MODAL -->
     <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-md w-full p-6 border border-pink-500/40 pink-glow relative">
             
-            <!-- Close Button -->
             <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl">
                 &times;
             </button>
@@ -445,7 +503,7 @@
                     <h3 class="text-lg font-bold text-white">Enter Account Details</h3>
                 </div>
 
-                <div class="bg-zinc-900/80 p-3 rounded-xl border border-zinc-800 mb-4">
+                <div class="bg-zinc-900/90 p-3 rounded-xl border border-zinc-800 mb-4">
                     <p class="text-xs text-zinc-400">Selected Order:</p>
                     <p id="modalGameTitle" class="text-sm font-bold text-white"></p>
                     <p id="modalPackageTitle" class="text-xs text-pink-400 font-semibold"></p>
@@ -457,7 +515,7 @@
                     </label>
                     <input type="text" id="playerUID" placeholder="e.g. 583920194 or Username" 
                            class="w-full bg-zinc-900 border border-pink-500/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500">
-                    <p class="text-[11px] text-zinc-500 mt-1">Make sure your Player ID is correct so items are delivered instantly.</p>
+                    <p class="text-[11px] text-zinc-500 mt-1">Please ensure your Player ID is correct.</p>
                 </div>
 
                 <button onclick="goToStep2()" class="w-full py-3 rounded-xl bg-pink-600 hover:bg-pink-500 font-bold text-white shadow-lg transition pink-glow-hover flex items-center justify-center gap-2">
@@ -475,7 +533,6 @@
                     <span id="countdownTimer" class="text-xs font-mono font-bold text-pink-400 bg-pink-950/50 border border-pink-500/30 px-2.5 py-1 rounded-lg">14:59</span>
                 </div>
 
-                <!-- BANK DETAILS BOX -->
                 <div class="bg-zinc-950 p-4 rounded-xl border border-pink-500/40 space-y-3 mb-4">
                     <div class="flex justify-between items-center text-xs text-zinc-400 border-b border-zinc-800 pb-2">
                         <span>Bank Name</span>
@@ -505,7 +562,7 @@
 
                 <div class="bg-pink-950/40 border border-pink-500/30 rounded-xl p-3 mb-5 text-xs text-pink-200 flex items-start gap-2.5">
                     <i class="fa-solid fa-circle-info text-pink-400 mt-0.5"></i>
-                    <p>Transfer the exact amount above. After sending, click <b>"I Have Paid"</b> below to send your screenshot proof on Telegram.</p>
+                    <p>After transferring, click <b>"I Have Paid"</b> to send your screenshot proof on Telegram.</p>
                 </div>
 
                 <div class="flex gap-2">
@@ -518,7 +575,7 @@
                 </div>
             </div>
 
-            <!-- STEP 3: PROOF VIA TELEGRAM -->
+            <!-- STEP 3: PROOF VIA TELEGRAM LINK -->
             <div id="step3" class="hidden text-center space-y-4">
                 <div class="w-16 h-16 rounded-full bg-pink-500/20 border border-pink-500 text-pink-400 mx-auto flex items-center justify-center text-3xl">
                     <i class="fa-solid fa-paper-plane animate-bounce"></i>
@@ -526,7 +583,7 @@
 
                 <h3 class="text-xl font-bold text-white">Send Proof of Payment</h3>
                 <p class="text-xs text-zinc-300 leading-relaxed">
-                    Click the button below to open Telegram DM. Attach your transfer screenshot and mention your ID (<span id="summaryUID" class="text-pink-400 font-mono font-bold"></span>) for immediate processing.
+                    Click below to open Telegram DM. Send your transfer screenshot and UID (<span id="summaryUID" class="text-pink-400 font-mono font-bold"></span>) for instant credit.
                 </p>
 
                 <div class="bg-zinc-900 p-3 rounded-xl border border-zinc-800 text-xs text-left space-y-1">
@@ -535,13 +592,10 @@
                     <p class="text-emerald-400 font-mono" id="finalAmountSummary"></p>
                 </div>
 
-                <!-- DIRECT TELEGRAM DM LINK BUTTON -->
                 <a id="telegramLink" href="https://t.me/your_telegram_username" target="_blank" 
                    class="w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-400 font-extrabold text-white shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                    <i class="fa-brands fa-telegram text-lg"></i> Open Telegram & Send Proof
+                    <i class="fa-brands fa-telegram text-lg"></i> Send Screenshot on Telegram
                 </a>
-
-                <p class="text-[11px] text-zinc-500">If button doesn't open, contact <b>@your_telegram_username</b> on Telegram directly.</p>
             </div>
 
         </div>
@@ -577,7 +631,7 @@
                     <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded">Active Session</span>
                 </div>
                 <div class="bg-zinc-900/90 p-4 rounded-xl border border-zinc-800">
-                    <p class="text-xs text-zinc-400 mb-1">Configured Bank Details:</p>
+                    <p class="text-xs text-zinc-400 mb-1">Bank Account Configuration:</p>
                     <p class="text-sm font-bold text-white">MOMO PSB | 7048972368 | OGUNLANA JAMIU</p>
                 </div>
                 <div class="bg-zinc-900/90 p-4 rounded-xl border border-zinc-800">
@@ -592,22 +646,17 @@
         </div>
     </div>
 
-    <!-- LIVE BUYER NOTIFICATION TOAST CONTAINER -->
+    <!-- LIVE BUYER NOTIFICATIONS CONTAINER -->
     <div id="toastContainer" class="fixed bottom-4 left-4 z-40 max-w-xs w-full pointer-events-none"></div>
 
-    <!-- FOOTER -->
     <footer class="glass-card border-t border-pink-500/20 py-6 px-4 text-center text-xs text-zinc-500">
-        <p>&copy; 2026 Nexus TopUp. Fast & Secure Game Refills.</p>
-        <p class="mt-1 text-[11px] text-zinc-600">All game logos and trademarks belong to their respective owners.</p>
+        <p>&copy; 2026 Nexus TopUp. Instant Gaming Refills.</p>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // State
-        let currentOrder = { game: '', package: '', price: 0, uid: '' };
+        let currentOrder = { game: '', package: '', price: '', uid: '' };
         let countdownInterval;
 
-        // Fluctuating Active Users Counter
         function animateUserCounter() {
             const countEl = document.getElementById('liveUserCount');
             let current = 104820;
@@ -618,18 +667,9 @@
             }, 3500);
         }
 
-        // Live Simulated Buyer Toast Notifications
         const buyerNames = ['Chinedu', 'Tobi', 'Aisha', 'Emmanuel', 'Blessed', 'Kelechi', 'David', 'Fatima', 'Usman', 'Grace'];
-        const buyerLocations = ['Lagos', 'Abuja', 'Ibadan', 'Port Harcourt', 'Kano', 'Enugu', 'Benin City'];
-        const buyerPurchases = [
-            '2,180 Free Fire Diamonds',
-            '520 Free Fire Diamonds',
-            '880 COD Mobile CP',
-            '660 PUBG UC',
-            '1,050 eFootball Coins',
-            '800 Roblox Robux',
-            '706 MLBB Diamonds'
-        ];
+        const buyerLocations = ['Lagos', 'Abuja', 'Ibadan', 'Port Harcourt', 'Kano', 'Enugu'];
+        const buyerPurchases = ['600 + 60 PUBG UC', '520 Free Fire Diamonds', '880 COD CP', '800 Robux', '520 eFootball Coins'];
 
         function showBuyerToast() {
             const container = document.getElementById('toastContainer');
@@ -638,31 +678,29 @@
             const purchase = buyerPurchases[Math.floor(Math.random() * buyerPurchases.length)];
 
             const toast = document.createElement('div');
-            toast.className = 'animate-toast bg-zinc-950/95 border border-pink-500/40 p-3 rounded-xl shadow-2xl backdrop-blur-md flex items-center gap-3 mb-2';
+            toast.className = 'bg-zinc-950/95 border border-pink-500/40 p-3 rounded-xl shadow-2xl backdrop-blur-md flex items-center gap-3 mb-2';
             toast.innerHTML = `
                 <div class="w-8 h-8 rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 font-bold text-xs">
                     ✓
                 </div>
                 <div class="text-left">
                     <p class="text-xs font-bold text-white">${name} <span class="text-[10px] text-zinc-400">(${location})</span></p>
-                    <p class="text-[11px] text-pink-400 font-medium">Just purchased ${purchase}</p>
+                    <p class="text-[11px] text-pink-400 font-medium">Just bought ${purchase}</p>
                 </div>
             `;
 
             container.appendChild(toast);
-            setTimeout(() => { toast.remove(); }, 4600);
+            setTimeout(() => { toast.remove(); }, 4500);
         }
 
         setInterval(showBuyerToast, 7000);
-        setTimeout(showBuyerToast, 2000);
 
-        // Checkout Modal Functions
         function startCheckout(game, pkg, price) {
             currentOrder = { game, package: pkg, price, uid: '' };
             
             document.getElementById('modalGameTitle').textContent = game;
-            document.getElementById('modalPackageTitle').textContent = pkg + ' — ₦' + price.toLocaleString();
-            document.getElementById('transferAmount').textContent = '₦' + price.toLocaleString();
+            document.getElementById('modalPackageTitle').textContent = pkg + ' — ₦' + price;
+            document.getElementById('transferAmount').textContent = '₦' + price;
             document.getElementById('playerUID').value = '';
 
             document.getElementById('step1').classList.remove('hidden');
@@ -686,7 +724,7 @@
         function goToStep2() {
             const uidInput = document.getElementById('playerUID').value.trim();
             if (!uidInput) {
-                alert('Please enter your Player ID / Account Username before proceeding.');
+                alert('Please enter your Player ID / Username before proceeding.');
                 return;
             }
             currentOrder.uid = uidInput;
@@ -704,11 +742,10 @@
 
             document.getElementById('summaryUID').textContent = currentOrder.uid;
             document.getElementById('finalOrderSummary').textContent = `${currentOrder.game} - ${currentOrder.package}`;
-            document.getElementById('finalAmountSummary').textContent = `Total Paid: ₦${currentOrder.price.toLocaleString()}`;
+            document.getElementById('finalAmountSummary').textContent = `Total Paid: ₦${currentOrder.price}`;
 
-            // Build Telegram URL with pre-filled message
             const currentTgLink = document.getElementById('adminTelegramConfig').value.trim();
-            const message = encodeURIComponent(`Hello Admin, I have made payment for my order:\nGame: ${currentOrder.game}\nPackage: ${currentOrder.package}\nPlayer UID: ${currentOrder.uid}\nAmount: ₦${currentOrder.price.toLocaleString()}\n\nAttached is my payment screenshot:`);
+            const message = encodeURIComponent(`Hello Admin, I have paid for:\nGame: ${currentOrder.game}\nPackage: ${currentOrder.package}\nPlayer UID: ${currentOrder.uid}\nAmount: ₦${currentOrder.price}\n\nHere is my payment screenshot proof:`);
             
             const fullTgUrl = currentTgLink.includes('?') ? `${currentTgLink}&text=${message}` : `${currentTgLink}?text=${message}`;
             document.getElementById('telegramLink').href = fullTgUrl;
@@ -739,7 +776,6 @@
             });
         }
 
-        // Admin Modal Logic
         function openAdminModal() {
             document.getElementById('adminModal').classList.remove('hidden');
         }
@@ -756,18 +792,14 @@
                 document.getElementById('adminLoginView').classList.add('hidden');
                 document.getElementById('adminDashboardView').classList.remove('hidden');
             } else {
-                alert('Invalid Admin Credentials');
+                alert('Invalid Credentials');
             }
         }
 
         function updateTelegramConfig() {
-            const newLink = document.getElementById('adminTelegramConfig').value.trim();
-            if (newLink) {
-                alert('Telegram link saved successfully!');
-            }
+            alert('Telegram DM link updated successfully!');
         }
 
-        // Initialize
         window.onload = function() {
             animateUserCounter();
         };
