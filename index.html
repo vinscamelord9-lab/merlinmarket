@@ -118,7 +118,7 @@
   <nav class="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-pink-900/30 px-4 sm:px-8 py-3.5">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
-      <!-- Logo Branding -->
+      <!-- Logo Branding: Pink 'N' square logo box next to NAIJACP.NG -->
       <div class="flex items-center gap-2.5 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <div class="w-10 h-10 rounded-xl bg-pink-500 flex items-center justify-center font-black text-black text-xl shadow-lg shadow-pink-500/40">
           N
@@ -128,10 +128,10 @@
         </span>
       </div>
 
-      <!-- Header Navigation Links -->
+      <!-- Top Right Header Navigation -->
       <div class="flex items-center gap-5 sm:gap-8">
-        <a href="#games" class="flex flex-col sm:flex-row items-center gap-1 text-slate-300 hover:text-pink-400 transition">
-          <i class="fa-solid fa-store text-pink-500 text-lg"></i>
+        <a href="#games" class="flex flex-col sm:flex-row items-center gap-1.5 text-slate-300 hover:text-pink-400 transition">
+          <i class="fa-solid fa-store text-pink-500 text-base"></i>
           <span class="text-xs font-bold">Store</span>
         </a>
 
@@ -140,7 +140,7 @@
           <span class="text-xs font-bold">Sensi</span>
         </a>
 
-        <button onclick="openTrackerModal()" class="flex flex-col sm:flex-row items-center gap-1 text-slate-300 hover:text-pink-400 transition">
+        <button onclick="openTrackerModal()" class="flex flex-col sm:flex-row items-center gap-1.5 text-slate-300 hover:text-pink-400 transition">
           <i class="fa-solid fa-magnifying-glass text-slate-400 text-base"></i>
           <span class="text-xs font-bold">Track</span>
         </button>
@@ -153,16 +153,18 @@
   <header class="relative pt-8 pb-12 overflow-hidden px-4 sm:px-6">
     <div class="max-w-4xl mx-auto text-center relative z-10">
       
+      <!-- Live Dynamic Fluctuation Counter -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-xs font-bold text-slate-300 mb-6">
         <span class="w-2.5 h-2.5 rounded-full bg-pink-500 pulse-dot"></span>
         <span id="liveUserCounter" class="text-pink-400 font-extrabold text-sm">1,428</span>
         <span>Gamers Online Right Now</span>
       </div>
 
-      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-6 font-medium">
-        Buy UC, Diamonds, Coins, Call of Duty CP & Vouchers directly with Nigerian Bank Transfer.
+      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-6 font-medium" id="heroSubtitleText">
+        Buy UC, Diamonds, Coins, Booyah Pass, Call of Duty CP & Vouchers directly with Nigerian Bank Transfer.
       </p>
 
+      <!-- Hero Buttons -->
       <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-2xl mx-auto border border-pink-500/30 shadow-2xl">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <a href="#games" class="w-full py-4 px-6 rounded-2xl bg-pink-500 hover:bg-pink-400 text-black font-extrabold text-base transition flex items-center justify-center gap-2 shadow-lg shadow-pink-500/30">
@@ -183,6 +185,7 @@
   <!-- CATALOG SECTION -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow" id="games">
     
+    <!-- Section Header with Gamepad Icon & Pill Tabs -->
     <div class="mb-8 space-y-4">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-xl font-bold">
@@ -193,7 +196,7 @@
         </h2>
       </div>
 
-      <!-- Filter Tabs -->
+      <!-- Pill Tab Filters -->
       <div class="flex items-center gap-2.5 overflow-x-auto py-2 scrollbar-none">
         <button onclick="filterCategory('all')" id="btn-cat-all" class="cat-btn px-6 py-2.5 rounded-2xl text-xs font-black transition bg-pink-500 text-black shadow-lg shadow-pink-500/20 whitespace-nowrap">
           All Games
@@ -241,7 +244,8 @@
             <span>Share to WhatsApp Group (<span id="sharesLeft">5</span> Left)</span>
           </button>
         </div>
-         <div id="sensiFormContainer" class="hidden space-y-5">
+
+        <div id="sensiFormContainer" class="hidden space-y-5">
           <div class="p-3.5 rounded-xl bg-pink-500/20 border border-pink-500/40 text-pink-300 text-xs text-center font-bold">
             <i class="fa-solid fa-circle-check text-green-400 mr-1"></i> Shared successfully! Enter your device details below.
           </div>
@@ -345,7 +349,7 @@
       </div>
 
       <div class="mt-6">
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Enter Player ID / Character ID</label>
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Enter Player ID / UID</label>
         <input type="text" id="playerIdInput" placeholder="e.g. 5123987410" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
       </div>
 
@@ -382,7 +386,7 @@
       <div class="my-4 p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs space-y-2">
         <div class="flex justify-between text-slate-400">
           <span>Item:</span>
-          <span id="checkoutItem" class="text-white font-semibold">PUBG Mobile 660 UC</span>
+          <span id="checkoutItem" class="text-white font-semibold">Free Fire - 1,188 Diamonds</span>
         </div>
         <div class="flex justify-between text-slate-400">
           <span>Target ID:</span>
@@ -390,14 +394,14 @@
         </div>
         <div class="flex justify-between text-slate-400 border-t border-slate-800 pt-2 font-bold text-sm">
           <span>Amount Due:</span>
-          <span id="checkoutAmount" class="text-pink-400 font-extrabold text-base">₦12,000</span>
+          <span id="checkoutAmount" class="text-pink-400 font-extrabold text-base">₦8,500</span>
         </div>
       </div>
 
       <div class="p-4 rounded-2xl bg-black border border-pink-500/30 space-y-2.5">
         <div class="flex justify-between text-xs text-slate-400">
           <span>Bank Name:</span>
-          <span class="text-white font-bold">OPay</span>
+          <span id="bankNameDisplay" class="text-white font-bold">OPay</span>
         </div>
         <div>
           <span class="text-xs text-slate-400 block mb-1">Account Number:</span>
@@ -410,7 +414,7 @@
         </div>
         <div class="flex justify-between text-xs text-slate-400">
           <span>Account Name:</span>
-          <span class="text-white font-semibold">OGUNLANA JAMIU</span>
+          <span id="accountNameDisplay" class="text-white font-semibold">OGUNLANA JAMIU</span>
         </div>
       </div>
 
@@ -458,15 +462,15 @@
         </div>
         <div class="flex justify-between">
           <span class="text-slate-400">Game:</span>
-          <span id="receiptGame" class="text-white">PUBG Mobile</span>
+          <span id="receiptGame" class="text-white">Free Fire</span>
         </div>
         <div class="flex justify-between">
           <span class="text-slate-400">Package:</span>
-          <span id="receiptPkg" class="text-white">660 UC</span>
+          <span id="receiptPkg" class="text-white">1,188 Diamonds</span>
         </div>
         <div class="flex justify-between border-t border-slate-800 pt-2 text-sm font-sans font-extrabold">
           <span class="text-slate-400">Amount Paid:</span>
-          <span id="receiptAmount" class="text-pink-400">₦12,000</span>
+          <span id="receiptAmount" class="text-pink-400">₦8,500</span>
         </div>
       </div>
 
@@ -495,7 +499,7 @@
     </div>
   </div>
 
-  <!-- ADMIN AUTH GATE MODAL -->
+  <!-- ADMIN AUTH GATE MODAL (Username: Merlin / Password: merlin1) -->
   <div id="adminAuthModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
     <div class="glass-modal w-full max-w-sm rounded-3xl p-6 text-center border border-pink-500/40 relative">
       <button onclick="closeModal('adminAuthModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
@@ -509,17 +513,18 @@
       <h3 class="text-lg font-extrabold text-white">Admin Access Gate</h3>
       <p class="text-xs text-slate-400 mt-1 mb-4">Enter credentials to unlock the admin portal</p>
 
-      <input type="text" id="adminUserInput" placeholder="Username" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm text-center focus:outline-none focus:border-pink-500 mb-3">
-      <input type="password" id="adminPassInput" placeholder="Password" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm text-center focus:outline-none focus:border-pink-500 mb-3">
+      <input type="text" id="adminUserInput" placeholder="Username (Merlin)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm text-center focus:outline-none focus:border-pink-500 mb-3">
+      <input type="password" id="adminPassInput" placeholder="Password (merlin1)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm text-center focus:outline-none focus:border-pink-500 mb-3">
       
-      <p id="adminAuthError" class="text-red-400 text-xs hidden mb-3 font-bold">Invalid Admin Credentials!</p>
+      <p id="adminAuthError" class="text-red-400 text-xs hidden mb-3 font-bold">Invalid Credentials! Username: Merlin / Password: merlin1</p>
+
       <button onclick="verifyAdminPassword()" class="w-full py-3 rounded-xl bg-pink-500 hover:bg-pink-400 text-black font-extrabold text-sm transition">
         Authenticate Access
       </button>
     </div>
   </div>
 
-  <!-- ADMIN PORTAL MODAL -->
+  <!-- ADMIN PORTAL MODAL (Matching Screenshot 2 Sidebar Layout) -->
   <div id="adminModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-2 sm:p-4 bg-black/95 backdrop-blur-md">
     <div class="glass-modal w-full max-w-5xl h-[92vh] rounded-3xl p-4 sm:p-6 relative shadow-2xl border border-pink-500/40 flex flex-col overflow-hidden">
       
@@ -529,7 +534,7 @@
             <i class="fa-solid fa-bars"></i> Menu
           </button>
           <span class="text-lg font-black text-white flex items-center gap-2">
-            <i class="fa-solid fa-shield-halved text-pink-400"></i> Admin Management Portal
+            <i class="fa-solid fa-shield-halved text-pink-400"></i> Admin Panel
           </span>
         </div>
         <button onclick="closeModal('adminModal')" class="text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
@@ -538,22 +543,44 @@
       </div>
 
       <div class="flex-1 flex flex-col md:flex-row gap-4 mt-4 overflow-hidden relative">
+        
+        <!-- SIDEBAR NAVIGATION (Strictly matching Screenshot 2) -->
         <div id="adminNavDrawer" class="hidden md:flex flex-col w-full md:w-64 bg-slate-950 border border-slate-800 rounded-2xl p-3 space-y-1 overflow-y-auto flex-shrink-0">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1">Management</span>
           
           <button onclick="switchAdminTab('payments')" id="adminBtn-payments" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-pink-400 bg-pink-500/10 transition flex items-center gap-2.5">
             <i class="fa-solid fa-wallet text-pink-400"></i> Payments
           </button>
+          
           <button onclick="switchAdminTab('packages')" id="adminBtn-packages" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
             <i class="fa-solid fa-gem text-pink-400"></i> Packages
           </button>
+          
           <button onclick="switchAdminTab('announcements')" id="adminBtn-announcements" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
-            <i class="fa-solid fa-bullhorn text-pink-400"></i> Ticker & Banner
+            <i class="fa-solid fa-bullhorn text-pink-400"></i> Announcements
           </button>
 
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1 pt-2">Settings</span>
-          <button onclick="switchAdminTab('paymentSettings')" id="adminBtn-paymentSettings" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
-            <i class="fa-solid fa-gears text-pink-400"></i> Bank Settings
+          <button onclick="switchAdminTab('banners')" id="adminBtn-banners" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
+            <i class="fa-solid fa-image text-pink-400"></i> Banners
+          </button>
+
+          <button onclick="switchAdminTab('homepage')" id="adminBtn-homepage" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
+            <i class="fa-solid fa-house text-pink-400"></i> Homepage
+          </button>
+
+          <div class="pt-3 pb-1">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3">USERS & LOGS</span>
+          </div>
+
+          <button onclick="switchAdminTab('customers')" id="adminBtn-customers" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
+            <i class="fa-solid fa-users text-pink-400"></i> Customers
+          </button>
+
+          <button onclick="switchAdminTab('admins')" id="adminBtn-admins" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
+            <i class="fa-solid fa-user-shield text-pink-400"></i> Admins
+          </button>
+
+          <button onclick="switchAdminTab('bankSettings')" id="adminBtn-bankSettings" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5 mt-2 border-t border-slate-800 pt-3">
+            <i class="fa-solid fa-building-columns text-pink-400"></i> Bank Settings
           </button>
 
           <button onclick="closeModal('adminModal')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10 transition flex items-center gap-2.5 mt-4">
@@ -561,10 +588,14 @@
           </button>
         </div>
 
+        <!-- MAIN PANEL TAB CONTENT AREA -->
         <div class="flex-1 bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-6 overflow-y-auto h-full text-xs">
           
+          <!-- 1. PAYMENTS TAB -->
           <div id="adminTab-payments" class="admin-tab-content space-y-4">
-            <h4 class="text-base font-bold text-white">Submitted Customer Proofs</h4>
+            <h4 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-wallet text-pink-400"></i> Customer Payment Proofs
+            </h4>
             <div id="adminOrdersList" class="space-y-3">
               <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 text-slate-400">
                 No new proof uploads submitted yet.
@@ -572,33 +603,140 @@
             </div>
           </div>
 
-          <div id="adminTab-packages" class="admin-tab-content hidden space-y-4">
-            <h4 class="text-base font-bold text-white">Active Top-Up Offerings</h4>
-            <p class="text-slate-400">PUBG Mobile UC, Free Fire Diamonds, COD Mobile CP, eFootball Coins.</p>
+          <!-- 2. PACKAGES & GAMES MANAGEMENT TAB -->
+          <div id="adminTab-packages" class="admin-tab-content hidden space-y-5">
+            <div class="border-b border-slate-800 pb-3">
+              <h4 class="text-lg font-extrabold text-white">Packages & Games Management</h4>
+              <p class="text-slate-400 text-xs mt-0.5">Select a game below to modify order names, adjust prices live, or add new packages.</p>
+            </div>
+
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 space-y-3">
+              <label class="block font-bold text-slate-300 uppercase tracking-wider text-[11px]">Select Game to Manage</label>
+              <select id="adminGameSelector" onchange="renderAdminPackageEditor()" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white text-xs font-semibold focus:outline-none focus:border-pink-500">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+
+            <!-- Package Editor List -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-sm">Packages & Prices List</span>
+                <button onclick="addNewPackageRow()" class="px-3 py-1.5 bg-pink-500/20 text-pink-400 hover:bg-pink-500/30 border border-pink-500/40 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-plus"></i> Add Package
+                </button>
+              </div>
+
+              <div id="adminPackagesEditorContainer" class="space-y-2.5">
+                <!-- Package editing rows injected here -->
+              </div>
+
+              <button onclick="savePackageChanges()" class="w-full py-3 bg-pink-500 hover:bg-pink-400 text-black font-extrabold rounded-xl transition text-sm shadow-lg shadow-pink-500/20 mt-4">
+                Save & Update Website Live Prices
+              </button>
+            </div>
           </div>
 
+          <!-- 3. ANNOUNCEMENTS TAB -->
           <div id="adminTab-announcements" class="admin-tab-content hidden space-y-4">
-            <h4 class="text-base font-bold text-white">Top Ticker Announcement</h4>
-            <input type="text" id="tickerInputText" value="FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
-            <button onclick="alert('Ticker updated!')" class="py-2.5 px-5 bg-pink-500 text-black font-extrabold rounded-xl transition">Update Ticker</button>
+            <h4 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-bullhorn text-pink-400"></i> Top Ticker Announcement Text
+            </h4>
+            <p class="text-slate-400">Update the scrolling headline ticker displayed at the top of the store.</p>
+            <div>
+              <label class="block font-bold text-slate-300 mb-1.5">Ticker Text</label>
+              <textarea id="tickerInputText" rows="3" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white text-xs focus:outline-none focus:border-pink-500">FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬 | SECURE BANK TRANSFERS | TELEGRAM SUPPORT: @naijacp1</textarea>
+            </div>
+            <button onclick="updateTickerText()" class="py-2.5 px-6 bg-pink-500 hover:bg-pink-400 text-black font-extrabold rounded-xl transition text-xs">
+              Update Live Ticker
+            </button>
           </div>
 
-          <div id="adminTab-paymentSettings" class="admin-tab-content hidden space-y-3">
-            <h4 class="text-base font-bold text-white">Bank Account Configuration</h4>
+          <!-- 4. BANNERS TAB -->
+          <div id="adminTab-banners" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-image text-pink-400"></i> Promo Banners Manager
+            </h4>
+            <p class="text-slate-400">Configure promotional alerts or sales banner messages.</p>
+            <div class="p-4 bg-slate-900 border border-slate-800 rounded-2xl space-y-3">
+              <div>
+                <label class="block font-bold text-slate-300 mb-1">Banner Alert Headline</label>
+                <input type="text" id="bannerHeadlineInput" value="⚡ MENA & Global Top-Up Discounts Active!" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+              </div>
+              <button onclick="alert('Banner configuration updated!')" class="py-2 px-5 bg-pink-500 text-black font-extrabold rounded-xl transition">
+                Save Banner Settings
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. HOMEPAGE TAB -->
+          <div id="adminTab-homepage" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-house text-pink-400"></i> Homepage Dynamic Content
+            </h4>
+            <p class="text-slate-400">Modify hero section text and base user counters.</p>
+            <div class="p-4 bg-slate-900 border border-slate-800 rounded-2xl space-y-3">
+              <div>
+                <label class="block font-bold text-slate-300 mb-1">Base Gamer Counter Value</label>
+                <input type="number" id="baseCounterInput" value="1428" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-300 mb-1">Hero Subtitle Text</label>
+                <input type="text" id="heroSubtitleInput" value="Buy UC, Diamonds, Coins, Call of Duty CP & Vouchers directly with Nigerian Bank Transfer." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white">
+              </div>
+              <button onclick="updateHomepageContent()" class="py-2 px-5 bg-pink-500 text-black font-extrabold rounded-xl transition">
+                Update Homepage
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. CUSTOMERS TAB -->
+          <div id="adminTab-customers" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-users text-pink-400"></i> Customer Activity & User Logs
+            </h4>
+            <div id="customersLogContainer" class="p-4 bg-slate-900 border border-slate-800 rounded-2xl text-slate-300 space-y-2">
+              <p class="font-bold text-white">Recent Customer Activity</p>
+              <p>• User <span class="text-pink-400">Player_9201</span> completed order via OPay</p>
+              <p>• User <span class="text-pink-400">UID_512398</span> generated Sensi code</p>
+            </div>
+          </div>
+
+          <!-- 7. ADMINS TAB -->
+          <div id="adminTab-admins" class="admin-tab-content hidden space-y-4">
+            <h4 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-user-shield text-pink-400"></i> Admin Accounts Manager
+            </h4>
+            <div class="p-4 bg-slate-900 border border-slate-800 rounded-2xl space-y-3">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <div>
+                  <span class="text-white font-bold block">Merlin</span>
+                  <span class="text-slate-400 text-[10px]">Super Administrator (Active)</span>
+                </div>
+                <span class="px-2 py-1 rounded bg-green-500/20 text-green-400 font-bold text-[10px]">Authorized</span>
+              </div>
+              <p class="text-slate-400 text-[11px]">Password is currently set to <span class="text-pink-400 font-mono">merlin1</span></p>
+            </div>
+          </div>
+
+          <!-- BANK SETTINGS TAB -->
+          <div id="adminTab-bankSettings" class="admin-tab-content hidden space-y-3">
+            <h4 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-building-columns text-pink-400"></i> Bank Account Configuration
+            </h4>
             <div>
               <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Bank Name</label>
-              <input type="text" value="OPay" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
+              <input type="text" id="adminBankNameInput" value="OPay" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Account Number</label>
-              <input type="text" value="7048972368" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
+              <input type="text" id="adminAccNumInput" value="7048972368" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Account Name</label>
-              <input type="text" value="OGUNLANA JAMIU" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
+              <input type="text" id="adminAccNameInput" value="OGUNLANA JAMIU" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
             </div>
-            <button onclick="alert('Bank settings saved successfully!')" class="py-2.5 px-5 bg-pink-500 hover:bg-pink-400 text-black font-extrabold rounded-xl transition text-xs">
-              Save Settings
+            <button onclick="saveBankSettings()" class="py-2.5 px-5 bg-pink-500 hover:bg-pink-400 text-black font-extrabold rounded-xl transition text-xs">
+              Save Bank Settings
             </button>
           </div>
 
@@ -609,8 +747,25 @@
 
   <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
-    // Sample Games Database
-    const gamesData = [
+    // Games Database (Free Fire Updated Strictly to Match Screenshot 1 Price List)
+    let gamesData = [
+      {
+        id: 'ff',
+        name: 'Free Fire',
+        category: 'Battle Royale',
+        badge: 'Direct ID Top-Up',
+        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: '110 Diamonds 💎', price: 1000 },
+          { name: '231 Diamonds 💎', price: 2000 },
+          { name: '583 Diamonds 💎', price: 4500 },
+          { name: '1,188 Diamonds 💎', price: 8500 },
+          { name: '2,420 Diamonds 💎', price: 17000 },
+          { name: 'Booyah Pass 🎟️', price: 4500 },
+          { name: 'Weekly Subscription 📅', price: 2500 },
+          { name: 'Monthly Subscription 🗓️', price: 8000 }
+        ]
+      },
       {
         id: 'pubg',
         name: 'PUBG Mobile',
@@ -623,20 +778,6 @@
           { name: '660 UC', price: 12000 },
           { name: '1800 UC', price: 31000 },
           { name: '3850 UC', price: 62000 }
-        ]
-      },
-      {
-        id: 'ff',
-        name: 'Free Fire',
-        category: 'Battle Royale',
-        badge: 'Direct ID Top-Up',
-        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
-        packages: [
-          { name: '100 + 10 Diamonds', price: 1100 },
-          { name: '210 + 21 Diamonds', price: 2200 },
-          { name: '530 + 53 Diamonds', price: 5400 },
-          { name: '1080 + 108 Diamonds', price: 10800 },
-          { name: '2200 + 220 Diamonds', price: 21500 }
         ]
       },
       {
@@ -716,7 +857,7 @@
       renderGames(cat);
     }
 
-    // Modal Operations
+    // Modal Controls
     function openModal(modalId) {
       document.getElementById(modalId).classList.remove('hidden');
     }
@@ -764,7 +905,7 @@
     function proceedToCheckout() {
       const playerID = document.getElementById('playerIdInput').value.trim();
       if (!playerID) {
-        alert('Please enter your Player ID / Character ID!');
+        alert('Please enter your Player ID / Character UID!');
         return;
       }
       if (!selectedPkg) {
@@ -908,7 +1049,7 @@
       showToast('Sensi Code copied to clipboard!');
     }
 
-    // Admin Access Gate (Merlin / merlin1)
+    // Admin Access Authentication Gate (Username: Merlin / Password: merlin1)
     function promptAdminPassword() {
       document.getElementById('adminUserInput').value = '';
       document.getElementById('adminPassInput').value = '';
@@ -922,7 +1063,7 @@
 
       if (user === 'Merlin' && pass === 'merlin1') {
         closeModal('adminAuthModal');
-        renderAdminOrders();
+        initAdminPanel();
         openModal('adminModal');
       } else {
         document.getElementById('adminAuthError').classList.remove('hidden');
@@ -946,6 +1087,13 @@
       }
     }
 
+    // Initialize Admin Panel Data
+    function initAdminPanel() {
+      renderAdminOrders();
+      populateAdminGameSelector();
+    }
+
+    // Admin Payments Tab Renderer
     function renderAdminOrders() {
       const list = document.getElementById('adminOrdersList');
       if (userOrders.length === 0) {
@@ -956,10 +1104,10 @@
       list.innerHTML = userOrders.map(o => `
         <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5 font-mono">
           <div class="flex justify-between font-bold text-white"><span>${o.ref}</span><span class="text-pink-400">₦${o.amount.toLocaleString()}</span></div>
-          <div class="text-slate-400">${o.game} - ${o.package} (Target: ${o.playerId})</div>
+          <div class="text-slate-400">${o.game} - ${o.package} (Target ID: ${o.playerId})</div>
           <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-[11px]">
             <span class="text-amber-400 font-bold uppercase">${o.status}</span>
-            <button onclick="markCompleted('${o.ref}')" class="px-2.5 py-1 bg-green-500/20 text-green-400 hover:bg-green-500/30 rounded font-bold">Approve</button>
+            <button onclick="markCompleted('${o.ref}')" class="px-2.5 py-1 bg-green-500/20 text-green-400 hover:bg-green-500/30 rounded font-bold">Approve Order</button>
           </div>
         </div>
       `).join('');
@@ -971,7 +1119,110 @@
         order.status = 'Completed';
         localStorage.setItem('naijacp_orders', JSON.stringify(userOrders));
         renderAdminOrders();
+        showToast(`Order ${ref} Approved!`);
       }
+    }
+
+    // Admin Packages Manager Renderer (Interactive Price & Item Editing)
+    function populateAdminGameSelector() {
+      const selector = document.getElementById('adminGameSelector');
+      selector.innerHTML = gamesData.map(g => `<option value="${g.id}">${g.name} (${g.packages.length} packages)</option>`).join('');
+      renderAdminPackageEditor();
+    }
+
+    function renderAdminPackageEditor() {
+      const selectedGameId = document.getElementById('adminGameSelector').value;
+      const game = gamesData.find(g => g.id === selectedGameId);
+      const container = document.getElementById('adminPackagesEditorContainer');
+
+      if (!game) return;
+
+      container.innerHTML = game.packages.map((pkg, idx) => `
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row gap-2.5 items-center">
+          <input type="text" value="${pkg.name}" id="pkg-name-${idx}" class="w-full sm:w-1/2 bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-semibold text-xs" placeholder="Package Title">
+          <div class="w-full sm:w-1/2 flex items-center gap-2">
+            <span class="text-pink-400 font-bold text-xs">₦</span>
+            <input type="number" value="${pkg.price}" id="pkg-price-${idx}" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-pink-400 font-extrabold text-xs" placeholder="Price">
+            <button onclick="deletePackageRow(${idx})" class="p-2 text-red-400 hover:bg-red-500/20 rounded-lg transition" title="Delete Package">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addNewPackageRow() {
+      const selectedGameId = document.getElementById('adminGameSelector').value;
+      const game = gamesData.find(g => g.id === selectedGameId);
+      if (game) {
+        game.packages.push({ name: 'New Item Topup', price: 1000 });
+        renderAdminPackageEditor();
+      }
+    }
+
+    function deletePackageRow(index) {
+      const selectedGameId = document.getElementById('adminGameSelector').value;
+      const game = gamesData.find(g => g.id === selectedGameId);
+      if (game) {
+        game.packages.splice(index, 1);
+        renderAdminPackageEditor();
+      }
+    }
+
+    function savePackageChanges() {
+      const selectedGameId = document.getElementById('adminGameSelector').value;
+      const game = gamesData.find(g => g.id === selectedGameId);
+      if (!game) return;
+
+      const newPackages = [];
+      game.packages.forEach((_, idx) => {
+        const nameVal = document.getElementById(`pkg-name-${idx}`)?.value.trim();
+        const priceVal = parseFloat(document.getElementById(`pkg-price-${idx}`)?.value);
+
+        if (nameVal && !isNaN(priceVal)) {
+          newPackages.push({ name: nameVal, price: priceVal });
+        }
+      });
+
+      game.packages = newPackages;
+      renderGames();
+      showToast(`${game.name} live prices saved successfully!`);
+    }
+
+    // Ticker Text Update
+    function updateTickerText() {
+      const txt = document.getElementById('tickerInputText').value.trim();
+      if (txt) {
+        document.getElementById('tickerContent').innerHTML = `
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-bolt text-pink-400"></i> ${txt}</span>
+          <span class="inline-flex items-center gap-2"><i class="fa-solid fa-bolt text-pink-400"></i> ${txt}</span>
+        `;
+        showToast('Live Ticker updated!');
+      }
+    }
+
+    // Bank Settings Update
+    function saveBankSettings() {
+      const bank = document.getElementById('adminBankNameInput').value;
+      const accNum = document.getElementById('adminAccNumInput').value;
+      const accName = document.getElementById('adminAccNameInput').value;
+
+      document.getElementById('bankNameDisplay').innerText = bank;
+      document.getElementById('accountNumber').innerText = accNum;
+      document.getElementById('accountNameDisplay').innerText = accName;
+
+      showToast('Bank Settings updated successfully!');
+    }
+
+    // Homepage Content Update
+    function updateHomepageContent() {
+      const baseVal = document.getElementById('baseCounterInput').value;
+      const subVal = document.getElementById('heroSubtitleInput').value;
+
+      if (baseVal) document.getElementById('liveUserCounter').innerText = parseInt(baseVal).toLocaleString();
+      if (subVal) document.getElementById('heroSubtitleText').innerText = subVal;
+
+      showToast('Homepage text updated!');
     }
 
     // Toast Notification System
@@ -985,20 +1236,38 @@
       setTimeout(() => {
         toast.className = 'toast-exit p-3 rounded-2xl bg-slate-900 border border-pink-500/40 text-white text-xs shadow-xl flex items-center gap-2.5 mb-2';
         setTimeout(() => toast.remove(), 400);
-      }, 3000);
+      }, 3200);
     }
 
-    // Live counter fluctuations
+    // Live User Counter Fluctuations (4 Seconds)
     setInterval(() => {
       const counterEl = document.getElementById('liveUserCounter');
       if (counterEl) {
-        const curr = parseInt(counterEl.innerText.replace(',', ''));
+        const curr = parseInt(counterEl.innerText.replace(/,/g, ''));
         const diff = Math.floor(Math.random() * 11) - 5;
         counterEl.innerText = (curr + diff).toLocaleString();
       }
     }, 4000);
 
-    // Initial Render
+    // Real-Time Purchase Toast Popups (6–8 Seconds)
+    const nigerianLocations = ['Lagos', 'Abuja', 'Port Harcourt', 'Ibadan', 'Kano', 'Enugu', 'Warri', 'Benin City', 'Abeokuta', 'Kaduna'];
+    const dummyItems = [
+      'Free Fire 1,188 Diamonds 💎',
+      'Free Fire Booyah Pass 🎟️',
+      'PUBG Mobile 660 UC',
+      'Free Fire 2,420 Diamonds 💎',
+      'Call of Duty 880 CP',
+      'eFootball 1,040 Coins'
+    ];
+
+    setInterval(() => {
+      const loc = nigerianLocations[Math.floor(Math.random() * nigerianLocations.length)];
+      const item = dummyItems[Math.floor(Math.random() * dummyItems.length)];
+      const randomID = Math.floor(1000 + Math.random() * 9000);
+      showToast(`Gamer in ${loc} (ID: ***${randomID}) just purchased ${item}!`);
+    }, 7000);
+
+    // Initial Load Setup
     window.addEventListener('DOMContentLoaded', () => {
       renderGames();
     });
