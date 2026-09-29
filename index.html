@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NAIJACP.NG - Nigeria's #1 Game Top-Up & Voucher Hub</title>
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -88,7 +85,6 @@
       animation-play-state: paused;
     }
 
-    /* Animated Purchase Toast */
     @keyframes slideInUp {
       from { transform: translateY(120%) scale(0.9); opacity: 0; }
       to { transform: translateY(0) scale(1); opacity: 1; }
@@ -103,7 +99,6 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-pink-500 selection:text-black">
 
-  <!-- TOP ANNOUNCEMENT TICKER -->
   <div class="bg-gradient-to-r from-pink-950 via-black to-pink-950 border-b border-pink-500/20 py-2 text-xs text-slate-300 overflow-hidden relative z-50">
     <div class="animate-marquee whitespace-nowrap flex items-center space-x-8" id="tickerContent">
       <span class="inline-flex items-center gap-2"><i class="fa-solid fa-bolt text-pink-400"></i> FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬</span>
@@ -114,11 +109,8 @@
     </div>
   </div>
 
-  <!-- HEADER NAVIGATION -->
   <nav class="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-pink-900/30 px-4 sm:px-8 py-3.5">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      
-      <!-- Logo Branding -->
       <div class="flex items-center gap-2.5 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <div class="w-10 h-10 rounded-xl bg-pink-500 flex items-center justify-center font-black text-black text-xl shadow-lg shadow-pink-500/40">
           N
@@ -128,7 +120,6 @@
         </span>
       </div>
 
-      <!-- Header Navigation Links -->
       <div class="flex items-center gap-5 sm:gap-8">
         <a href="#games" class="flex flex-col sm:flex-row items-center gap-1 text-slate-300 hover:text-pink-400 transition">
           <i class="fa-solid fa-store text-pink-500 text-lg"></i>
@@ -145,14 +136,11 @@
           <span class="text-xs font-bold">Track</span>
         </button>
       </div>
-
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
   <header class="relative pt-8 pb-12 overflow-hidden px-4 sm:px-6">
     <div class="max-w-4xl mx-auto text-center relative z-10">
-      
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-xs font-bold text-slate-300 mb-6">
         <span class="w-2.5 h-2.5 rounded-full bg-pink-500 pulse-dot"></span>
         <span id="liveUserCounter" class="text-pink-400 font-extrabold text-sm">1,428</span>
@@ -176,13 +164,10 @@
           </a>
         </div>
       </div>
-
     </div>
   </header>
 
-  <!-- CATALOG SECTION -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow" id="games">
-    
     <div class="mb-8 space-y-4">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-xl font-bold">
@@ -193,7 +178,6 @@
         </h2>
       </div>
 
-      <!-- Filter Tabs -->
       <div class="flex items-center gap-2.5 overflow-x-auto py-2 scrollbar-none">
         <button onclick="filterCategory('all')" id="btn-cat-all" class="cat-btn px-6 py-2.5 rounded-2xl text-xs font-black transition bg-pink-500 text-black shadow-lg shadow-pink-500/20 whitespace-nowrap">
           All Games
@@ -207,13 +191,9 @@
       </div>
     </div>
 
-    <!-- Games Grid -->
-    <div id="gamesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-      <!-- Dynamic rendering via JS -->
-    </div>
+    <div id="gamesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"></div>
   </main>
 
-  <!-- FREE FIRE SENSI TOOL SECTION -->
   <section id="sensi" class="py-16 bg-gradient-to-b from-black via-pink-950/20 to-black border-t border-b border-pink-500/20 relative">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-10">
@@ -225,7 +205,6 @@
       </div>
 
       <div class="glass-modal p-6 sm:p-8 rounded-3xl border border-pink-500/30 max-w-xl mx-auto shadow-2xl relative">
-        
         <div id="taskContainer" class="space-y-5">
           <div class="p-4 rounded-2xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-between text-xs">
             <span class="text-slate-300 font-bold">Step 1: Complete Share Requirement</span>
@@ -305,7 +284,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="border-t border-slate-800 bg-black py-8 text-slate-500 text-xs">
     <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
       <div class="flex justify-center items-center gap-2">
@@ -315,7 +293,7 @@
         <span class="text-white font-bold text-base">NAIJACP.NG</span>
       </div>
       <p class="text-slate-400">Nigeria's premier gaming top-up store. Automated 24/7 delivery nationwide.</p>
-      
+
       <div class="flex items-center justify-center gap-2 text-slate-600">
         <p>© 2026 NAIJACP. All rights reserved.</p>
         <button onclick="promptAdminPassword()" class="text-slate-700 hover:text-pink-500 transition p-1" title="Protected Admin Panel">
@@ -325,12 +303,8 @@
     </div>
   </footer>
 
-  <!-- REAL-TIME TOAST CONTAINER -->
   <div id="liveToastContainer" class="fixed bottom-5 left-5 z-50 max-w-xs w-full pointer-events-none"></div>
 
-  <!-- ================= MODALS ================= -->
-
-  <!-- TOP-UP SELECTION MODAL -->
   <div id="topupModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="glass-modal w-full max-w-2xl rounded-3xl p-6 sm:p-8 relative shadow-2xl my-8 text-left">
       <button onclick="closeModal('topupModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
@@ -368,7 +342,6 @@
     </div>
   </div>
 
-  <!-- CHECKOUT & SCREENSHOT PROOF MODAL -->
   <div id="paymentModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
     <div class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl text-left">
       <button onclick="closeModal('paymentModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
@@ -415,7 +388,6 @@
         </div>
       </div>
 
-      <!-- Screenshot Proof Upload -->
       <div class="mt-5">
         <label class="block text-xs font-bold text-pink-400 uppercase tracking-wider mb-2">
           <i class="fa-solid fa-file-arrow-up mr-1"></i> Upload Payment Proof Screenshot
@@ -439,7 +411,6 @@
     </div>
   </div>
 
-  <!-- ORDER RECEIPT MODAL -->
   <div id="receiptModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
     <div class="glass-modal w-full max-w-md rounded-3xl p-6 sm:p-8 relative shadow-2xl text-center">
       <div class="w-16 h-16 bg-pink-500/20 border-2 border-pink-400 text-pink-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
@@ -477,7 +448,6 @@
     </div>
   </div>
 
-  <!-- ORDER TRACKER MODAL -->
   <div id="trackerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl text-left">
       <button onclick="closeModal('trackerModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
@@ -496,23 +466,22 @@
     </div>
   </div>
 
-  <!-- ADMIN AUTH GATE MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
     <div class="glass-modal w-full max-w-sm rounded-3xl p-6 text-center border border-pink-500/40 relative">
       <button onclick="closeModal('adminAuthModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
         <i class="fa-solid fa-xmark"></i>
       </button>
-      
+
       <div class="w-12 h-12 rounded-2xl bg-pink-500/20 border border-pink-500/40 text-pink-400 flex items-center justify-center mx-auto mb-3 text-xl">
         <i class="fa-solid fa-user-shield"></i>
       </div>
-      
+
       <h3 class="text-lg font-extrabold text-white">Admin Access Gate</h3>
       <p class="text-xs text-slate-400 mt-1 mb-4">Enter credentials to unlock the admin portal</p>
 
       <input type="text" id="adminUserInput" placeholder="Username" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm text-center focus:outline-none focus:border-pink-500 mb-3">
       <input type="password" id="adminPassInput" placeholder="Password" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm text-center focus:outline-none focus:border-pink-500 mb-3">
-      
+
       <p id="adminAuthError" class="text-red-400 text-xs hidden mb-3 font-bold">Please enter credentials!</p>
 
       <button onclick="verifyAdminPassword()" class="w-full py-3 rounded-xl bg-pink-500 hover:bg-pink-400 text-black font-extrabold text-sm transition">
@@ -521,10 +490,9 @@
     </div>
   </div>
 
-  <!-- ADMIN PORTAL MODAL -->
   <div id="adminModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-2 sm:p-4 bg-black/95 backdrop-blur-md">
     <div class="glass-modal w-full max-w-5xl h-[92vh] rounded-3xl p-4 sm:p-6 relative shadow-2xl border border-pink-500/40 flex flex-col overflow-hidden">
-      
+
       <div class="flex items-center justify-between pb-3 border-b border-slate-800 flex-shrink-0">
         <div class="flex items-center gap-3">
           <button onclick="toggleAdminNavDrawer()" class="md:hidden p-2 rounded-lg bg-pink-500/20 text-pink-400 border border-pink-500/30 text-xs font-bold">
@@ -540,18 +508,23 @@
       </div>
 
       <div class="flex-1 flex flex-col md:flex-row gap-4 mt-4 overflow-hidden relative">
-        <!-- Overlay Drawer / Desktop Sidebar -->
         <div id="adminNavDrawer" class="hidden md:flex flex-col w-full md:w-64 bg-slate-950 border border-slate-800 rounded-2xl p-3 space-y-1 overflow-y-auto flex-shrink-0 absolute md:relative top-0 left-0 right-0 z-20 max-h-[80%] shadow-2xl md:shadow-none md:max-h-none">
           <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1">Management</span>
-          
+
           <button onclick="switchAdminTab('payments')" id="adminBtn-payments" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-pink-400 bg-pink-500/10 transition flex items-center gap-2.5">
             <i class="fa-solid fa-wallet text-pink-400"></i> Payments
           </button>
+
           <button onclick="switchAdminTab('packages')" id="adminBtn-packages" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
             <i class="fa-solid fa-gem text-pink-400"></i> Packages & Pricing
           </button>
+
           <button onclick="switchAdminTab('announcements')" id="adminBtn-announcements" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
             <i class="fa-solid fa-bullhorn text-pink-400"></i> Ticker & Banner
+          </button>
+
+          <button onclick="openCreateOrderModal()" id="adminBtn-createOrder" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
+            <i class="fa-solid fa-plus text-pink-400"></i> Create New Order
           </button>
 
           <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1 pt-2">Settings</span>
@@ -565,8 +538,6 @@
         </div>
 
         <div class="flex-1 bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-6 overflow-y-auto h-full text-xs">
-          
-          <!-- TAB 1: PAYMENTS -->
           <div id="adminTab-payments" class="admin-tab-content space-y-4">
             <h4 class="text-base font-bold text-white">Submitted Customer Proofs</h4>
             <div id="adminOrdersList" class="space-y-3">
@@ -576,7 +547,6 @@
             </div>
           </div>
 
-          <!-- TAB 2: PACKAGES & PRICING MANAGER (FULL INTERACTIVE CONTROL) -->
           <div id="adminTab-packages" class="admin-tab-content hidden space-y-6">
             <div class="flex items-center justify-between">
               <div>
@@ -588,11 +558,9 @@
               </button>
             </div>
 
-            <!-- Dynamic Admin Package List -->
             <div id="adminPackagesList" class="space-y-6"></div>
           </div>
 
-          <!-- TAB 3: TICKER -->
           <div id="adminTab-announcements" class="admin-tab-content hidden space-y-4">
             <h4 class="text-base font-bold text-white">Top Ticker Announcement</h4>
             <input type="text" id="tickerInputText" value="FAST AUTOMATED DELIVERY 24/7 IN NIGERIA 🇳🇬" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-white">
@@ -601,7 +569,6 @@
             </button>
           </div>
 
-          <!-- TAB 4: BANK SETTINGS -->
           <div id="adminTab-paymentSettings" class="admin-tab-content hidden space-y-3">
             <h4 class="text-base font-bold text-white">Bank Account Configuration</h4>
             <div>
@@ -620,16 +587,69 @@
               Save Settings
             </button>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <div id="createOrderModal" class="fixed inset-0 z-[75] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+    <div class="glass-modal w-full max-w-xl rounded-3xl p-6 relative shadow-2xl">
+      <button onclick="closeModal('createOrderModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <h3 class="text-xl font-extrabold text-white mb-5">
+        <i class="fa-solid fa-plus text-pink-400 mr-2"></i> Create New Order
+      </h3>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Customer Name</label>
+          <input type="text" id="newOrderCustomerName" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Game</label>
+          <select id="newOrderGame" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+            <option value="">Select a game</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Package</label>
+          <select id="newOrderPackage" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+            <option value="">Select package</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Customer ID / Player ID</label>
+          <input type="text" id="newOrderPlayerId" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Amount (₦)</label>
+          <input type="number" id="newOrderAmount" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Status</label>
+          <select id="newOrderStatus" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-pink-500">
+            <option value="Pending Verification">Pending Verification</option>
+            <option value="Completed">Completed</option>
+            <option value="Processing">Processing</option>
+          </select>
+        </div>
+
+        <button onclick="submitNewOrder()" class="w-full py-3.5 rounded-xl bg-pink-500 hover:bg-pink-400 text-black font-extrabold text-sm transition">
+          Save Order
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Games Database
-    let gamesData = [
+    let gamesData = JSON.parse(localStorage.getItem('naijacp_games') || 'null') || [
       {
         id: 'pubg',
         name: 'PUBG Mobile',
@@ -637,11 +657,11 @@
         badge: 'Direct UC Credit',
         image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '60 UC', price: 1200 },
-          { name: '325 UC', price: 6000 },
-          { name: '660 UC', price: 12000 },
-          { name: '1800 UC', price: 31000 },
-          { name: '3850 UC', price: 62000 }
+          { name: '60 UC', price: 1200, logo: '' },
+          { name: '325 UC', price: 6000, logo: '' },
+          { name: '660 UC', price: 12000, logo: '' },
+          { name: '1800 UC', price: 31000, logo: '' },
+          { name: '3850 UC', price: 62000, logo: '' }
         ]
       },
       {
@@ -651,11 +671,11 @@
         badge: 'Direct ID Top-Up',
         image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '100 + 10 Diamonds', price: 1100 },
-          { name: '210 + 21 Diamonds', price: 2200 },
-          { name: '530 + 53 Diamonds', price: 5400 },
-          { name: '1080 + 108 Diamonds', price: 10800 },
-          { name: '2200 + 220 Diamonds', price: 21500 }
+          { name: '100 + 10 Diamonds', price: 1100, logo: '' },
+          { name: '210 + 21 Diamonds', price: 2200, logo: '' },
+          { name: '530 + 53 Diamonds', price: 5400, logo: '' },
+          { name: '1080 + 108 Diamonds', price: 10800, logo: '' },
+          { name: '2200 + 220 Diamonds', price: 21500, logo: '' }
         ]
       },
       {
@@ -665,10 +685,10 @@
         badge: 'Direct CP Top-Up',
         image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '80 CP', price: 1400 },
-          { name: '420 CP', price: 6800 },
-          { name: '880 CP', price: 13500 },
-          { name: '2400 CP', price: 34000 }
+          { name: '80 CP', price: 1400, logo: '' },
+          { name: '420 CP', price: 6800, logo: '' },
+          { name: '880 CP', price: 13500, logo: '' },
+          { name: '2400 CP', price: 34000, logo: '' }
         ]
       },
       {
@@ -678,21 +698,27 @@
         badge: 'Direct Coins',
         image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '130 Coins', price: 1600 },
-          { name: '550 Coins', price: 6500 },
-          { name: '1040 Coins', price: 12500 },
-          { name: '2130 Coins', price: 24000 }
+          { name: '130 Coins', price: 1600, logo: '' },
+          { name: '550 Coins', price: 6500, logo: '' },
+          { name: '1040 Coins', price: 12500, logo: '' },
+          { name: '2130 Coins', price: 24000, logo: '' }
         ]
       }
     ];
 
-    // Global State
+    function saveGamesData() {
+      localStorage.setItem('naijacp_games', JSON.stringify(gamesData));
+    }
+
+    function getPackageLogo(game, pkg) {
+      return pkg.logo || game.image;
+    }
+
     let selectedGame = null;
     let selectedPkg = null;
     let shareCount = 0;
     let userOrders = JSON.parse(localStorage.getItem('naijacp_orders') || '[]');
 
-    // Render Store Front Games
     function renderGames(filter = 'all') {
       const grid = document.getElementById('gamesGrid');
       grid.innerHTML = '';
@@ -723,7 +749,6 @@
       });
     }
 
-    // Category Filter Handler
     function filterCategory(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.className = 'cat-btn px-6 py-2.5 rounded-2xl text-xs font-bold transition bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800 whitespace-nowrap';
@@ -735,7 +760,6 @@
       renderGames(cat);
     }
 
-    // Modal Operations
     function openModal(modalId) {
       document.getElementById(modalId).classList.remove('hidden');
     }
@@ -744,7 +768,6 @@
       document.getElementById(modalId).classList.add('hidden');
     }
 
-    // Open Top-Up Selection
     function openTopupModal(gameId) {
       selectedGame = gamesData.find(g => g.id === gameId);
       if (!selectedGame) return;
@@ -770,6 +793,9 @@
         };
 
         pkgCard.innerHTML = `
+          <div class="flex items-center justify-center mb-2">
+            <img src="${getPackageLogo(selectedGame, pkg)}" class="w-10 h-10 rounded-xl object-cover border border-slate-700">
+          </div>
           <div class="text-xs font-extrabold text-white">${pkg.name}</div>
           <div class="text-pink-400 font-bold text-xs mt-1">₦${pkg.price.toLocaleString()}</div>
         `;
@@ -779,7 +805,6 @@
       openModal('topupModal');
     }
 
-    // Proceed to Payment Modal
     function proceedToCheckout() {
       const playerID = document.getElementById('playerIdInput').value.trim();
       if (!playerID) {
@@ -799,14 +824,12 @@
       openModal('paymentModal');
     }
 
-    // Copy Account Number
     function copyAccountNumber() {
       const acc = document.getElementById('accountNumber').innerText;
       navigator.clipboard.writeText(acc);
       showToast('Account Number copied to clipboard!');
     }
 
-    // Screenshot Proof Upload Preview
     function handleProofUpload(e) {
       const file = e.target.files[0];
       if (file) {
@@ -816,7 +839,6 @@
       }
     }
 
-    // Submit Order
     function submitOrderWithProof() {
       const proofInput = document.getElementById('proofFileInput');
       if (!proofInput.files || proofInput.files.length === 0) {
@@ -849,7 +871,6 @@
       openModal('receiptModal');
     }
 
-    // Order Tracker Search
     function openTrackerModal() {
       document.getElementById('trackerInput').value = '';
       document.getElementById('trackerResult').classList.add('hidden');
@@ -882,7 +903,6 @@
       }
     }
 
-    // Free Fire Sensi Generator
     function shareToWhatsApp() {
       shareCount = Math.min(5, shareCount + 1);
       const remaining = 5 - shareCount;
@@ -927,7 +947,6 @@
       showToast('Sensi Code copied to clipboard!');
     }
 
-    // Admin Access Gate
     function promptAdminPassword() {
       document.getElementById('adminUserInput').value = '';
       document.getElementById('adminPassInput').value = '';
@@ -976,7 +995,6 @@
       }
     }
 
-    // Render Submitted Payments in Admin
     function renderAdminOrders() {
       const list = document.getElementById('adminOrdersList');
       if (userOrders.length === 0) {
@@ -1006,7 +1024,77 @@
       }
     }
 
-    // ================= DYNAMIC ADMIN PACKAGE MANAGER =================
+    function openCreateOrderModal() {
+      const gameSelect = document.getElementById('newOrderGame');
+      const packageSelect = document.getElementById('newOrderPackage');
+
+      gameSelect.innerHTML = '<option value="">Select a game</option>';
+      gamesData.forEach(game => {
+        const option = document.createElement('option');
+        option.value = game.id;
+        option.textContent = game.name;
+        gameSelect.appendChild(option);
+      });
+
+      gameSelect.onchange = () => {
+        const selectedVal = gameSelect.value;
+        const selectedGameObj = gamesData.find(g => g.id === selectedVal);
+        packageSelect.innerHTML = '<option value="">Select package</option>';
+
+        if (selectedGameObj) {
+          selectedGameObj.packages.forEach(pkg => {
+            const option = document.createElement('option');
+            option.value = pkg.name;
+            option.textContent = `${pkg.name} - ₦${pkg.price.toLocaleString()}`;
+            packageSelect.appendChild(option);
+          });
+        }
+      };
+
+      document.getElementById('newOrderCustomerName').value = '';
+      document.getElementById('newOrderPlayerId').value = '';
+      document.getElementById('newOrderAmount').value = '';
+      document.getElementById('newOrderStatus').value = 'Pending Verification';
+      packageSelect.innerHTML = '<option value="">Select package</option>';
+
+      openModal('createOrderModal');
+    }
+
+    function submitNewOrder() {
+      const customerName = document.getElementById('newOrderCustomerName').value.trim();
+      const gameId = document.getElementById('newOrderGame').value;
+      const packageName = document.getElementById('newOrderPackage').value;
+      const playerId = document.getElementById('newOrderPlayerId').value.trim();
+      const amount = Number(document.getElementById('newOrderAmount').value);
+      const status = document.getElementById('newOrderStatus').value;
+
+      if (!customerName || !gameId || !packageName || !playerId || !amount) {
+        alert('Please fill in all fields to create the order.');
+        return;
+      }
+
+      const game = gamesData.find(g => g.id === gameId);
+      const ref = 'NCP-' + Math.floor(100000 + Math.random() * 900000);
+
+      const newOrder = {
+        ref,
+        customer: customerName,
+        game: game.name,
+        package: packageName,
+        playerId,
+        amount,
+        status,
+        date: new Date().toLocaleString()
+      };
+
+      userOrders.unshift(newOrder);
+      localStorage.setItem('naijacp_orders', JSON.stringify(userOrders));
+      renderAdminOrders();
+
+      closeModal('createOrderModal');
+      showToast(`Order ${ref} created successfully!`);
+    }
+
     function renderAdminPackages() {
       const container = document.getElementById('adminPackagesList');
       container.innerHTML = '';
@@ -1017,17 +1105,30 @@
 
         let packagesHTML = game.packages.map((pkg, pIndex) => `
           <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-slate-950 border border-slate-800">
-            <span class="font-bold text-white text-xs w-1/3 truncate">${pkg.name}</span>
-            <div class="flex items-center gap-1.5 w-1/2">
+            <div class="flex items-center gap-2 w-1/3 min-w-0">
+              <img src="${getPackageLogo(game, pkg)}" class="w-8 h-8 rounded-lg object-cover border border-slate-700" />
+              <span class="font-bold text-white text-xs truncate">${pkg.name}</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 w-1/3">
               <span class="text-pink-400 font-bold">₦</span>
               <input type="number" value="${pkg.price}" id="priceInput-${gIndex}-${pIndex}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-white text-xs focus:outline-none focus:border-pink-500">
             </div>
-            <button onclick="updatePackagePrice(${gIndex}, ${pIndex})" class="px-2.5 py-1 bg-pink-500/20 text-pink-400 hover:bg-pink-500 hover:text-black font-extrabold rounded-lg text-[11px] transition">
-              Save
-            </button>
-            <button onclick="deletePackage(${gIndex}, ${pIndex})" class="px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 rounded-lg text-[11px] transition" title="Delete">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
+
+            <div class="flex items-center gap-1.5">
+              <label class="cursor-pointer px-2 py-1 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[10px] font-bold">
+                Logo
+                <input type="file" accept="image/*" onchange="handlePackageLogoUpload(${gIndex}, ${pIndex}, event)" class="hidden">
+              </label>
+
+              <button onclick="updatePackagePrice(${gIndex}, ${pIndex})" class="px-2.5 py-1 bg-pink-500/20 text-pink-400 hover:bg-pink-500 hover:text-black font-extrabold rounded-lg text-[11px] transition">
+                Save
+              </button>
+
+              <button onclick="deletePackage(${gIndex}, ${pIndex})" class="px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 rounded-lg text-[11px] transition" title="Delete">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
           </div>
         `).join('');
 
@@ -1044,9 +1145,8 @@
             ${packagesHTML}
           </div>
 
-          <!-- Add New Package Form -->
           <div class="pt-2 border-t border-slate-800/80 flex items-center gap-2">
-            <input type="text" id="newName-${gIndex}" placeholder="New Pkg Name (e.g. 500 UC)" class="w-1/2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
+            <input type="text" id="newName-${gIndex}" placeholder="New Pkg Name" class="w-1/2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
             <input type="number" id="newPrice-${gIndex}" placeholder="Price (₦)" class="w-1/3 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
             <button onclick="addPackage(${gIndex})" class="px-3 py-1.5 bg-green-500/20 text-green-400 hover:bg-green-500 hover:text-black font-extrabold rounded-lg text-xs transition whitespace-nowrap">
               + Add
@@ -1056,6 +1156,21 @@
 
         container.appendChild(gameBlock);
       });
+    }
+
+    function handlePackageLogoUpload(gIndex, pIndex, event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        gamesData[gIndex].packages[pIndex].logo = e.target.result;
+        saveGamesData();
+        renderAdminPackages();
+        renderGames();
+        showToast('Package logo uploaded!');
+      };
+      reader.readAsDataURL(file);
     }
 
     function updatePackagePrice(gIndex, pIndex) {
@@ -1068,7 +1183,8 @@
       }
 
       gamesData[gIndex].packages[pIndex].price = newPrice;
-      renderGames(); // Update storefront live
+      saveGamesData();
+      renderGames();
       showToast(`Updated ${gamesData[gIndex].name} ${gamesData[gIndex].packages[pIndex].name} price!`);
     }
 
@@ -1084,8 +1200,9 @@
         return;
       }
 
-      gamesData[gIndex].packages.push({ name: pkgName, price: pkgPrice });
-      renderGames(); // Update storefront live
+      gamesData[gIndex].packages.push({ name: pkgName, price: pkgPrice, logo: '' });
+      saveGamesData();
+      renderGames();
       renderAdminPackages();
       showToast(`Added new package to ${gamesData[gIndex].name}!`);
     }
@@ -1093,7 +1210,8 @@
     function deletePackage(gIndex, pIndex) {
       if (confirm('Are you sure you want to delete this package?')) {
         gamesData[gIndex].packages.splice(pIndex, 1);
-        renderGames(); // Update storefront live
+        saveGamesData();
+        renderGames();
         renderAdminPackages();
         showToast('Package deleted!');
       }
@@ -1111,13 +1229,12 @@
       }
     }
 
-    // Toast Notification System
     function showToast(message) {
       const container = document.getElementById('liveToastContainer');
       const toast = document.createElement('div');
       toast.className = 'toast-enter p-3 rounded-2xl bg-slate-900 border border-pink-500/40 text-white text-xs shadow-xl flex items-center gap-2.5 mb-2';
       toast.innerHTML = `<i class="fa-solid fa-circle-check text-pink-400 text-sm"></i> <span>${message}</span>`;
-      
+
       container.appendChild(toast);
       setTimeout(() => {
         toast.className = 'toast-exit p-3 rounded-2xl bg-slate-900 border border-pink-500/40 text-white text-xs shadow-xl flex items-center gap-2.5 mb-2';
@@ -1125,7 +1242,6 @@
       }, 3000);
     }
 
-    // Live User Counter
     setInterval(() => {
       const counterEl = document.getElementById('liveUserCounter');
       if (counterEl) {
@@ -1135,7 +1251,6 @@
       }
     }, 4000);
 
-    // Initial Load
     window.addEventListener('DOMContentLoaded', () => {
       renderGames();
     });
