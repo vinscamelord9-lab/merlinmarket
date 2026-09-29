@@ -516,7 +516,7 @@
           </button>
 
           <button onclick="switchAdminTab('packages')" id="adminBtn-packages" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
-            <i class="fa-solid fa-gem text-pink-400"></i> Packages & Pricing
+            <i class="fa-solid fa-gem text-pink-400"></i> Package Manager
           </button>
 
           <button onclick="switchAdminTab('announcements')" id="adminBtn-announcements" class="admin-nav-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition flex items-center gap-2.5">
@@ -538,6 +538,7 @@
         </div>
 
         <div class="flex-1 bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-6 overflow-y-auto h-full text-xs">
+
           <div id="adminTab-payments" class="admin-tab-content space-y-4">
             <h4 class="text-base font-bold text-white">Submitted Customer Proofs</h4>
             <div id="adminOrdersList" class="space-y-3">
@@ -550,8 +551,8 @@
           <div id="adminTab-packages" class="admin-tab-content hidden space-y-6">
             <div class="flex items-center justify-between">
               <div>
-                <h4 class="text-base font-bold text-white">Manage Packages & Prices</h4>
-                <p class="text-slate-400 text-[11px] mt-0.5">Edit prices, add new packages, or remove items live.</p>
+                <h4 class="text-base font-bold text-white">Manage Games & Cover Photos</h4>
+                <p class="text-slate-400 text-[11px] mt-0.5">Set cover images, prices, and package names for each game.</p>
               </div>
               <button onclick="renderAdminPackages()" class="px-3 py-1.5 rounded-lg bg-pink-500/20 text-pink-400 hover:bg-pink-500/30 font-bold transition flex items-center gap-1.5 text-xs">
                 <i class="fa-solid fa-rotate text-xs"></i> Refresh
@@ -651,57 +652,63 @@
   <script>
     let gamesData = JSON.parse(localStorage.getItem('naijacp_games') || 'null') || [
       {
-        id: 'pubg',
-        name: 'PUBG Mobile',
-        category: 'Battle Royale',
-        badge: 'Direct UC Credit',
-        image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80',
-        packages: [
-          { name: '60 UC', price: 1200, logo: '' },
-          { name: '325 UC', price: 6000, logo: '' },
-          { name: '660 UC', price: 12000, logo: '' },
-          { name: '1800 UC', price: 31000, logo: '' },
-          { name: '3850 UC', price: 62000, logo: '' }
-        ]
-      },
-      {
-        id: 'ff',
-        name: 'Free Fire',
-        category: 'Battle Royale',
-        badge: 'Direct ID Top-Up',
-        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
-        packages: [
-          { name: '100 + 10 Diamonds', price: 1100, logo: '' },
-          { name: '210 + 21 Diamonds', price: 2200, logo: '' },
-          { name: '530 + 53 Diamonds', price: 5400, logo: '' },
-          { name: '1080 + 108 Diamonds', price: 10800, logo: '' },
-          { name: '2200 + 220 Diamonds', price: 21500, logo: '' }
-        ]
-      },
-      {
-        id: 'codm',
-        name: 'Call of Duty Mobile',
-        category: 'Battle Royale',
-        badge: 'Direct CP Top-Up',
+        id: 'dls',
+        name: 'Dream League Soccer (DLS)',
+        category: 'Sports',
+        badge: 'DLS Top-Up',
         image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '80 CP', price: 1400, logo: '' },
-          { name: '420 CP', price: 6800, logo: '' },
-          { name: '880 CP', price: 13500, logo: '' },
-          { name: '2400 CP', price: 34000, logo: '' }
+          { name: 'Starter Pack', price: 1500, logo: '' },
+          { name: 'Pro Pack', price: 3500, logo: '' },
+          { name: 'Elite Pack', price: 6000, logo: '' }
         ]
       },
       {
-        id: 'efootball',
-        name: 'eFootball 2026',
+        id: 'fc-mobile',
+        name: 'EA SPORTS FC Mobile',
         category: 'Sports',
-        badge: 'Direct Coins',
+        badge: 'FC Mobile',
+        image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: '100 Coins', price: 1200, logo: '' },
+          { name: '500 Coins', price: 4200, logo: '' },
+          { name: '1200 Coins', price: 8500, logo: '' }
+        ]
+      },
+      {
+        id: 'blood-strike',
+        name: 'Blood Strike',
+        category: 'Battle Royale',
+        badge: 'Battle Pass',
+        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: '100 Gems', price: 1100, logo: '' },
+          { name: '350 Gems', price: 3000, logo: '' },
+          { name: '900 Gems', price: 6800, logo: '' }
+        ]
+      },
+      {
+        id: 'mlbb',
+        name: 'Mobile Legends: Bang Bang (MLBB)',
+        category: 'Battle Royale',
+        badge: 'MLBB',
         image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=400&q=80',
         packages: [
-          { name: '130 Coins', price: 1600, logo: '' },
-          { name: '550 Coins', price: 6500, logo: '' },
-          { name: '1040 Coins', price: 12500, logo: '' },
-          { name: '2130 Coins', price: 24000, logo: '' }
+          { name: '86 Diamonds', price: 1500, logo: '' },
+          { name: '172 Diamonds', price: 2800, logo: '' },
+          { name: '706 Diamonds', price: 9800, logo: '' }
+        ]
+      },
+      {
+        id: 'delta-force',
+        name: 'Delta Force',
+        category: 'Battle Royale',
+        badge: 'Delta Force',
+        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80',
+        packages: [
+          { name: 'Starter Supply', price: 1600, logo: '' },
+          { name: 'Battle Supply', price: 3500, logo: '' },
+          { name: 'Soldier Pack', price: 7000, logo: '' }
         ]
       }
     ];
@@ -1117,7 +1124,7 @@
 
             <div class="flex items-center gap-1.5">
               <label class="cursor-pointer px-2 py-1 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[10px] font-bold">
-                Logo
+                Cover
                 <input type="file" accept="image/*" onchange="handlePackageLogoUpload(${gIndex}, ${pIndex}, event)" class="hidden">
               </label>
 
@@ -1146,7 +1153,7 @@
           </div>
 
           <div class="pt-2 border-t border-slate-800/80 flex items-center gap-2">
-            <input type="text" id="newName-${gIndex}" placeholder="New Pkg Name" class="w-1/2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
+            <input type="text" id="newName-${gIndex}" placeholder="New Package Name" class="w-1/2 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
             <input type="number" id="newPrice-${gIndex}" placeholder="Price (₦)" class="w-1/3 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-pink-500">
             <button onclick="addPackage(${gIndex})" class="px-3 py-1.5 bg-green-500/20 text-green-400 hover:bg-green-500 hover:text-black font-extrabold rounded-lg text-xs transition whitespace-nowrap">
               + Add
@@ -1168,7 +1175,7 @@
         saveGamesData();
         renderAdminPackages();
         renderGames();
-        showToast('Package logo uploaded!');
+        showToast('Cover image updated!');
       };
       reader.readAsDataURL(file);
     }
