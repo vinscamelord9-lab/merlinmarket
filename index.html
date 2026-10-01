@@ -2,77 +2,43 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CPM Naija Store - Official Unlock Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>CPM Naija Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080c18;--card:#111a31;--neon:#00f5ff;--pink:#ff1cf7;--gold:#ffcc00}
+:root{--bg:#080c18;--card:#111a31;--neon:#00f5ff;--gold:#ffcc00}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
 body{background:var(--bg);color:#fff}
-header{padding:18px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1c2a50;position:sticky;top:0;background:rgba(8,12,24,0.95);backdrop-filter:blur(12px);z-index:20}
-.logo{font-family:Orbitron;font-weight:900;color:var(--neon);font-size:22px;letter-spacing:1px}
-.hero{text-align:center;padding:70px 5% 30px;background:radial-gradient(600px at 50% 0%,#1b2c66,transparent)}
-.hero h1{font-family:Orbitron;font-size:42px;text-transform:uppercase;line-height:1.1}
-.hero h1 span{background:linear-gradient(90deg,var(--neon),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{opacity:0.7;margin-top:12px}
-.grid{max-width:1250px;margin:40px auto;padding:0 5% 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
-.card{background:linear-gradient(180deg,var(--card),#0a1122);border:1px solid #1e315f;border-radius:20px;padding:24px;transition:0.3s;position:relative}
-.card:hover{border-color:var(--neon);transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,245,255,0.15)}
-.card h3{font-family:Orbitron;font-size:16px;margin-bottom:8px}
-.tag{font-size:11px;padding:4px 8px;border-radius:20px;background:#1e2e5e;border:1px solid #2a4480;display:inline-block;margin-bottom:10px}
-.price{font-weight:800;font-size:26px;margin:8px 0}
-.price small{font-size:13px;opacity:0.6;font-weight:400}
-.ul{list-style:none;margin:12px 0 18px}
-.ul li{font-size:13px;padding:6px 0;border-bottom:1px dashed #1a2a50;display:flex;gap:8px}
-.ul li::before{content:"✓";color:var(--neon);font-weight:800}
-.order{width:100%;padding:12px;background:linear-gradient(90deg,var(--neon),#6af);color:#000;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:Orbitron;font-size:13px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
-.modal.active{display:flex}
-.box{background:#111a31;border:1px solid #2a4480;border-radius:20px;padding:28px;max-width:380px;width:100%;text-align:center}
-.box h3{font-family:Orbitron;margin-bottom:15px}
-.btns{display:flex;gap:12px;margin-top:18px}
-.btn{flex:1;padding:13px;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px;text-align:center}
-.wa{background:#25D366;color:#000}.tg{background:var(--neon);color:#000}
-.close{margin-top:15px;background:transparent;border:none;color:#fff;opacity:0.5;cursor:pointer}
-footer{text-align:center;padding:25px;opacity:0.4;font-size:11px}
+header{padding:16px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1c2a50}
+.logo{font-family:Orbitron;font-weight:900;color:var(--neon);font-size:20px}
+.hero{text-align:center;padding:60px 5% 20px}
+.hero h1{font-family:Orbitron;font-size:36px}
+.hero h1 span{color:var(--neon)}
+.grid{max-width:1100px;margin:30px auto;padding:0 5% 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid #1e315f;border-radius:18px;padding:22px}
+.card h3{font-family:Orbitron;font-size:14px;margin-bottom:6px}
+.price{font-weight:800;font-size:24px;margin:8px 0;color:var(--gold)}
+.ul{list-style:none;margin:10px 0 16px}
+.ul li{font-size:13px;padding:5px 0;border-bottom:1px dashed #1a2a50}
+.ul li::before{content:"✓ ";color:var(--neon);font-weight:800}
+.order{width:100%;padding:11px;background:var(--neon);color:#000;font-weight:800;border:none;border-radius:10px;cursor:pointer;font-family:Orbitron;font-size:12px}
 </style>
 </head>
 <body>
-<header><div class="logo">CPM NAIJA STORE</div><div style="font-size:11px;opacity:0.6">TRUSTED • FAST DELIVERY</div></header>
-<section class="hero"><h1>CHOOSE YOUR <span>CPM UNLOCK</span> PACKAGE</h1><p>All packages come with full tutorial. Instant delivery via WhatsApp & Telegram</p></section>
+<header><div class="logo">CPM NAIJA STORE</div><div style="font-size:10px;opacity:0.6">+234 810 268 4934</div></header>
+<div class="hero"><h1>CHOOSE YOUR <span>UNLOCK</span> PACKAGE</h1><p style="opacity:0.7">Fast delivery via WhatsApp & Telegram @merlin162010</p></div>
 
 <div class="grid">
-<!-- CPM1 FULL -->
-<div class="card"><span class="tag">CPM 1 - BEST VALUE</span><h3>CPM 1 FULL UNLOCK</h3><div class="price">₦3,000 <small>/ account</small></div><ul class="ul"><li>50 Million Money + 500K Coins</li><li>Unlock of All Cars with Design</li><li>All Characters Unlocked</li><li>All Houses Unlocked</li><li>All Horns, Sirens, Smoke</li><li>Everything Unlocked Except Clan & Premium</li></ul><button class="order" onclick="openModal('CPM 1 FULL UNLOCK - ₦3,000')">ORDER NOW</button></div>
+<div class="card"><h3>CPM 1 FULL UNLOCK</h3><div class="price">₦3,000</div><ul class="ul"><li>50 Million Money + 500K Coins</li><li>All Cars with Design</li><li>All Characters Unlocked</li><li>All Houses Unlocked</li><li>All Horns, Sirens, Smoke</li><li>Everything Except Clan & Premium</li></ul><a href="https://wa.me/2348102684934?text=Hello%20I%20want%20CPM1%20Full%20Unlock%20for%203k"><button class="order">ORDER ON WHATSAPP</button></a></div>
 
-<!-- CPM2 FULL -->
-<div class="card" style="border-color:var(--gold)"><span class="tag" style="background:var(--gold);color:#000">MOST POPULAR</span><h3>CPM 2 FULL UNLOCK</h3><div class="price">₦5,000 <small>/ account</small></div><ul class="ul"><li>Everything Unlocked</li><li>15 Random Cars Included</li><li>50 Million Money + 300 Coins</li><li>All Characters & Houses</li><li>All Maps & Multiplayer</li></ul><button class="order" style="background:var(--gold)" onclick="openModal('CPM 2 FULL UNLOCK - ₦5,000')">ORDER NOW</button></div>
+<div class="card" style="border-color:var(--gold)"><h3>CPM 2 UNLOCK (NO CARS)</h3><div class="price">₦3,500</div><ul class="ul"><li>50 Million Money + 300 Coins</li><li>All Characters Unlocked</li><li>All Houses (where available)</li><li>All Horns, Sirens, Smoke</li><li>No Cars - As You Requested</li></ul><a href="https://wa.me/2348102684934?text=Hello%20I%20want%20CPM2%20Unlock%20No%20Cars%20for%203.5k"><button class="order">ORDER ON WHATSAPP</button></a></div>
 
-<!-- Individual unlocks -->
-<div class="card"><h3>UNLOCK ALL CARS</h3><div class="price">₦1,500</div><ul class="ul"><li>All Cars with Full Design / Livery</li><li>Police, Drift, Racing Cars</li><li>CPM 1 & CPM 2 Available</li></ul><button class="order" onclick="openModal('Unlock All Cars - ₦1,500')">ORDER NOW</button></div>
+<div class="card"><h3>ALL HOUSES UNLOCK</h3><div class="price">₦1,000</div><ul class="ul"><li>All Houses in CPM 1</li><li>Garage Access</li></ul><a href="https://wa.me/2348102684934?text=I%20want%20All%20Houses%20for%201k"><button class="order">ORDER</button></a></div>
 
-<div class="card"><h3>UNLOCK ALL HOUSES</h3><div class="price">₦1,000</div><ul class="ul"><li>All Houses in CPM 1</li><li>Garage Access</li></ul><button class="order" onclick="openModal('Unlock All Houses - ₦1,000')">ORDER NOW</button></div>
+<div class="card"><h3>ALL CHARACTERS</h3><div class="price">₦800</div><ul class="ul"><li>All Characters & Outfits</li></ul><a href="https://wa.me/2348102684934?text=I%20want%20All%20Characters%20for%20800"><button class="order">ORDER</button></a></div>
 
-<div class="card"><h3>UNLOCK ALL CHARACTERS</h3><div class="price">₦800</div><ul class="ul"><li>All Characters & Outfits</li><li>All Animations</li></ul><button class="order" onclick="openModal('Unlock All Characters - ₦800')">ORDER NOW</button></div>
+<div class="card"><h3>HORNS, SIRENS & SMOKE</h3><div class="price">₦500</div><ul class="ul"><li>All Horns, Sirens, Smoke Colors</li></ul><a href="https://wa.me/2348102684934?text=I%20want%20Horns%20Sirens%20Smoke%20for%20500"><button class="order">ORDER</button></a></div>
 
-<div class="card"><h3>UNLOCK HORNS, SIRENS & SMOKE</h3><div class="price">₦500</div><ul class="ul"><li>All Horns Unlocked</li><li>All Sirens & Smoke Colors</li></ul><button class="order" onclick="openModal('Unlock Horns Sirens Smoke - ₦500')">ORDER NOW</button></div>
-
-<div class="card"><h3>MONEY & COINS PACKAGE</h3><div class="price">₦1,200</div><ul class="ul"><li>50M Money + 500K Coins (CPM1)</li><li>50M Money + 300 Coins (CPM2)</li></ul><button class="order" onclick="openModal('Money and Coins Package - ₦1,200')">ORDER NOW</button></div>
-
+<div class="card"><h3>MONEY & COINS ONLY</h3><div class="price">₦1,200</div><ul class="ul"><li>50M + 500K (CPM1) or 50M + 300 (CPM2)</li></ul><a href="https://wa.me/2348102684934?text=I%20want%20Money%20Coins%20package%20for%201.2k"><button class="order">ORDER</button></a></div>
 </div>
-
-<!-- Modal -->
-<div class="modal" id="modal"><div class="box"><h3 id="mTitle">Package</h3><p style="opacity:0.7;font-size:13px">Choose where to chat to complete order:</p><div class="btns"><a id="waLink" class="btn wa" target="_blank">WhatsApp</a><a class="btn tg" href="https://t.me/merlin162010" target="_blank">Telegram</a></div><button class="close" onclick="closeModal()">Cancel</button></div></div>
-
-<footer>© 2026 CPM Naija Store • WhatsApp: +234 810 268 4934 | Telegram: @merlin162010<br>Not affiliated with Olzhass. Selling legit upgraded accounts.</footer>
-
-<script>
-function openModal(pkg){
-document.getElementById('mTitle').innerText=pkg;
-let waMsg=encodeURIComponent(`Hello boss, I want to order: ${pkg} for CPM. Please send me details.`);
-document.getElementById('waLink').href=`https://wa.me/2348102684934?text=${waMsg}`;
-document.getElementById('modal').classList.add('active');
-}
-function closeModal(){document.getElementById('modal').classList.remove('active');}
-</script>
 </body>
 </html>
