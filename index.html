@@ -3,170 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAIJACP NG - Gaming Top-Up</title>
+<title>MERLIN MARKET - CPM & Free Fire</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Inter:wght@600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter;background:#0a0a0f;color:#fff}
-.topbar{position:sticky;top:0;z-index:20;background:#0a0a0f;border-bottom:1px solid #1a1a24;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:Orbitron;font-size:18px}.logo b{color:#ff2d92}
-.channel-bar{background:linear-gradient(90deg,#ff2d92,#8b5cf6);padding:10px 16px;display:flex;gap:8px;overflow-x:auto;justify-content:center;align-items:center;font-size:12px;font-weight:800}
-.channel-bar a{background:#fff;color:#000;padding:6px 12px;border-radius:20px;text-decoration:none;white-space:nowrap}
-.hero{padding:20px;text-align:center}
-.hero h1{font-family:Orbitron;font-size:28px}
-.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.tab{padding:8px 16px;border-radius:20px;border:1px solid #2a2a35;background:#15151f;cursor:pointer;font-size:12px;font-weight:800}
-.tab.active{background:#ff2d92;border-color:#ff2d92}
-.grid{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
-.card{background:#16161f;border:1px solid #222;border-radius:16px;overflow:hidden}
-.card img{width:100%;height:110px;object-fit:cover}
-.card-body{padding:10px}
-.card-title{font-size:13px;font-weight:800;margin-bottom:6px;height:32px;overflow:hidden}
-.price{color:#00ff88;font-family:Orbitron;font-size:15px;margin-bottom:8px}
-.btn-buy{width:100%;background:#ff2d92;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:800;cursor:pointer}
-#buyModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:100;align-items:center;justify-content:center;padding:20px}
-.modal-box{background:#15151f;border:1px solid #333;padding:20px;border-radius:20px;max-width:360px;width:100%;text-align:center}
-.modal-btn{width:100%;padding:14px;border-radius:12px;border:0;font-weight:800;cursor:pointer;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
-.wa{background:#25D366;color:#fff}.tg{background:#229ED9;color:#fff}.close{background:#222;color:#fff}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;background:#0a0a0f;border-bottom:1px solid #1a1a24;position:sticky;top:0;z-index:20}
+.logo{font-family:Orbitron;font-size:20px}.logo span{color:#00ff88}
+.channel-bar{background:linear-gradient(90deg,#00ff88,#8b5cf6);color:#000;padding:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;font-weight:800;font-size:12px}
+.channel-bar a{background:#000;color:#fff;padding:6px 12px;border-radius:20px;text-decoration:none}
+.hero{padding:30px 20px;text-align:center}
+.hero h1{font-family:Orbitron;font-size:36px} .hero h1 span{color:#00ff88}
+.tabs{display:flex;justify-content:center;gap:10px;margin-top:16px}
+.tab{padding:10px 22px;border-radius:30px;border:1px solid #333;background:#15151f;cursor:pointer;font-weight:800}
+.tab.active{background:#00ff88;color:#000} .tab.ff.active{background:#8b5cf6;color:#fff}
+.grid{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:#16161f;border:1px solid #222;border-radius:18px;overflow:hidden}
+.card-img{height:180px;position:relative} .card-img img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:10px;left:10px;background:#00ff88;color:#000;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}
+.card-body{padding:14px} .price{color:#00ff88;font-family:Orbitron;font-size:20px;margin:8px 0}
+.btn-buy{width:100%;background:#00ff88;color:#000;border:0;padding:12px;border-radius:12px;font-weight:800;cursor:pointer}
+#buyModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal{background:#15151f;border:1px solid #333;padding:20px;border-radius:20px;max-width:360px;width:100%;text-align:center}
+.mbtn{width:100%;padding:14px;border-radius:12px;border:0;font-weight:800;margin-top:10px;display:block;text-decoration:none;cursor:pointer}
+.wa{background:#25D366;color:#fff} .tg{background:#229ED9;color:#fff}
 #adminPanel{display:none;position:fixed;inset:0;background:#050508;z-index:9999;overflow-y:auto;padding:16px}
-.input{width:100%;background:#0f0f15;border:1px solid #2a2a35;padding:10px;border-radius:10px;color:#fff;margin-bottom:6px}
-.admin-card{background:#11111a;border:1px solid #222;padding:12px;border-radius:12px;margin-bottom:10px}
+.input{width:100%;background:#0f0f15;border:1px solid #333;padding:10px;border-radius:10px;color:#fff;margin-bottom:6px}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="logo">N <span style="background:#ff2d92;color:#fff;padding:2px 6px;border-radius:6px">N</span> <b>NAIJACP NG</b></div><div style="font-size:11px;opacity:0.6">Admin: #merlinadmin</div></div>
-
+<div class="topbar"><div class="logo">神 <span>MERLIN</span> 모</div><div style="opacity:0.5;font-size:11px">Shop</div></div>
 <div class="channel-bar">
-<span>📢 FOLLOW OUR CHANNELS:</span>
+<span>📢 FOLLOW:</span>
 <a href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">WhatsApp Channel</a>
 <a href="https://t.me/merlinroom" target="_blank">Telegram Channel</a>
 </div>
-
 <div class="hero">
-<h1>Gaming Gear & Gadgets</h1>
-<div class="tabs" id="tabs"></div>
+<h1>MERLIN <span>MARKET</span></h1>
+<p>Trusted CPM & Free Fire Accounts Seller - Instant Delivery</p>
+<div class="tabs">
+<div class="tab active" id="tab-cpm" onclick="setType('cpm')">🏎️ CPM ACCOUNTS</div>
+<div class="tab" id="tab-ff" onclick="setType('ff')">🔥 FREE FIRE</div>
 </div>
-
+</div>
 <div class="grid" id="grid"></div>
 
-<div id="buyModal" onclick="if(event.target===this)closeBuy()">
-<div class="modal-box">
-<h3 id="mTitle">Buy Package</h3>
-<p id="mPrice" style="color:#00ff88;font-family:Orbitron;margin:10px 0"></p>
-<a id="waBtn" class="modal-btn wa" target="_blank">💬 Buy via WhatsApp</a>
-<a id="tgBtn" class="modal-btn tg" target="_blank">✈️ Buy via Telegram</a>
-<button class="modal-btn close" onclick="closeBuy()">Cancel</button>
-</div>
-</div>
+<div id="buyModal" onclick="if(event.target==this)closeBuy()"><div class="modal">
+<h3 id="mTitle">Buy Account</h3><p id="mPrice" style="color:#00ff88;font-family:Orbitron;margin:10px 0"></p>
+<a id="waBtn" class="mbtn wa" target="_blank">💬 Buy via WhatsApp</a>
+<a id="tgBtn" class="mbtn tg" target="_blank">✈️ Buy via Telegram</a>
+<button class="mbtn" style="background:#222;color:#fff" onclick="closeBuy()">Cancel</button>
+</div></div>
 
 <div id="adminPanel">
 <div id="loginBox" style="max-width:360px;margin:60px auto;background:#15151f;padding:24px;border-radius:20px;text-align:center">
-<h3>ADMIN LOGIN</h3><input id="admU" class="input" placeholder="Username" style="margin-top:12px"><input id="admP" class="input" type="password" placeholder="Password"><button onclick="doLogin()" style="width:100%;background:#ff2d92;color:#fff;padding:12px;border-radius:10px;border:0;font-weight:800;margin-top:10px">LOGIN</button><p id="loginErr" style="color:red;display:none;margin-top:8px">Wrong</p>
+<h3>ADMIN LOGIN</h3><input id="admU" class="input" placeholder="Merlin" style="margin-top:12px"><input id="admP" class="input" type="password" placeholder="merlin1"><button onclick="doLogin()" style="width:100%;background:#00ff88;color:#000;padding:12px;border-radius:10px;border:0;font-weight:800;margin-top:10px">LOGIN</button><p id="err" style="color:red;display:none">Wrong</p>
 </div>
-<div id="adminContent" style="display:none;max-width:700px;margin:0 auto">
-<div style="display:flex;justify-content:space-between"><h2>Admin Panel</h2><button onclick="closeAdmin()" style="background:#ff3b3b;color:#fff;padding:8px 14px;border-radius:10px;border:0">Close</button></div>
-<div style="margin-top:12px"><button onclick="addNew()" style="background:#00ff88;color:#000;padding:10px 16px;border-radius:10px;border:0;font-weight:800;width:100%">+ ADD NEW PACKAGE</button></div>
+<div id="adminContent" style="display:none;max-width:750px;margin:0 auto">
+<div style="display:flex;justify-content:space-between"><h2>Edit Store</h2><button onclick="closeAdmin()" style="background:#ff3b3b;color:#fff;border:0;padding:8px 14px;border-radius:10px">Close</button></div>
+<button onclick="addNew()" style="width:100%;background:#00ff88;color:#000;padding:12px;border-radius:10px;border:0;font-weight:800;margin-top:12px">+ ADD NEW PACKAGE</button>
 <div id="adminList" style="margin-top:12px"></div>
-<div style="display:flex;gap:8px;margin-top:12px"><button onclick="saveAll()" style="flex:1;background:#00ff88;color:#000;padding:12px;border-radius:10px;border:0;font-weight:800">SAVE</button><button onclick="genCode()" style="flex:1;background:#8b5cf6;color:#fff;padding:12px;border-radius:10px;border:0;font-weight:800">GENERATE CODE</button></div>
-<div id="codeBox" style="display:none;margin-top:12px"><textarea id="codeOut" style="width:100%;height:200px;background:#000;color:#0f0;font-size:10px"></textarea></div>
+<div style="display:flex;gap:8px;margin-top:12px"><button onclick="saveAll()" style="flex:1;background:#00ff88;color:#000;padding:12px;border-radius:10px;border:0;font-weight:800">SAVE LOCALLY</button><button onclick="genCode()" style="flex:1;background:#8b5cf6;color:#fff;padding:12px;border-radius:10px;border:0;font-weight:800">GENERATE CODE</button></div>
+<div id="codeBox" style="display:none"><textarea id="codeOut" style="width:100%;height:200px;background:#000;color:#0f0;font-size:10px;margin-top:12px"></textarea></div>
 </div>
 </div>
 
 <script>
 const DEFAULT_PRODUCTS=[
-{id:1,cat:"Free Fire",title:"Free Fire 100+10 Diamonds",price:1800,img:"https://i.imgur.com/8Km9tLL.png"},
-{id:2,cat:"Free Fire",title:"Free Fire 310+33 Diamonds",price:4800,img:"https://i.imgur.com/8Km9tLL.png"},
-{id:3,cat:"CODM",title:"CODM 80 CP",price:1500,img:"https://i.imgur.com/QlL9Z5k.png"},
-{id:4,cat:"eFootball",title:"eFootball 100 Coins",price:1300,img:"https://i.imgur.com/mZ4fQ4a.png"},
-{id:5,cat:"Blood Strike",title:"Blood Strike 100 Gold",price:1200,img:"https://i.imgur.com/2nCt3Sbl.png"},
-{id:6,cat:"TikTok",title:"TikTok 100 Coins",price:1000,img:"https://i.imgur.com/5Xq1JbK.png"}
+{id:1,type:"cpm",title:"CPM Starter Level 30+",price:5000,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:"LEVEL 30+",level:"30",rank:"Beginner",desc:"5M money, clean, no ban"},
+{id:2,type:"cpm",title:"CPM King Level 80",price:12000,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600",badge:"KING LEVEL 80",level:"80",rank:"KING",desc:"20M money, all cars unlocked"},
+{id:3,type:"ff",title:"FF Heroic Account Lv 68",price:15000,img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600",badge:"LVL 68 HEROIC",level:"68",rank:"Heroic",desc:"3 Evo guns, Cobra Rage"},
+{id:4,type:"ff",title:"FF Grandmaster Beast Lv 78",price:35000,img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600",badge:"LVL 78 GM",level:"78",rank:"Grandmaster",desc:"5 Evo Max, rare bundles"}
 ];
-let products=JSON.parse(localStorage.getItem('naijacp_prods')||'null')||DEFAULT_PRODUCTS;
-const CATS=["All Games","Free Fire","CODM","eFootball","Blood Strike","TikTok","DLS","OneState RP"];
-let curCat="All Games";
-const WA_NUM="2348102684934"; const TG_USER="merlin162010";
+let products=JSON.parse(localStorage.getItem('merlin_products')||'null')||DEFAULT_PRODUCTS;
+let cur='cpm';
+const WA="2348102684934"; const TG="merlin162010";
 
-function renderTabs(){
- document.getElementById('tabs').innerHTML=CATS.map(c=>`<div class="tab ${c===curCat?'active':''}" onclick="setCat('${c}')">${c}</div>`).join('');
+function render(){
+ let list=products.filter(p=>p.type===cur);
+ if(list.length===0) list=products;
+ document.getElementById('grid').innerHTML=list.map(p=>`<div class="card"><div class="card-img"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/400'"><div class="badge">${p.badge}</div></div><div class="card-body"><div style="font-weight:800">${p.title}</div><div style="font-size:11px;opacity:0.6;margin:4px 0">LVL ${p.level} • ${p.rank} • ${p.type.toUpperCase()}</div><div style="font-size:12px;opacity:0.7">${p.desc}</div><div class="price">₦${p.price.toLocaleString()}</div><button class="btn-buy" onclick="openBuy(${p.id})">BUY NOW</button></div></div>`).join('');
 }
-function renderGrid(){
- let list=curCat==="All Games"?products:products.filter(p=>p.cat===curCat);
- document.getElementById('grid').innerHTML=list.map(p=>`<div class="card"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/200'"><div class="card-body"><div class="card-title">${p.title}</div><div class="price">₦${p.price.toLocaleString()}</div><button class="btn-buy" onclick="openBuy(${p.id})">Buy Now</button></div></div>`).join('');
-}
-function setCat(c){curCat=c;renderTabs();renderGrid();}
-function openBuy(id){
- let p=products.find(x=>x.id===id);
- document.getElementById('mTitle').innerText=p.title;
- document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();
- let msg=encodeURIComponent(`Hello Merlin, I want to buy ${p.title} - ₦${p.price}\nImage: ${p.img}`);
- document.getElementById('waBtn').href=`https://wa.me/${WA_NUM}?text=${msg}`;
- document.getElementById('tgBtn').href=`https://t.me/${TG_USER}?text=${msg}`;
- document.getElementById('buyModal').style.display='flex';
-}
+function setType(t){cur=t;document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');render();}
+function openBuy(id){let p=products.find(x=>x.id===id);document.getElementById('mTitle').innerText=p.title;document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();let msg=encodeURIComponent(`Hello Merlin I want to buy:\n${p.title}\nPrice: ₦${p.price}\nLevel: ${p.level} Rank: ${p.rank}\n${p.img}`);document.getElementById('waBtn').href=`https://wa.me/${WA}?text=${msg}`;document.getElementById('tgBtn').href=`https://t.me/${TG}?text=${msg}`;document.getElementById('buyModal').style.display='flex';}
 function closeBuy(){document.getElementById('buyModal').style.display='none';}
 
-// ADMIN FIXED
+// ADMIN FIXED - WORKING 100%
 function openAdmin(){document.getElementById('adminPanel').style.display='block';}
 function closeAdmin(){document.getElementById('adminPanel').style.display='none';history.replaceState(null,'',location.pathname);}
-function doLogin(){
- if(document.getElementById('admU').value==="Merlin" && document.getElementById('admP').value==="merlin1"){
-  document.getElementById('loginBox').style.display='none';
-  document.getElementById('adminContent').style.display='block';
-  loadAdmin();
- } else document.getElementById('loginErr').style.display='block';
-}
+function doLogin(){if(document.getElementById('admU').value==="Merlin"&&document.getElementById('admP').value==="merlin1"){document.getElementById('loginBox').style.display='none';document.getElementById('adminContent').style.display='block';loadAdmin();}else document.getElementById('err').style.display='block';}
 function loadAdmin(){
- let html="";
- products.forEach((p,i)=>{
-  html+=`<div class="admin-card"><div style="display:flex;justify-content:space-between"><b>#${i+1}</b><button onclick="delProd(${i})" style="background:#ff3b3b;color:#fff;border:0;padding:4px 10px;border-radius:8px">Delete</button></div>
-  <label>Category</label><select class="input" id="cat_${i}">${CATS.map(c=>`<option ${p.cat===c?'selected':''}>${c}</option>`).join('')}</select>
-  <label>Title</label><input class="input" id="title_${i}" value="${p.title}">
-  <label>Price</label><input class="input" type="number" id="price_${i}" value="${p.price}">
-  <label>Image URL</label><input class="input" id="img_${i}" value="${p.img}">
-  </div>`;
- });
- document.getElementById('adminList').innerHTML=html;
+ let h="";products.forEach((p,i)=>{
+  h+=`<div style="background:#11111a;border:1px solid #222;padding:12px;border-radius:12px;margin-bottom:10px"><div style="display:flex;justify-content:space-between"><b>#${i+1} ${p.type.toUpperCase()}</b><button onclick="delProd(${i})" style="background:#ff3b3b;color:#fff;border:0;padding:4px 10px;border-radius:8px">Delete</button></div>
+  <label>Type (cpm/ff)</label><select class="input" id="ty_${i}"><option value="cpm" ${p.type==='cpm'?'selected':''}>cpm</option><option value="ff" ${p.type==='ff'?'selected':''}>ff</option></select>
+  <label>Title</label><input class="input" id="t_${i}" value="${p.title}">
+  <label>Price</label><input class="input" type="number" id="p_${i}" value="${p.price}">
+  <label>Badge</label><input class="input" id="b_${i}" value="${p.badge}">
+  <label>Level</label><input class="input" id="lv_${i}" value="${p.level}"><label>Rank</label><input class="input" id="rk_${i}" value="${p.rank}">
+  <label>Image URL</label><input class="input" id="im_${i}" value="${p.img}">
+  <label>Description</label><input class="input" id="d_${i}" value="${p.desc}"></div>`;
+ });document.getElementById('adminList').innerHTML=h;
 }
-window.addNew=function(){
- products.push({id:Date.now(),cat:"Free Fire",title:"New Package - Edit Me",price:2000,img:"https://via.placeholder.com/200"});
- loadAdmin();
- alert("New package added! Scroll down to edit it, then click SAVE");
-}
-window.delProd=function(i){
- if(confirm("Delete this package?")){
-  products.splice(i,1);
-  loadAdmin();
-  saveAll();
- }
-}
-window.saveAll=function(){
- let newList=[];
- for(let i=0;i<products.length;i++){
-  let catEl=document.getElementById('cat_'+i);
-  if(!catEl) continue;
-  newList.push({
-   id:products[i].id,
-   cat:catEl.value,
-   title:document.getElementById('title_'+i).value,
-   price:parseInt(document.getElementById('price_'+i).value)||0,
-   img:document.getElementById('img_'+i).value
-  });
- }
- products=newList;
- localStorage.setItem('naijacp_prods',JSON.stringify(products));
- renderGrid();
- alert("Saved locally! Click GENERATE CODE to update for everyone");
-}
-window.genCode=function(){
- saveAll();
- let full='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
- full=full.replace(/const DEFAULT_PRODUCTS=\[.*?\];/s,'const DEFAULT_PRODUCTS='+JSON.stringify(products)+';');
- document.getElementById('codeBox').style.display='block';
- document.getElementById('codeOut').value=full;
-}
-
-if(location.hash==="#merlinadmin") openAdmin();
-renderTabs();renderGrid();
-window.addEventListener('hashchange',()=>{if(location.hash==="#merlinadmin") openAdmin();});
-</script>
-</body>
-</html>
+window.addNew=function(){products.push({id:Date.now(),type:"ff",title
