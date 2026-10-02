@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MERLIN MARKET</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&amp;family=Inter:wght@700;800&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Inter}
 .wrap{max-width:430px;margin:0 auto;background:#0a0a0f;min-height:100vh;padding-bottom:40px}
@@ -43,12 +42,12 @@
 </head>
 <body>
 <div class="wrap">
-<div class="head"><div class="logo" id="siteLogo">MERLIN</div></div>
+<div class="head"><div class="logo" id="siteLogo">神MERLIN¿?모</div></div>
 <div class="channels">
 <a class="ch wa" id="waChannelBtn" href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">WhatsApp Channel</a>
 <a class="ch tg" id="tgChannelBtn" href="https://t.me/merlinroom" target="_blank">Telegram Channel</a>
 </div>
-<div class="hero"><h1 id="heroTitle">MERLIN<br><span>MARKET</span></h1><p id="heroSub">Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant</p><div class="tabs"><div class="tab active" id="cpmTab" onclick="switchTab('cpm')">CPM ACCOUNTS 🚗</div><div class="tab" id="ffTab" onclick="switchTab('ff')">FREE FIRE 🔥</div></div></div>
+<div class="hero"><h1 id="heroTitle">MERLIN<br><span>MARKET</span></h1><p id="heroSub">Buy &amp; Sell • CPM &amp; Free Fire Accounts • Trusted &amp; Instant</p><div class="tabs"><div class="tab active" id="cpmTab" onclick="switchTab('cpm')">CPM ACCOUNTS 🚗</div><div class="tab" id="ffTab" onclick="switchTab('ff')">FREE FIRE 🔥</div></div></div>
 
 <!-- SELL ACCOUNT BANNER - ONLY SHOWS IN FF TAB -->
 <div class="sellBox" id="sellBox">
@@ -60,20 +59,20 @@
 </div>
 </div>
 
-<div class="grid" id="grid"></div>
+<div class="grid" id="grid"><div class="card cpm"><div class="imgbox"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600" onerror="this.src='https://via.placeholder.com/400'"><div class="tag cpm">CPM</div><div class="stock">📦 5 PCS</div></div><div class="body"><div class="tit">CPM Car Parking - Lv35 Account</div><div class="meta">Level 35 • 50k Coins • VIP Pass</div><div style="font-size:8px;color:#9eff00;margin-top:3px">Clone - 5 available</div><div class="row"><div class="price">₦4,500</div><button class="buy" onclick="openBuy('CPM Car Parking - Lv35 Account')">BUY NOW</button></div></div></div><div class="card cpm"><div class="imgbox"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" onerror="this.src='https://via.placeholder.com/400'"><div class="tag cpm">CPM</div><div class="stock">📦 3 PCS</div></div><div class="body"><div class="tit">CPM King Level 80 Full Garage</div><div class="meta">Level 80 • 20M Money • KING</div><div style="font-size:8px;color:#9eff00;margin-top:3px">Clone - 3 available</div><div class="row"><div class="price">₦12,000</div><button class="buy" onclick="openBuy('CPM King Level 80 Full Garage')">BUY NOW</button></div></div></div><div class="card cpm"><div class="imgbox"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600" onerror="this.src='https://via.placeholder.com/400'"><div class="tag cpm">CPM</div><div class="stock">📦 5 PCS</div></div><div class="body"><div class="tit">CPM Starter Level 30+ Clean</div><div class="meta">Level 30 • 5M Money • Clean</div><div style="font-size:8px;color:#9eff00;margin-top:3px">Clone - 5 available</div><div class="row"><div class="price">₦5,000</div><button class="buy" onclick="openBuy('CPM Starter Level 30+ Clean')">BUY NOW</button></div></div></div></div>
 </div>
 
 <div id="modal" onclick="if(event.target.id==='modal')closeM()"><div class="mbox"><h3 id="mTitle" style="font-size:13px"></h3><div id="mPrice" class="price" style="font-size:22px;margin:10px 0"></div><a id="waLink" class="mbtn" style="background:#25D366;color:#fff" target="_blank">💬 Buy via WhatsApp</a><a id="tgLink" class="mbtn" style="background:#229ED9;color:#fff" target="_blank">✈️ Buy via Telegram</a><button class="mbtn" style="background:#222;color:#fff" onclick="closeM()">Cancel</button></div></div>
 
-<div id="adminPanel">
-<div id="loginBox" style="max-width:380px;margin:60px auto;background:#11111a;border:1px solid #222;padding:24px;border-radius:20px;text-align:center">
+<div id="adminPanel" style="display: block;">
+<div id="loginBox" style="max-width: 380px; margin: 60px auto; background: rgb(17, 17, 26); border: 1px solid rgb(34, 34, 34); padding: 24px; border-radius: 20px; text-align: center; display: none;">
 <div style="font-family:Orbitron;color:#9eff00;font-size:22px">MERLIN ADMIN</div><input id="admU" class="input" style="margin-top:14px" placeholder="Username: Merlin"><input id="admP" class="input" type="password" placeholder="Password: merlin1"><button onclick="doLogin()" style="width:100%;background:#9eff00;color:#000;padding:14px;border-radius:12px;border:0;font-weight:900">LOGIN</button><p id="err" style="display:none;color:#ff3b3b;margin-top:8px">Wrong username or password</p></div>
-<div id="adminContent" style="display:none;max-width:700px;margin:0 auto;padding:16px">
+<div id="adminContent" style="display: block; max-width: 700px; margin: 0px auto; padding: 16px;">
 <div class="a-head"><div style="font-family:Orbitron;font-weight:800">EDIT EVERYTHING</div><button onclick="closeAdmin()" style="background:#222;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:10px">Close</button></div>
 <div class="section"><div class="sec-title">🌐 SITE</div>
 <span class="lab">LOGO</span><input id="set_logo" class="input" value="MERLIN">
 <span class="lab">HERO TITLE (HTML allowed)</span><input id="set_heroTitle" class="input" value="MERLIN<br><span>MARKET</span>">
-<span class="lab">SUBTITLE</span><input id="set_sub" class="input" value="Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant">
+<span class="lab">SUBTITLE</span><input id="set_sub" class="input" value="Buy &amp; Sell • CPM &amp; Free Fire Accounts • Trusted &amp; Instant">
 <span class="lab">WHATSAPP NUMBER</span><input id="set_waNum" class="input" value="2348102684934">
 <span class="lab">TELEGRAM USERNAME</span><input id="set_tgUser" class="input" value="merlin162010">
 <span class="lab">WA CHANNEL LINK</span><input id="set_waChan" class="input" value="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e">
@@ -81,28 +80,63 @@
 </div>
 <div class="section"><div class="sec-title">📦 PACKAGES - NOW WITH STOCK</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px"><button onclick="addNew('cpm')" style="background:#102814;color:#9eff00;border:1px solid #9eff00;padding:12px;border-radius:10px;font-weight:800">+ ADD CPM</button><button onclick="addNew('ff')" style="background:#1a1230;color:#a78bfa;border:1px solid #8b5cf6;padding:12px;border-radius:10px;font-weight:800">+ ADD FF</button></div>
-<div id="adminList"></div>
+<div id="adminList"><div class="section"><img class="preview" id="prev_0" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#1 CPM</b><button onclick="delProd(0)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
+  <span class="lab">TYPE</span><select class="input" id="t_0"><option value="cpm" selected="">CPM</option><option value="ff">FREE FIRE</option></select>
+  <span class="lab">TITLE</span><input class="input" id="ti_0" value="CPM Car Parking - Lv35 Account">
+  <span class="lab">META</span><input class="input" id="me_0" value="Level 35 • 50k Coins • VIP Pass">
+  <span class="lab">PRICE</span><input class="input" type="number" id="pr_0" value="4500">
+  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_0" value="5">
+  <span class="lab">IMAGE URL</span><input class="input" id="im_0" value="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600" oninput="document.getElementById('prev_0').src=this.value">
+  <span class="lab">BADGE</span><input class="input" id="ba_0" value="CPM"></div><div class="section"><img class="preview" id="prev_1" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#2 CPM</b><button onclick="delProd(1)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
+  <span class="lab">TYPE</span><select class="input" id="t_1"><option value="cpm" selected="">CPM</option><option value="ff">FREE FIRE</option></select>
+  <span class="lab">TITLE</span><input class="input" id="ti_1" value="CPM King Level 80 Full Garage">
+  <span class="lab">META</span><input class="input" id="me_1" value="Level 80 • 20M Money • KING">
+  <span class="lab">PRICE</span><input class="input" type="number" id="pr_1" value="12000">
+  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_1" value="3">
+  <span class="lab">IMAGE URL</span><input class="input" id="im_1" value="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" oninput="document.getElementById('prev_1').src=this.value">
+  <span class="lab">BADGE</span><input class="input" id="ba_1" value="CPM"></div><div class="section"><img class="preview" id="prev_2" src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#3 CPM</b><button onclick="delProd(2)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
+  <span class="lab">TYPE</span><select class="input" id="t_2"><option value="cpm" selected="">CPM</option><option value="ff">FREE FIRE</option></select>
+  <span class="lab">TITLE</span><input class="input" id="ti_2" value="CPM Starter Level 30+ Clean">
+  <span class="lab">META</span><input class="input" id="me_2" value="Level 30 • 5M Money • Clean">
+  <span class="lab">PRICE</span><input class="input" type="number" id="pr_2" value="5000">
+  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_2" value="5">
+  <span class="lab">IMAGE URL</span><input class="input" id="im_2" value="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600" oninput="document.getElementById('prev_2').src=this.value">
+  <span class="lab">BADGE</span><input class="input" id="ba_2" value="CPM"></div><div class="section"><img class="preview" id="prev_3" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#4 FF</b><button onclick="delProd(3)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
+  <span class="lab">TYPE</span><select class="input" id="t_3"><option value="cpm">CPM</option><option value="ff" selected="">FREE FIRE</option></select>
+  <span class="lab">TITLE</span><input class="input" id="ti_3" value="Free Fire - Elite Bundle Account">
+  <span class="lab">META</span><input class="input" id="me_3" value="Level 62 • 12 Skins • Diamond 500">
+  <span class="lab">PRICE</span><input class="input" type="number" id="pr_3" value="8000">
+  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_3" value="1">
+  <span class="lab">IMAGE URL</span><input class="input" id="im_3" value="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600" oninput="document.getElementById('prev_3').src=this.value">
+  <span class="lab">BADGE</span><input class="input" id="ba_3" value="FREE"></div><div class="section"><img class="preview" id="prev_4" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#5 FF</b><button onclick="delProd(4)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
+  <span class="lab">TYPE</span><select class="input" id="t_4"><option value="cpm">CPM</option><option value="ff" selected="">FREE FIRE</option></select>
+  <span class="lab">TITLE</span><input class="input" id="ti_4" value="FF Heroic Cobra Rage Lv68">
+  <span class="lab">META</span><input class="input" id="me_4" value="Level 68 • 3 Evo • Heroic">
+  <span class="lab">PRICE</span><input class="input" type="number" id="pr_4" value="15000">
+  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_4" value="1">
+  <span class="lab">IMAGE URL</span><input class="input" id="im_4" value="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600" oninput="document.getElementById('prev_4').src=this.value">
+  <span class="lab">BADGE</span><input class="input" id="ba_4" value="FREE"></div><div class="section"><img class="preview" id="prev_5" src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#6 FF</b><button onclick="delProd(5)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
+  <span class="lab">TYPE</span><select class="input" id="t_5"><option value="cpm">CPM</option><option value="ff" selected="">FREE FIRE</option></select>
+  <span class="lab">TITLE</span><input class="input" id="ti_5" value="FF Grandmaster Beast Lv78">
+  <span class="lab">META</span><input class="input" id="me_5" value="Level 78 • 5 Evo Max • Rare">
+  <span class="lab">PRICE</span><input class="input" type="number" id="pr_5" value="35000">
+  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_5" value="2">
+  <span class="lab">IMAGE URL</span><input class="input" id="im_5" value="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600" oninput="document.getElementById('prev_5').src=this.value">
+  <span class="lab">BADGE</span><input class="input" id="ba_5" value="FREE"></div></div>
 </div>
 <div class="section"><div class="sec-title">💾 GENERATE CODE</div>
 <button onclick="saveAll()" style="width:100%;background:#222;color:#fff;padding:14px;border-radius:12px;border:1px solid #444;font-weight:800">1. SAVE PREVIEW</button>
 <button onclick="genCode()" style="width:100%;background:#9eff00;color:#000;padding:16px;border-radius:12px;border:0;font-weight:900;margin-top:10px">2. GENERATE SOURCE CODE</button>
-<textarea id="codeOut" style="display:none;width:100%;height:260px;background:#000;color:#0f0;font-size:10px;margin-top:10px;padding:10px;border-radius:10px"></textarea>
-<button id="copyBtn" onclick="copyCode()" style="display:none;width:100%;background:#25D366;color:#fff;padding:14px;border-radius:12px;border:0;font-weight:900;margin-top:8px">📋 COPY CODE</button>
+<textarea id="codeOut" style="display: block; width: 100%; height: 260px; background: rgb(0, 0, 0); color: rgb(0, 255, 0); font-size: 10px; margin-top: 10px; padding: 10px; border-radius: 10px;"></textarea>
+<button id="copyBtn" onclick="copyCode()" style="display: block; width: 100%; background: rgb(37, 211, 102); color: rgb(255, 255, 255); padding: 14px; border-radius: 12px; border: 0px; font-weight: 900; margin-top: 8px;">📋 COPY CODE</button>
 </div>
 </div>
 </div>
 
 <script>
 localStorage.removeItem('merlin_final');localStorage.removeItem('merlin_final_v2');localStorage.removeItem('merlin_full_v3');localStorage.removeItem('merlin_final_v3');localStorage.removeItem('merlin_products');
-let SITE_CONFIG={logo:"MERLIN",heroTitle:"MERLIN<br><span>MARKET</span>",sub:"Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant",waNum:"2348102684934",tgUser:"merlin162010",waChan:"https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e",tgChan:"https://t.me/merlinroom"};
-let DEFAULT_PRODS=[
-{t:"cpm",title:"CPM Car Parking - Lv35 Account",meta:"Level 35 • 50k Coins • VIP Pass",price:4500,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:"CPM",stock:5},
-{t:"cpm",title:"CPM King Level 80 Full Garage",meta:"Level 80 • 20M Money • KING",price:12000,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600",badge:"CPM",stock:3},
-{t:"cpm",title:"CPM Starter Level 30+ Clean",meta:"Level 30 • 5M Money • Clean",price:5000,img:"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600",badge:"CPM",stock:5},
-{t:"ff",title:"Free Fire - Elite Bundle Account",meta:"Level 62 • 12 Skins • Diamond 500",price:8000,img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600",badge:"FREE",stock:1},
-{t:"ff",title:"FF Heroic Cobra Rage Lv68",meta:"Level 68 • 3 Evo • Heroic",price:15000,img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600",badge:"FREE",stock:1},
-{t:"ff",title:"FF Grandmaster Beast Lv78",meta:"Level 78 • 5 Evo Max • Rare",price:35000,img:"https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600",badge:"FREE",stock:2}
-];
+let SITE_CONFIG={"logo":"神MERLIN¿?모","heroTitle":"MERLIN<br><span>MARKET</span>","sub":"Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant","waNum":"2348102684934","tgUser":"merlin162010","waChan":"https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e","tgChan":"https://t.me/merlinroom"};
+let DEFAULT_PRODS=[{"t":"cpm","title":"CPM Car Parking - Lv35 Account","meta":"Level 35 • 50k Coins • VIP Pass","price":4500,"stock":5,"img":"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600","badge":"CPM"},{"t":"cpm","title":"CPM King Level 80 Full Garage","meta":"Level 80 • 20M Money • KING","price":12000,"stock":3,"img":"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600","badge":"CPM"},{"t":"cpm","title":"CPM Starter Level 30+ Clean","meta":"Level 30 • 5M Money • Clean","price":5000,"stock":5,"img":"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600","badge":"CPM"},{"t":"ff","title":"Free Fire - Elite Bundle Account","meta":"Level 62 • 12 Skins • Diamond 500","price":8000,"stock":1,"img":"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600","badge":"FREE"},{"t":"ff","title":"FF Heroic Cobra Rage Lv68","meta":"Level 68 • 3 Evo • Heroic","price":15000,"stock":1,"img":"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600","badge":"FREE"},{"t":"ff","title":"FF Grandmaster Beast Lv78","meta":"Level 78 • 5 Evo Max • Rare","price":35000,"stock":2,"img":"https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600","badge":"FREE"}];
 let PRODUCTS=DEFAULT_PRODS;
 let current="cpm";
 function applyConfig(){
@@ -170,5 +204,6 @@ if(location.hash==="#merlinadmin") document.getElementById('adminPanel').style.d
 window.addEventListener('hashchange',()=>{if(location.hash==="#merlinadmin") document.getElementById('adminPanel').style.display='block';});
 applyConfig();render();
 </script>
-</body>
-</html>
+
+
+</body></html>
