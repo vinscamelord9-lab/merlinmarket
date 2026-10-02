@@ -2,116 +2,108 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MERLIN MARKET</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Inter:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Inter}
-.wrap{max-width:430px;margin:0 auto;background:#0a0a0f;min-height:100vh;position:relative;padding-bottom:90px}
-.head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px}
-.logo{font-family:Orbitron;font-weight:900;font-size:30px;color:#9eff00;letter-spacing:1px;transform:skew(-5deg);text-shadow:0 0 15px #9eff00}
-.icons{display:flex;gap:14px;font-size:18px;opacity:0.4}
+.wrap{max-width:430px;margin:0 auto;background:#0a0a0f;min-height:100vh;position:relative}
+.head{padding:16px 18px;display:flex;justify-content:space-between}
+.logo{font-family:Orbitron;font-weight:900;font-size:30px;color:#9eff00;transform:skew(-5deg);text-shadow:0 0 15px #9eff00}
 .channels{margin:0 12px;background:#11111a;border:1px solid #1e1e2a;border-radius:18px;padding:10px;display:flex;gap:8px}
-.ch{flex:1;padding:13px;border-radius:12px;font-size:11px;font-weight:800;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
-.ch.wa{background:#0e2a14;border:1px solid #2aff6a44;color:#fff}
-.ch.tg{background:#14204a;border:1px solid #5c7aff44;color:#fff}
-.hero{padding:30px 18px 12px}
-.hero h1{font-family:Orbitron;font-weight:900;font-size:44px;line-height:0.9}
-.hero h1 span{color:#9eff00}
-.hero p{font-size:11px;opacity:0.55;margin-top:10px}
-.tabs{display:flex;gap:10px;margin-top:22px}
-.tab{flex:1;padding:14px;border-radius:14px;background:#15151f;border:1px solid #242430;font-weight:800;font-size:12px;text-align:center;cursor:pointer}
-.tab.active{background:#102814;color:#9eff00;border-color:#9eff00;box-shadow:0 0 18px #9eff0025}
+.ch{flex:1;padding:13px;border-radius:12px;font-size:11px;font-weight:800;text-decoration:none;text-align:center}
+.ch.wa{background:#0e2a14;border:1px solid #2aff6a44;color:#fff}.ch.tg{background:#14204a;border:1px solid #5c7aff44;color:#fff}
+.hero{padding:30px 18px 12px}.hero h1{font-family:Orbitron;font-weight:900;font-size:44px;line-height:0.9}.hero h1 span{color:#9eff00}.hero p{font-size:11px;opacity:0.55;margin-top:10px}
+.tabs{display:flex;gap:10px;margin-top:22px}.tab{flex:1;padding:14px;border-radius:14px;background:#15151f;border:1px solid #242430;font-weight:800;font-size:12px;text-align:center;cursor:pointer}
+.tab.active{background:#102814;color:#9eff00;border-color:#9eff00}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
-.card{background:#111119;border:1px solid #1f1f2a;border-radius:18px;overflow:hidden}
-.card.cpm{border-color:#9eff0025}
-.card.ff{border-color:#8b5cf625}
-.imgbox{height:130px;position:relative;background:#000}
-.imgbox img{width:100%;height:100%;object-fit:cover}
+.card{background:#111119;border:1px solid #1f1f2a;border-radius:18px;overflow:hidden}.imgbox{height:130px;position:relative;background:#000}.imgbox img{width:100%;height:100%;object-fit:cover}
 .tag{position:absolute;top:8px;left:8px;background:#000;padding:4px 8px;border-radius:6px;font-size:9px;font-weight:800;border:1px solid #333}
-.tag.cpm{color:#9eff00;border-color:#9eff0040}
-.tag.ff{color:#a78bfa;border-color:#8b5cf640}
-.body{padding:10px}
-.tit{font-size:11px;font-weight:800;line-height:1.3;height:30px;overflow:hidden}
-.meta{font-size:8px;opacity:0.4;margin:5px 0}
-.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-.price{color:#9eff00;font-family:Orbitron;font-size:14px;font-weight:800}
-.buy{background:#9eff00;color:#000;border:0;padding:8px 12px;border-radius:8px;font-weight:900;font-size:10px;cursor:pointer}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0a0a0f;border-top:1px solid #1e1e2a;display:flex;justify-content:space-around;padding:14px 0}
-.b{opacity:0.25;font-size:20px}.b.on{opacity:1}
+.tag.cpm{color:#9eff00;border-color:#9eff0040}.tag.ff{color:#a78bfa;border-color:#8b5cf640}
+.body{padding:10px}.tit{font-size:11px;font-weight:800;height:30px;overflow:hidden}.meta{font-size:8px;opacity:0.4;margin:5px 0}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}.price{color:#9eff00;font-family:Orbitron;font-size:14px;font-weight:800}.buy{background:#9eff00;color:#000;border:0;padding:8px 12px;border-radius:8px;font-weight:900;font-size:10px;cursor:pointer}
 #modal{position:fixed;inset:0;background:#000000dd;display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
-.mbox{background:#181824;border:1px solid #2a2a3a;border-radius:20px;padding:20px;width:100%;max-width:330px;text-align:center}
-.mbtn{width:100%;padding:14px;border-radius:12px;border:0;font-weight:800;margin-top:10px;display:block;text-decoration:none}
+.mbox{background:#181824;border:1px solid #2a2a3a;border-radius:20px;padding:20px;width:100%;max-width:330px;text-align:center}.mbtn{width:100%;padding:14px;border-radius:12px;border:0;font-weight:800;margin-top:10px;display:block;text-decoration:none}
+#adminPanel{display:none;position:fixed;inset:0;background:#06060a;z-index:99999;overflow-y:auto;padding:0}
+.admin-head{position:sticky;top:0;background:#0a0a0f;border-bottom:1px solid #1e1e2a;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.input{width:100%;background:#12121a;border:1px solid #2a2a3a;padding:13px;border-radius:12px;color:#fff;margin-bottom:10px;font-size:13px;outline:none}
+.input:focus{border-color:#9eff00}
+.adcard{background:#11111a;border:1px solid #1e1e2a;border-radius:18px;padding:14px;margin-bottom:14px}
+.preview{width:100%;height:140px;border-radius:12px;object-fit:cover;margin-bottom:10px;border:1px solid #222}
+.label{font-size:10px;opacity:0.5;margin:8px 0 4px;display:block;letter-spacing:1px}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="head"><div class="logo">MERLIN</div><div class="icons"><span onclick="alert('Search coming soon')">🔍</span><span onclick="alert('No notification')">🔔</span><span onclick="location.hash='#merlinadmin'">👤</span></div></div>
+<div class="head"><div class="logo">MERLIN</div><div style="opacity:0.15">●</div></div>
 <div class="channels">
-<a class="ch wa" href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">💬 WhatsApp Channel</a>
-<a class="ch tg" href="https://t.me/merlinroom" target="_blank">✈️ Telegram Channel</a>
+<a class="ch wa" href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">WhatsApp Channel</a>
+<a class="ch tg" href="https://t.me/merlinroom" target="_blank">Telegram Channel</a>
 </div>
-<div class="hero">
-<h1>MERLIN<br><span>MARKET</span></h1>
-<p>Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant</p>
-<div class="tabs">
-<div class="tab active" id="cpmTab" onclick="switchTab('cpm')">CPM ACCOUNTS 🚗</div>
-<div class="tab" id="ffTab" onclick="switchTab('ff')">FREE FIRE 🔥</div>
-</div>
-</div>
+<div class="hero"><h1>MERLIN<br><span>MARKET</span></h1><p>Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant</p><div class="tabs"><div class="tab active" id="cpmTab" onclick="switchTab('cpm')">CPM ACCOUNTS 🚗</div><div class="tab" id="ffTab" onclick="switchTab('ff')">FREE FIRE 🔥</div></div></div>
 <div class="grid" id="grid"></div>
-<div class="bottom"><div class="b on" onclick="switchTab('cpm')">🏠</div><div class="b" onclick="switchTab('ff')">🗂️</div><div class="b" onclick="location.hash='#merlinadmin'">👤</div></div>
 </div>
 
-<div id="modal" onclick="if(event.target.id==='modal')closeM()">
-<div class="mbox">
-<h3 id="mTitle" style="font-size:13px"></h3>
-<div id="mPrice" class="price" style="font-size:22px;margin:10px 0"></div>
-<a id="waLink" class="mbtn" style="background:#25D366;color:#fff" target="_blank">💬 Buy via WhatsApp</a>
-<a id="tgLink" class="mbtn" style="background:#229ED9;color:#fff" target="_blank">✈️ Buy via Telegram</a>
-<button class="mbtn" style="background:#222;color:#fff" onclick="closeM()">Cancel</button>
+<div id="modal" onclick="if(event.target.id==='modal')closeM()"><div class="mbox"><h3 id="mTitle" style="font-size:13px"></h3><div id="mPrice" class="price" style="font-size:22px;margin:10px 0"></div><a id="waLink" class="mbtn" style="background:#25D366;color:#fff" target="_blank">💬 Buy via WhatsApp</a><a id="tgLink" class="mbtn" style="background:#229ED9;color:#fff" target="_blank">✈️ Buy via Telegram</a><button class="mbtn" style="background:#222;color:#fff" onclick="closeM()">Cancel</button></div></div>
+
+<div id="adminPanel">
+<div id="loginBox" style="max-width:380px;margin:60px auto;background:#11111a;border:1px solid #222;padding:26px;border-radius:24px;text-align:center">
+<div style="font-family:Orbitron;font-size:24px;color:#9eff00;margin-bottom:8px">MERLIN ADMIN</div><p style="font-size:11px;opacity:0.5;margin-bottom:16px">Secret panel - only you</p>
+<input id="admU" class="input" placeholder="Username (Merlin)"><input id="admP" class="input" type="password" placeholder="Password (merlin1)">
+<button onclick="doLogin()" style="width:100%;background:#9eff00;color:#000;padding:15px;border-radius:12px;border:0;font-weight:900;margin-top:8px">LOGIN</button>
+<p id="err" style="color:#ff3b3b;display:none;margin-top:10px;font-size:12px">Wrong details</p>
+</div>
+<div id="adminContent" style="display:none">
+<div class="admin-head"><div><div style="font-family:Orbitron;font-weight:800">ADMIN PANEL</div><div style="font-size:10px;opacity:0.5">Easy manager</div></div><button onclick="closeAdmin()" style="background:#1a1a22;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:10px">✕ Close</button></div>
+<div style="max-width:600px;margin:0 auto;padding:16px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button onclick="addNew('cpm')" style="background:#102814;color:#9eff00;border:1px solid #9eff00;padding:14px;border-radius:12px;font-weight:900">+ ADD CPM</button><button onclick="addNew('ff')" style="background:#1a1230;color:#a78bfa;border:1px solid #8b5cf6;padding:14px;border-radius:12px;font-weight:900">+ ADD FREE FIRE</button></div>
+<div id="adminList" style="margin-top:16px"></div>
+<button onclick="saveAll()" style="width:100%;background:#9eff00;color:#000;padding:16px;border-radius:14px;border:0;font-weight:900;margin-top:16px;font-size:15px">💾 SAVE ALL CHANGES</button>
+<div style="margin-top:14px;background:#11111a;border-radius:14px;padding:12px"><div style="font-size:11px;opacity:0.6;margin-bottom:8px">FOR GITHUB PERMANENT SAVE (optional):</div><button onclick="genCode()" style="width:100%;background:#8b5cf6;color:#fff;padding:12px;border-radius:10px;border:0;font-weight:800">Generate Code for GitHub</button><textarea id="codeOut" style="display:none;width:100%;height:180px;background:#000;color:#0f0;font-size:10px;margin-top:10px;border-radius:10px;padding:10px"></textarea></div>
+</div>
 </div>
 </div>
 
 <script>
-var PRODUCTS=[
-{t:"cpm",title:"CPM Car Parking - Lv35 Account",meta:"Level 35 • 50k Coins • VIP Pass",price:4500,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600"},
-{t:"cpm",title:"CPM King Level 80 Full Garage",meta:"Level 80 • 20M Money • KING",price:12000,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600"},
-{t:"ff",title:"Free Fire - Elite Bundle Account",meta:"Level 62 • 12 Skins • Diamond 500",price:8000,img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600"},
-{t:"ff",title:"FF Heroic Cobra Rage Lv68",meta:"Level 68 • 3 Evo • Heroic",price:15000,img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"},
-{t:"cpm",title:"CPM Starter Level 30+ Clean",meta:"Level 30 • 5M Money • Clean",price:5000,img:"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600"},
-{t:"ff",title:"FF Grandmaster Beast Lv78",meta:"Level 78 • 5 Evo Max • Rare",price:35000,img:"https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600"}
+let DEFAULT_PRODS=[
+{t:"cpm",title:"CPM Car Parking - Lv35 Account",meta:"Level 35 • 50k Coins • VIP Pass",price:4500,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:"CPM"},
+{t:"ff",title:"Free Fire - Elite Bundle Account",meta:"Level 62 • 12 Skins • Diamond 500",price:8000,img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600",badge:"FREE"},
+{t:"cpm",title:"CPM King Level 80 Full Garage",meta:"Level 80 • 20M Money • KING",price:12000,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600",badge:"CPM"},
+{t:"ff",title:"FF Heroic Cobra Rage Lv68",meta:"Level 68 • 3 Evo • Heroic",price:15000,img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600",badge:"FREE"}
 ];
-var current="cpm";
-var WA="2348102684934"; var TG="merlin162010";
-function switchTab(cat){
- current=cat;
- document.getElementById('cpmTab').className = cat==='cpm'? 'tab active' : 'tab';
- document.getElementById('ffTab').className = cat==='ff'? 'tab active' : 'tab';
- render();
-}
-function render(){
- var list=PRODUCTS.filter(p=>p.t===current);
- var html="";
- for(var i=0;i<list.length;i++){
-  var p=list[i];
-  html+=`<div class="card ${p.t}"><div class="imgbox"><img src="${p.img}"><div class="tag ${p.t}">${p.t==='cpm'?'CPM':'FREE'}</div></div><div class="body"><div class="tit">${p.title}</div><div class="meta">${p.meta}</div><div class="row"><div class="price">₦${p.price.toLocaleString()}</div><button class="buy" onclick="openBuy(${i},'${p.t}')">BUY NOW</button></div></div></div>`;
- }
- document.getElementById('grid').innerHTML=html;
-}
-function openBuy(i,type){
- var list=PRODUCTS.filter(p=>p.t===type);
- var p=list[i];
- document.getElementById('mTitle').innerText=p.title;
- document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();
- var msg=encodeURIComponent("Hello Merlin, I want to buy:\n"+p.title+"\nPrice: ₦"+p.price+"\n"+p.meta+"\n"+p.img);
- document.getElementById('waLink').href="https://wa.me/"+WA+"?text="+msg;
- document.getElementById('tgLink').href="https://t.me/"+TG+"?text="+msg;
- document.getElementById('modal').style.display='flex';
-}
+let PRODUCTS=JSON.parse(localStorage.getItem('merlin_final_v2')||'null')||DEFAULT_PRODS;
+let current="cpm"; const WA="2348102684934"; const TG="merlin162010";
+function switchTab(c){current=c;document.getElementById('cpmTab').className=c==='cpm'?'tab active':'tab';document.getElementById('ffTab').className=c==='ff'?'tab active':'tab';render();}
+function render(){let list=PRODUCTS.filter(p=>p.t===current);if(list.length===0) list=PRODUCTS;document.getElementById('grid').innerHTML=list.map(p=>`<div class="card"><div class="imgbox"><img src="${p.img}"><div class="tag ${p.t}">${p.badge}</div></div><div class="body"><div class="tit">${p.title}</div><div class="meta">${p.meta}</div><div class="row"><div class="price">₦${p.price.toLocaleString()}</div><button class="buy" onclick="openBuy('${p.title.replace(/'/g,"")}')">BUY NOW</button></div></div></div>`).join('');}
+function openBuy(title){let p=PRODUCTS.find(x=>x.title===title);document.getElementById('mTitle').innerText=p.title;document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();let msg=encodeURIComponent("Hello Merlin, I want to buy:\n"+p.title+"\nPrice: ₦"+p.price+"\n"+p.meta+"\n"+p.img);document.getElementById('waLink').href="https://wa.me/"+WA+"?text="+msg;document.getElementById('tgLink').href="https://t.me/"+TG+"?text="+msg;document.getElementById('modal').style.display='flex';}
 function closeM(){document.getElementById('modal').style.display='none';}
+function openAdmin(){document.getElementById('adminPanel').style.display='block';}
+function closeAdmin(){document.getElementById('adminPanel').style.display='none';history.replaceState(null,'',location.pathname);}
+function doLogin(){if(document.getElementById('admU').value==="Merlin" && document.getElementById('admP').value==="merlin1"){document.getElementById('loginBox').style.display='none';document.getElementById('adminContent').style.display='block';loadAdmin();}else document.getElementById('err').style.display='block';}
+function loadAdmin(){
+ let h="";PRODUCTS.forEach((p,i)=>{
+  h+=`<div class="adcard">
+  <img class="preview" id="prev_${i}" src="${p.img}" onerror="this.src='https://via.placeholder.com/400'">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-weight:800;font-size:12px">#${i+1} ${p.t.toUpperCase()}</span><button onclick="delProd(${i})" style="background:#ff1a1a;color:#fff;border:0;padding:7px 14px;border-radius:10px;font-weight:800">🗑 Delete</button></div>
+  <span class="label">GAME TYPE</span><select class="input" id="t_${i}" onchange="updatePrev(${i})"><option value="cpm" ${p.t==='cpm'?'selected':''}>🏎️ CPM</option><option value="ff" ${p.t==='ff'?'selected':''}>🔥 FREE FIRE</option></select>
+  <span class="label">ACCOUNT TITLE</span><input class="input" id="ti_${i}" value="${p.title}" placeholder="e.g. CPM King Level 80">
+  <span class="label">LEVEL • COINS • RANK</span><input class="input" id="me_${i}" value="${p.meta}" placeholder="Level 80 • 20M Money • KING">
+  <span class="label">PRICE IN NAIRA</span><input class="input" type="number" id="pr_${i}" value="${p.price}">
+  <span class="label">IMAGE LINK</span><input class="input" id="im_${i}" value="${p.img}" oninput="document.getElementById('prev_${i}').src=this.value">
+  <span class="label">BADGE TEXT</span><input class="input" id="ba_${i}" value="${p.badge}">
+  </div>`;
+ });
+ document.getElementById('adminList').innerHTML=h;
+}
+window.updatePrev=function(i){let url=document.getElementById('im_'+i).value;document.getElementById('prev_'+i).src=url;};
+window.addNew=function(type){PRODUCTS.unshift({t:type,title:type==='cpm'?"New CPM Account - Edit Me":"New Free Fire Account - Edit Me",meta:type==='cpm'?"Level 30 • 5M Money • Clean":"Level 60 • 10 Skins • Heroic",price:type==='cpm'?5000:8000,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:type==='cpm'?"CPM":"FREE"});localStorage.setItem('merlin_final_v2',JSON.stringify(PRODUCTS));loadAdmin();render();window.scrollTo(0,0);};
+window.delProd=function(i){if(confirm("Delete this account forever?")){PRODUCTS.splice(i,1);localStorage.setItem('merlin_final_v2',JSON.stringify(PRODUCTS));loadAdmin();render();}};
+window.saveAll=function(){let arr=[];for(let i=0;i<PRODUCTS.length;i++){let el=document.getElementById('t_'+i);if(!el) continue;arr.push({t:el.value,title:document.getElementById('ti_'+i).value,meta:document.getElementById('me_'+i).value,price:parseInt(document.getElementById('pr_'+i).value)||0,img:document.getElementById('im_'+i).value,badge:document.getElementById('ba_'+i).value});}PRODUCTS=arr;localStorage.setItem('merlin_final_v2',JSON.stringify(PRODUCTS));render();alert("✅ Saved! Your shopper site updated now");};
+window.genCode=function(){saveAll();let full=document.documentElement.outerHTML;full=full.replace(/let DEFAULT_PRODS=\[.*?\];/s,`let DEFAULT_PRODS=${JSON.stringify(PRODUCTS)};`);document.getElementById('codeOut').style.display='block';document.getElementById('codeOut').value="<!DOCTYPE html>\n"+full;};
+
+if(location.hash==="#merlinadmin") openAdmin();
+window.addEventListener('hashchange',()=>{if(location.hash==="#merlinadmin") openAdmin();});
 render();
-localStorage.clear();
 </script>
 </body>
 </html>
