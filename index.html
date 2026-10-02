@@ -2,105 +2,116 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MERLIN MARKET - CPM & Free Fire</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MERLIN MARKET</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Inter:wght@700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter;background:#0a0a0f;color:#fff}
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;background:#0a0a0f;border-bottom:1px solid #1a1a24;position:sticky;top:0;z-index:20}
-.logo{font-family:Orbitron;font-size:20px}.logo span{color:#00ff88}
-.channel-bar{background:linear-gradient(90deg,#00ff88,#8b5cf6);color:#000;padding:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;font-weight:800;font-size:12px}
-.channel-bar a{background:#000;color:#fff;padding:6px 12px;border-radius:20px;text-decoration:none}
-.hero{padding:30px 20px;text-align:center}
-.hero h1{font-family:Orbitron;font-size:36px} .hero h1 span{color:#00ff88}
-.tabs{display:flex;justify-content:center;gap:10px;margin-top:16px}
-.tab{padding:10px 22px;border-radius:30px;border:1px solid #333;background:#15151f;cursor:pointer;font-weight:800}
-.tab.active{background:#00ff88;color:#000} .tab.ff.active{background:#8b5cf6;color:#fff}
-.grid{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.card{background:#16161f;border:1px solid #222;border-radius:18px;overflow:hidden}
-.card-img{height:180px;position:relative} .card-img img{width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;top:10px;left:10px;background:#00ff88;color:#000;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}
-.card-body{padding:14px} .price{color:#00ff88;font-family:Orbitron;font-size:20px;margin:8px 0}
-.btn-buy{width:100%;background:#00ff88;color:#000;border:0;padding:12px;border-radius:12px;font-weight:800;cursor:pointer}
-#buyModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;align-items:center;justify-content:center;padding:20px}
-.modal{background:#15151f;border:1px solid #333;padding:20px;border-radius:20px;max-width:360px;width:100%;text-align:center}
-.mbtn{width:100%;padding:14px;border-radius:12px;border:0;font-weight:800;margin-top:10px;display:block;text-decoration:none;cursor:pointer}
-.wa{background:#25D366;color:#fff} .tg{background:#229ED9;color:#fff}
-#adminPanel{display:none;position:fixed;inset:0;background:#050508;z-index:9999;overflow-y:auto;padding:16px}
-.input{width:100%;background:#0f0f15;border:1px solid #333;padding:10px;border-radius:10px;color:#fff;margin-bottom:6px}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Inter}
+.wrap{max-width:430px;margin:0 auto;background:#0a0a0f;min-height:100vh;position:relative;padding-bottom:90px}
+.head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px}
+.logo{font-family:Orbitron;font-weight:900;font-size:30px;color:#9eff00;letter-spacing:1px;transform:skew(-5deg);text-shadow:0 0 15px #9eff00}
+.icons{display:flex;gap:14px;font-size:18px;opacity:0.4}
+.channels{margin:0 12px;background:#11111a;border:1px solid #1e1e2a;border-radius:18px;padding:10px;display:flex;gap:8px}
+.ch{flex:1;padding:13px;border-radius:12px;font-size:11px;font-weight:800;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.ch.wa{background:#0e2a14;border:1px solid #2aff6a44;color:#fff}
+.ch.tg{background:#14204a;border:1px solid #5c7aff44;color:#fff}
+.hero{padding:30px 18px 12px}
+.hero h1{font-family:Orbitron;font-weight:900;font-size:44px;line-height:0.9}
+.hero h1 span{color:#9eff00}
+.hero p{font-size:11px;opacity:0.55;margin-top:10px}
+.tabs{display:flex;gap:10px;margin-top:22px}
+.tab{flex:1;padding:14px;border-radius:14px;background:#15151f;border:1px solid #242430;font-weight:800;font-size:12px;text-align:center;cursor:pointer}
+.tab.active{background:#102814;color:#9eff00;border-color:#9eff00;box-shadow:0 0 18px #9eff0025}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
+.card{background:#111119;border:1px solid #1f1f2a;border-radius:18px;overflow:hidden}
+.card.cpm{border-color:#9eff0025}
+.card.ff{border-color:#8b5cf625}
+.imgbox{height:130px;position:relative;background:#000}
+.imgbox img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:8px;left:8px;background:#000;padding:4px 8px;border-radius:6px;font-size:9px;font-weight:800;border:1px solid #333}
+.tag.cpm{color:#9eff00;border-color:#9eff0040}
+.tag.ff{color:#a78bfa;border-color:#8b5cf640}
+.body{padding:10px}
+.tit{font-size:11px;font-weight:800;line-height:1.3;height:30px;overflow:hidden}
+.meta{font-size:8px;opacity:0.4;margin:5px 0}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.price{color:#9eff00;font-family:Orbitron;font-size:14px;font-weight:800}
+.buy{background:#9eff00;color:#000;border:0;padding:8px 12px;border-radius:8px;font-weight:900;font-size:10px;cursor:pointer}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0a0a0f;border-top:1px solid #1e1e2a;display:flex;justify-content:space-around;padding:14px 0}
+.b{opacity:0.25;font-size:20px}.b.on{opacity:1}
+#modal{position:fixed;inset:0;background:#000000dd;display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.mbox{background:#181824;border:1px solid #2a2a3a;border-radius:20px;padding:20px;width:100%;max-width:330px;text-align:center}
+.mbtn{width:100%;padding:14px;border-radius:12px;border:0;font-weight:800;margin-top:10px;display:block;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="logo">神 <span>MERLIN</span> 모</div><div style="opacity:0.5;font-size:11px">Shop</div></div>
-<div class="channel-bar">
-<span>📢 FOLLOW:</span>
-<a href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">WhatsApp Channel</a>
-<a href="https://t.me/merlinroom" target="_blank">Telegram Channel</a>
+<div class="wrap">
+<div class="head"><div class="logo">MERLIN</div><div class="icons"><span onclick="alert('Search coming soon')">🔍</span><span onclick="alert('No notification')">🔔</span><span onclick="location.hash='#merlinadmin'">👤</span></div></div>
+<div class="channels">
+<a class="ch wa" href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">💬 WhatsApp Channel</a>
+<a class="ch tg" href="https://t.me/merlinroom" target="_blank">✈️ Telegram Channel</a>
 </div>
 <div class="hero">
-<h1>MERLIN <span>MARKET</span></h1>
-<p>Trusted CPM & Free Fire Accounts Seller - Instant Delivery</p>
+<h1>MERLIN<br><span>MARKET</span></h1>
+<p>Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant</p>
 <div class="tabs">
-<div class="tab active" id="tab-cpm" onclick="setType('cpm')">🏎️ CPM ACCOUNTS</div>
-<div class="tab" id="tab-ff" onclick="setType('ff')">🔥 FREE FIRE</div>
+<div class="tab active" id="cpmTab" onclick="switchTab('cpm')">CPM ACCOUNTS 🚗</div>
+<div class="tab" id="ffTab" onclick="switchTab('ff')">FREE FIRE 🔥</div>
 </div>
 </div>
 <div class="grid" id="grid"></div>
-
-<div id="buyModal" onclick="if(event.target==this)closeBuy()"><div class="modal">
-<h3 id="mTitle">Buy Account</h3><p id="mPrice" style="color:#00ff88;font-family:Orbitron;margin:10px 0"></p>
-<a id="waBtn" class="mbtn wa" target="_blank">💬 Buy via WhatsApp</a>
-<a id="tgBtn" class="mbtn tg" target="_blank">✈️ Buy via Telegram</a>
-<button class="mbtn" style="background:#222;color:#fff" onclick="closeBuy()">Cancel</button>
-</div></div>
-
-<div id="adminPanel">
-<div id="loginBox" style="max-width:360px;margin:60px auto;background:#15151f;padding:24px;border-radius:20px;text-align:center">
-<h3>ADMIN LOGIN</h3><input id="admU" class="input" placeholder="Merlin" style="margin-top:12px"><input id="admP" class="input" type="password" placeholder="merlin1"><button onclick="doLogin()" style="width:100%;background:#00ff88;color:#000;padding:12px;border-radius:10px;border:0;font-weight:800;margin-top:10px">LOGIN</button><p id="err" style="color:red;display:none">Wrong</p>
+<div class="bottom"><div class="b on" onclick="switchTab('cpm')">🏠</div><div class="b" onclick="switchTab('ff')">🗂️</div><div class="b" onclick="location.hash='#merlinadmin'">👤</div></div>
 </div>
-<div id="adminContent" style="display:none;max-width:750px;margin:0 auto">
-<div style="display:flex;justify-content:space-between"><h2>Edit Store</h2><button onclick="closeAdmin()" style="background:#ff3b3b;color:#fff;border:0;padding:8px 14px;border-radius:10px">Close</button></div>
-<button onclick="addNew()" style="width:100%;background:#00ff88;color:#000;padding:12px;border-radius:10px;border:0;font-weight:800;margin-top:12px">+ ADD NEW PACKAGE</button>
-<div id="adminList" style="margin-top:12px"></div>
-<div style="display:flex;gap:8px;margin-top:12px"><button onclick="saveAll()" style="flex:1;background:#00ff88;color:#000;padding:12px;border-radius:10px;border:0;font-weight:800">SAVE LOCALLY</button><button onclick="genCode()" style="flex:1;background:#8b5cf6;color:#fff;padding:12px;border-radius:10px;border:0;font-weight:800">GENERATE CODE</button></div>
-<div id="codeBox" style="display:none"><textarea id="codeOut" style="width:100%;height:200px;background:#000;color:#0f0;font-size:10px;margin-top:12px"></textarea></div>
+
+<div id="modal" onclick="if(event.target.id==='modal')closeM()">
+<div class="mbox">
+<h3 id="mTitle" style="font-size:13px"></h3>
+<div id="mPrice" class="price" style="font-size:22px;margin:10px 0"></div>
+<a id="waLink" class="mbtn" style="background:#25D366;color:#fff" target="_blank">💬 Buy via WhatsApp</a>
+<a id="tgLink" class="mbtn" style="background:#229ED9;color:#fff" target="_blank">✈️ Buy via Telegram</a>
+<button class="mbtn" style="background:#222;color:#fff" onclick="closeM()">Cancel</button>
 </div>
 </div>
 
 <script>
-const DEFAULT_PRODUCTS=[
-{id:1,type:"cpm",title:"CPM Starter Level 30+",price:5000,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:"LEVEL 30+",level:"30",rank:"Beginner",desc:"5M money, clean, no ban"},
-{id:2,type:"cpm",title:"CPM King Level 80",price:12000,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600",badge:"KING LEVEL 80",level:"80",rank:"KING",desc:"20M money, all cars unlocked"},
-{id:3,type:"ff",title:"FF Heroic Account Lv 68",price:15000,img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600",badge:"LVL 68 HEROIC",level:"68",rank:"Heroic",desc:"3 Evo guns, Cobra Rage"},
-{id:4,type:"ff",title:"FF Grandmaster Beast Lv 78",price:35000,img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600",badge:"LVL 78 GM",level:"78",rank:"Grandmaster",desc:"5 Evo Max, rare bundles"}
+var PRODUCTS=[
+{t:"cpm",title:"CPM Car Parking - Lv35 Account",meta:"Level 35 • 50k Coins • VIP Pass",price:4500,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600"},
+{t:"cpm",title:"CPM King Level 80 Full Garage",meta:"Level 80 • 20M Money • KING",price:12000,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600"},
+{t:"ff",title:"Free Fire - Elite Bundle Account",meta:"Level 62 • 12 Skins • Diamond 500",price:8000,img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600"},
+{t:"ff",title:"FF Heroic Cobra Rage Lv68",meta:"Level 68 • 3 Evo • Heroic",price:15000,img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"},
+{t:"cpm",title:"CPM Starter Level 30+ Clean",meta:"Level 30 • 5M Money • Clean",price:5000,img:"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600"},
+{t:"ff",title:"FF Grandmaster Beast Lv78",meta:"Level 78 • 5 Evo Max • Rare",price:35000,img:"https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600"}
 ];
-let products=JSON.parse(localStorage.getItem('merlin_products')||'null')||DEFAULT_PRODUCTS;
-let cur='cpm';
-const WA="2348102684934"; const TG="merlin162010";
-
+var current="cpm";
+var WA="2348102684934"; var TG="merlin162010";
+function switchTab(cat){
+ current=cat;
+ document.getElementById('cpmTab').className = cat==='cpm'? 'tab active' : 'tab';
+ document.getElementById('ffTab').className = cat==='ff'? 'tab active' : 'tab';
+ render();
+}
 function render(){
- let list=products.filter(p=>p.type===cur);
- if(list.length===0) list=products;
- document.getElementById('grid').innerHTML=list.map(p=>`<div class="card"><div class="card-img"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/400'"><div class="badge">${p.badge}</div></div><div class="card-body"><div style="font-weight:800">${p.title}</div><div style="font-size:11px;opacity:0.6;margin:4px 0">LVL ${p.level} • ${p.rank} • ${p.type.toUpperCase()}</div><div style="font-size:12px;opacity:0.7">${p.desc}</div><div class="price">₦${p.price.toLocaleString()}</div><button class="btn-buy" onclick="openBuy(${p.id})">BUY NOW</button></div></div>`).join('');
+ var list=PRODUCTS.filter(p=>p.t===current);
+ var html="";
+ for(var i=0;i<list.length;i++){
+  var p=list[i];
+  html+=`<div class="card ${p.t}"><div class="imgbox"><img src="${p.img}"><div class="tag ${p.t}">${p.t==='cpm'?'CPM':'FREE'}</div></div><div class="body"><div class="tit">${p.title}</div><div class="meta">${p.meta}</div><div class="row"><div class="price">₦${p.price.toLocaleString()}</div><button class="buy" onclick="openBuy(${i},'${p.t}')">BUY NOW</button></div></div></div>`;
+ }
+ document.getElementById('grid').innerHTML=html;
 }
-function setType(t){cur=t;document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');render();}
-function openBuy(id){let p=products.find(x=>x.id===id);document.getElementById('mTitle').innerText=p.title;document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();let msg=encodeURIComponent(`Hello Merlin I want to buy:\n${p.title}\nPrice: ₦${p.price}\nLevel: ${p.level} Rank: ${p.rank}\n${p.img}`);document.getElementById('waBtn').href=`https://wa.me/${WA}?text=${msg}`;document.getElementById('tgBtn').href=`https://t.me/${TG}?text=${msg}`;document.getElementById('buyModal').style.display='flex';}
-function closeBuy(){document.getElementById('buyModal').style.display='none';}
-
-// ADMIN FIXED - WORKING 100%
-function openAdmin(){document.getElementById('adminPanel').style.display='block';}
-function closeAdmin(){document.getElementById('adminPanel').style.display='none';history.replaceState(null,'',location.pathname);}
-function doLogin(){if(document.getElementById('admU').value==="Merlin"&&document.getElementById('admP').value==="merlin1"){document.getElementById('loginBox').style.display='none';document.getElementById('adminContent').style.display='block';loadAdmin();}else document.getElementById('err').style.display='block';}
-function loadAdmin(){
- let h="";products.forEach((p,i)=>{
-  h+=`<div style="background:#11111a;border:1px solid #222;padding:12px;border-radius:12px;margin-bottom:10px"><div style="display:flex;justify-content:space-between"><b>#${i+1} ${p.type.toUpperCase()}</b><button onclick="delProd(${i})" style="background:#ff3b3b;color:#fff;border:0;padding:4px 10px;border-radius:8px">Delete</button></div>
-  <label>Type (cpm/ff)</label><select class="input" id="ty_${i}"><option value="cpm" ${p.type==='cpm'?'selected':''}>cpm</option><option value="ff" ${p.type==='ff'?'selected':''}>ff</option></select>
-  <label>Title</label><input class="input" id="t_${i}" value="${p.title}">
-  <label>Price</label><input class="input" type="number" id="p_${i}" value="${p.price}">
-  <label>Badge</label><input class="input" id="b_${i}" value="${p.badge}">
-  <label>Level</label><input class="input" id="lv_${i}" value="${p.level}"><label>Rank</label><input class="input" id="rk_${i}" value="${p.rank}">
-  <label>Image URL</label><input class="input" id="im_${i}" value="${p.img}">
-  <label>Description</label><input class="input" id="d_${i}" value="${p.desc}"></div>`;
- });document.getElementById('adminList').innerHTML=h;
+function openBuy(i,type){
+ var list=PRODUCTS.filter(p=>p.t===type);
+ var p=list[i];
+ document.getElementById('mTitle').innerText=p.title;
+ document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();
+ var msg=encodeURIComponent("Hello Merlin, I want to buy:\n"+p.title+"\nPrice: ₦"+p.price+"\n"+p.meta+"\n"+p.img);
+ document.getElementById('waLink').href="https://wa.me/"+WA+"?text="+msg;
+ document.getElementById('tgLink').href="https://t.me/"+TG+"?text="+msg;
+ document.getElementById('modal').style.display='flex';
 }
-window.addNew=function(){products.push({id:Date.now(),type:"ff",title
+function closeM(){document.getElementById('modal').style.display='none';}
+render();
+localStorage.clear();
+</script>
+</body>
+</html>
