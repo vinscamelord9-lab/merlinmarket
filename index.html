@@ -1,209 +1,27 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MERLIN MARKET</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&amp;family=Inter:wght@700;800&amp;display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Inter}
-.wrap{max-width:430px;margin:0 auto;background:#0a0a0f;min-height:100vh;padding-bottom:40px}
-.head{padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:Orbitron;font-weight:900;font-size:30px;color:#9eff00;transform:skew(-5deg);text-shadow:0 0 15px #9eff00}
-.channels{margin:0 12px;background:#11111a;border:1px solid #1e1e2a;border-radius:18px;padding:10px;display:flex;gap:8px}
-.ch{flex:1;padding:13px;border-radius:12px;font-size:11px;font-weight:800;text-decoration:none;text-align:center}
-.ch.wa{background:#0e2a14;border:1px solid #2aff6a44;color:#fff}.ch.tg{background:#14204a;border:1px solid #5c7aff44;color:#fff}
-.hero{padding:30px 18px 12px}.hero h1{font-family:Orbitron;font-weight:900;font-size:44px;line-height:0.9}.hero h1 span{color:#9eff00}.hero p{font-size:11px;opacity:0.55;margin-top:10px}
-.tabs{display:flex;gap:10px;margin-top:22px}.tab{flex:1;padding:14px;border-radius:14px;background:#15151f;border:1px solid #242430;font-weight:800;font-size:12px;text-align:center;cursor:pointer}
-.tab.active{background:#102814;color:#9eff00;border-color:#9eff00;box-shadow:0 0 15px #9eff0030}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
-.card{background:#111119;border:1px solid #1f1f2a;border-radius:18px;overflow:hidden;position:relative}
-.card.cpm{border-color:#9eff0025}.card.ff{border-color:#8b5cf625}
-.imgbox{height:130px;position:relative;background:#000}.imgbox img{width:100%;height:100%;object-fit:cover}
-.tag{position:absolute;top:8px;left:8px;background:#000;padding:4px 8px;border-radius:6px;font-size:9px;font-weight:800;border:1px solid #333}.tag.cpm{color:#9eff00;border-color:#9eff0040}.tag.ff{color:#a78bfa;border-color:#8b5cf640}
-.stock{position:absolute;top:8px;right:8px;background:#9eff00;color:#000;padding:4px 7px;border-radius:6px;font-size:8px;font-weight:900}
-.body{padding:10px}.tit{font-size:11px;font-weight:800;height:32px;overflow:hidden;line-height:1.3}.meta{font-size:8px;opacity:0.4;margin:5px 0}
-.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}.price{color:#9eff00;font-family:Orbitron;font-size:13px;font-weight:800}.buy{background:#9eff00;color:#000;border:0;padding:8px 12px;border-radius:8px;font-weight:900;font-size:10px;cursor:pointer}
-#modal{position:fixed;inset:0;background:#000000dd;display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
-.mbox{background:#181824;border:1px solid #2a2a3a;border-radius:20px;padding:20px;width:100%;max-width:330px;text-align:center}.mbtn{width:100%;padding:14px;border-radius:12px;border:0;font-weight:800;margin-top:10px;display:block;text-decoration:none}
-/* SELL BANNER - ONLY FOR FF */
-.sellBox{margin:0 16px 6px;background:linear-gradient(135deg,#1a1230,#11111a);border:1px solid #8b5cf640;border-radius:16px;padding:14px;display:none}
-.sellBox h3{font-family:Orbitron;font-size:12px;color:#a78bfa}.sellBox p{font-size:10px;opacity:0.6;margin:6px 0 10px}
-.sellBtns{display:flex;gap:8px}.sellBtn{flex:1;padding:11px;border-radius:10px;font-size:10px;font-weight:800;text-decoration:none;text-align:center}
-.sellBtn.wa{background:#0e2a14;border:1px solid #25D366;color:#fff}.sellBtn.tg{background:#14204a;border:1px solid #229ED9;color:#fff}
-/* ADMIN */
-#adminPanel{display:none;position:fixed;inset:0;background:#07070b;z-index:99999;overflow-y:auto;padding:0}
-.a-head{position:sticky;top:0;background:#0a0a0f;border-bottom:1px solid #222;padding:14px;display:flex;justify-content:space-between;z-index:5}
-.input{width:100%;background:#12121a;border:1px solid #2a2a3a;padding:12px;border-radius:10px;color:#fff;margin-bottom:8px;font-size:13px}
-.section{background:#11111a;border:1px solid #1e1e2a;border-radius:16px;padding:14px;margin-bottom:14px}
-.sec-title{font-family:Orbitron;font-size:11px;color:#9eff00;margin-bottom:10px}
-.lab{font-size:10px;opacity:0.5;margin:6px 0 3px;display:block}
-.preview{width:100%;height:120px;border-radius:10px;object-fit:cover;margin-bottom:8px;border:1px solid #222}
-</style>
-</head>
-<body>
-<div class="wrap">
-<div class="head"><div class="logo" id="siteLogo">神MERLIN¿?모</div></div>
-<div class="channels">
-<a class="ch wa" id="waChannelBtn" href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">WhatsApp Channel</a>
-<a class="ch tg" id="tgChannelBtn" href="https://t.me/merlinroom" target="_blank">Telegram Channel</a>
-</div>
-<div class="hero"><h1 id="heroTitle">MERLIN<br><span>MARKET</span></h1><p id="heroSub">Buy &amp; Sell • CPM &amp; Free Fire Accounts • Trusted &amp; Instant</p><div class="tabs"><div class="tab active" id="cpmTab" onclick="switchTab('cpm')">CPM ACCOUNTS 🚗</div><div class="tab" id="ffTab" onclick="switchTab('ff')">FREE FIRE 🔥</div></div></div>
-
-<!-- SELL ACCOUNT BANNER - ONLY SHOWS IN FF TAB -->
-<div class="sellBox" id="sellBox">
-<h3>💰 WANT TO SELL YOUR ACCOUNT?</h3>
-<p>Have Free Fire or CPM account to sell? DM Merlin now, fast payment!</p>
-<div class="sellBtns">
-<a id="sellWa" class="sellBtn wa" href="https://wa.me/2348102684934?text=Hello%20Merlin%2C%20I%20want%20to%20sell%20my%20account" target="_blank">WhatsApp DM</a>
-<a id="sellTg" class="sellBtn tg" href="https://t.me/merlin162010?text=Hello%20Merlin%2C%20I%20want%20to%20sell%20my%20account" target="_blank">Telegram DM</a>
-</div>
-</div>
-
-<div class="grid" id="grid"><div class="card cpm"><div class="imgbox"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600" onerror="this.src='https://via.placeholder.com/400'"><div class="tag cpm">CPM</div><div class="stock">📦 5 PCS</div></div><div class="body"><div class="tit">CPM Car Parking - Lv35 Account</div><div class="meta">Level 35 • 50k Coins • VIP Pass</div><div style="font-size:8px;color:#9eff00;margin-top:3px">Clone - 5 available</div><div class="row"><div class="price">₦4,500</div><button class="buy" onclick="openBuy('CPM Car Parking - Lv35 Account')">BUY NOW</button></div></div></div><div class="card cpm"><div class="imgbox"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" onerror="this.src='https://via.placeholder.com/400'"><div class="tag cpm">CPM</div><div class="stock">📦 3 PCS</div></div><div class="body"><div class="tit">CPM King Level 80 Full Garage</div><div class="meta">Level 80 • 20M Money • KING</div><div style="font-size:8px;color:#9eff00;margin-top:3px">Clone - 3 available</div><div class="row"><div class="price">₦12,000</div><button class="buy" onclick="openBuy('CPM King Level 80 Full Garage')">BUY NOW</button></div></div></div><div class="card cpm"><div class="imgbox"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600" onerror="this.src='https://via.placeholder.com/400'"><div class="tag cpm">CPM</div><div class="stock">📦 5 PCS</div></div><div class="body"><div class="tit">CPM Starter Level 30+ Clean</div><div class="meta">Level 30 • 5M Money • Clean</div><div style="font-size:8px;color:#9eff00;margin-top:3px">Clone - 5 available</div><div class="row"><div class="price">₦5,000</div><button class="buy" onclick="openBuy('CPM Starter Level 30+ Clean')">BUY NOW</button></div></div></div></div>
-</div>
-
-<div id="modal" onclick="if(event.target.id==='modal')closeM()"><div class="mbox"><h3 id="mTitle" style="font-size:13px"></h3><div id="mPrice" class="price" style="font-size:22px;margin:10px 0"></div><a id="waLink" class="mbtn" style="background:#25D366;color:#fff" target="_blank">💬 Buy via WhatsApp</a><a id="tgLink" class="mbtn" style="background:#229ED9;color:#fff" target="_blank">✈️ Buy via Telegram</a><button class="mbtn" style="background:#222;color:#fff" onclick="closeM()">Cancel</button></div></div>
-
-<div id="adminPanel" style="display: block;">
-<div id="loginBox" style="max-width: 380px; margin: 60px auto; background: rgb(17, 17, 26); border: 1px solid rgb(34, 34, 34); padding: 24px; border-radius: 20px; text-align: center; display: none;">
-<div style="font-family:Orbitron;color:#9eff00;font-size:22px">MERLIN ADMIN</div><input id="admU" class="input" style="margin-top:14px" placeholder="Username: Merlin"><input id="admP" class="input" type="password" placeholder="Password: merlin1"><button onclick="doLogin()" style="width:100%;background:#9eff00;color:#000;padding:14px;border-radius:12px;border:0;font-weight:900">LOGIN</button><p id="err" style="display:none;color:#ff3b3b;margin-top:8px">Wrong username or password</p></div>
-<div id="adminContent" style="display: block; max-width: 700px; margin: 0px auto; padding: 16px;">
-<div class="a-head"><div style="font-family:Orbitron;font-weight:800">EDIT EVERYTHING</div><button onclick="closeAdmin()" style="background:#222;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:10px">Close</button></div>
-<div class="section"><div class="sec-title">🌐 SITE</div>
-<span class="lab">LOGO</span><input id="set_logo" class="input" value="MERLIN">
-<span class="lab">HERO TITLE (HTML allowed)</span><input id="set_heroTitle" class="input" value="MERLIN<br><span>MARKET</span>">
-<span class="lab">SUBTITLE</span><input id="set_sub" class="input" value="Buy &amp; Sell • CPM &amp; Free Fire Accounts • Trusted &amp; Instant">
-<span class="lab">WHATSAPP NUMBER</span><input id="set_waNum" class="input" value="2348102684934">
-<span class="lab">TELEGRAM USERNAME</span><input id="set_tgUser" class="input" value="merlin162010">
-<span class="lab">WA CHANNEL LINK</span><input id="set_waChan" class="input" value="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e">
-<span class="lab">TG CHANNEL LINK</span><input id="set_tgChan" class="input" value="https://t.me/merlinroom">
-</div>
-<div class="section"><div class="sec-title">📦 PACKAGES - NOW WITH STOCK</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px"><button onclick="addNew('cpm')" style="background:#102814;color:#9eff00;border:1px solid #9eff00;padding:12px;border-radius:10px;font-weight:800">+ ADD CPM</button><button onclick="addNew('ff')" style="background:#1a1230;color:#a78bfa;border:1px solid #8b5cf6;padding:12px;border-radius:10px;font-weight:800">+ ADD FF</button></div>
-<div id="adminList"><div class="section"><img class="preview" id="prev_0" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#1 CPM</b><button onclick="delProd(0)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
-  <span class="lab">TYPE</span><select class="input" id="t_0"><option value="cpm" selected="">CPM</option><option value="ff">FREE FIRE</option></select>
-  <span class="lab">TITLE</span><input class="input" id="ti_0" value="CPM Car Parking - Lv35 Account">
-  <span class="lab">META</span><input class="input" id="me_0" value="Level 35 • 50k Coins • VIP Pass">
-  <span class="lab">PRICE</span><input class="input" type="number" id="pr_0" value="4500">
-  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_0" value="5">
-  <span class="lab">IMAGE URL</span><input class="input" id="im_0" value="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600" oninput="document.getElementById('prev_0').src=this.value">
-  <span class="lab">BADGE</span><input class="input" id="ba_0" value="CPM"></div><div class="section"><img class="preview" id="prev_1" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#2 CPM</b><button onclick="delProd(1)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
-  <span class="lab">TYPE</span><select class="input" id="t_1"><option value="cpm" selected="">CPM</option><option value="ff">FREE FIRE</option></select>
-  <span class="lab">TITLE</span><input class="input" id="ti_1" value="CPM King Level 80 Full Garage">
-  <span class="lab">META</span><input class="input" id="me_1" value="Level 80 • 20M Money • KING">
-  <span class="lab">PRICE</span><input class="input" type="number" id="pr_1" value="12000">
-  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_1" value="3">
-  <span class="lab">IMAGE URL</span><input class="input" id="im_1" value="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" oninput="document.getElementById('prev_1').src=this.value">
-  <span class="lab">BADGE</span><input class="input" id="ba_1" value="CPM"></div><div class="section"><img class="preview" id="prev_2" src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#3 CPM</b><button onclick="delProd(2)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
-  <span class="lab">TYPE</span><select class="input" id="t_2"><option value="cpm" selected="">CPM</option><option value="ff">FREE FIRE</option></select>
-  <span class="lab">TITLE</span><input class="input" id="ti_2" value="CPM Starter Level 30+ Clean">
-  <span class="lab">META</span><input class="input" id="me_2" value="Level 30 • 5M Money • Clean">
-  <span class="lab">PRICE</span><input class="input" type="number" id="pr_2" value="5000">
-  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_2" value="5">
-  <span class="lab">IMAGE URL</span><input class="input" id="im_2" value="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600" oninput="document.getElementById('prev_2').src=this.value">
-  <span class="lab">BADGE</span><input class="input" id="ba_2" value="CPM"></div><div class="section"><img class="preview" id="prev_3" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#4 FF</b><button onclick="delProd(3)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
-  <span class="lab">TYPE</span><select class="input" id="t_3"><option value="cpm">CPM</option><option value="ff" selected="">FREE FIRE</option></select>
-  <span class="lab">TITLE</span><input class="input" id="ti_3" value="Free Fire - Elite Bundle Account">
-  <span class="lab">META</span><input class="input" id="me_3" value="Level 62 • 12 Skins • Diamond 500">
-  <span class="lab">PRICE</span><input class="input" type="number" id="pr_3" value="8000">
-  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_3" value="1">
-  <span class="lab">IMAGE URL</span><input class="input" id="im_3" value="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600" oninput="document.getElementById('prev_3').src=this.value">
-  <span class="lab">BADGE</span><input class="input" id="ba_3" value="FREE"></div><div class="section"><img class="preview" id="prev_4" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#5 FF</b><button onclick="delProd(4)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
-  <span class="lab">TYPE</span><select class="input" id="t_4"><option value="cpm">CPM</option><option value="ff" selected="">FREE FIRE</option></select>
-  <span class="lab">TITLE</span><input class="input" id="ti_4" value="FF Heroic Cobra Rage Lv68">
-  <span class="lab">META</span><input class="input" id="me_4" value="Level 68 • 3 Evo • Heroic">
-  <span class="lab">PRICE</span><input class="input" type="number" id="pr_4" value="15000">
-  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_4" value="1">
-  <span class="lab">IMAGE URL</span><input class="input" id="im_4" value="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600" oninput="document.getElementById('prev_4').src=this.value">
-  <span class="lab">BADGE</span><input class="input" id="ba_4" value="FREE"></div><div class="section"><img class="preview" id="prev_5" src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#6 FF</b><button onclick="delProd(5)" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
-  <span class="lab">TYPE</span><select class="input" id="t_5"><option value="cpm">CPM</option><option value="ff" selected="">FREE FIRE</option></select>
-  <span class="lab">TITLE</span><input class="input" id="ti_5" value="FF Grandmaster Beast Lv78">
-  <span class="lab">META</span><input class="input" id="me_5" value="Level 78 • 5 Evo Max • Rare">
-  <span class="lab">PRICE</span><input class="input" type="number" id="pr_5" value="35000">
-  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_5" value="2">
-  <span class="lab">IMAGE URL</span><input class="input" id="im_5" value="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600" oninput="document.getElementById('prev_5').src=this.value">
-  <span class="lab">BADGE</span><input class="input" id="ba_5" value="FREE"></div></div>
-</div>
-<div class="section"><div class="sec-title">💾 GENERATE CODE</div>
-<button onclick="saveAll()" style="width:100%;background:#222;color:#fff;padding:14px;border-radius:12px;border:1px solid #444;font-weight:800">1. SAVE PREVIEW</button>
-<button onclick="genCode()" style="width:100%;background:#9eff00;color:#000;padding:16px;border-radius:12px;border:0;font-weight:900;margin-top:10px">2. GENERATE SOURCE CODE</button>
-<textarea id="codeOut" style="display: block; width: 100%; height: 260px; background: rgb(0, 0, 0); color: rgb(0, 255, 0); font-size: 10px; margin-top: 10px; padding: 10px; border-radius: 10px;"></textarea>
-<button id="copyBtn" onclick="copyCode()" style="display: block; width: 100%; background: rgb(37, 211, 102); color: rgb(255, 255, 255); padding: 14px; border-radius: 12px; border: 0px; font-weight: 900; margin-top: 8px;">📋 COPY CODE</button>
-</div>
-</div>
-</div>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MERLIN MARKET</title><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Inter:wght@700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#020208;color:#fff;font-family:Inter}.w{max-width:450px;margin:0 auto;background:#0a0a14;min-height:100vh;padding-bottom:40px;border-left:1px solid #1a1a2a;border-right:1px solid #1a1a2a}.h{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#0a0a14cc;backdrop-filter:blur(20px);z-index:10;border-bottom:1px solid #1a1a2a}.logo{font-family:Orbitron;font-weight:900;font-size:32px;color:#9eff00;transform:skew(-6deg);cursor:pointer;text-shadow:0 0 20px #9eff0088}.live{font-size:8px;background:#9eff00;color:#000;padding:5px 10px;border-radius:20px;font-weight:900}.chs{margin:14px 14px 0;background:#11111f;border:1px solid #1e1e32;border-radius:18px;padding:12px;display:flex;gap:10px}.ch{flex:1;padding:14px;border-radius:13px;font-size:11px;font-weight:800;text-decoration:none;text-align:center}.ch.wa{background:#0f2a14;border:1px solid #25D36633;color:#fff}.ch.tg{background:#14204a;border:1px solid #229ED933;color:#fff}.hero{padding:34px 20px 14px}.hero h1{font-family:Orbitron;font-weight:900;font-size:48px;line-height:.9}.hero h1 span{color:#9eff00}.tabs{display:flex;gap:12px;margin-top:26px}.tab{flex:1;padding:16px;border-radius:15px;background:#15151f;border:1px solid #232333;font-weight:800;font-size:12px;text-align:center;cursor:pointer}.tab.a{background:#102814;color:#9eff00;border-color:#9eff00}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:18px}.card{background:#171725;border:1px solid #222236;border-radius:20px;overflow:hidden}.imgbox{height:138px;position:relative;background:#000}.imgbox img{width:100%;height:100%;object-fit:cover}.tag{position:absolute;top:10px;left:10px;background:#000c;padding:5px 9px;border-radius:8px;font-size:9px;font-weight:800;border:1px solid #333}.stock{position:absolute;top:10px;right:10px;background:#9eff00;color:#000;padding:5px 8px;border-radius:8px;font-size:8px;font-weight:900}.body{padding:12px}.tit{font-size:11px;font-weight:800;height:34px;overflow:hidden}.meta{font-size:8px;opacity:.4;margin:6px 0}.clone{font-size:8px;color:#9eff00;background:#9eff0010;border:1px solid #9eff001a;padding:3px 6px;border-radius:6px;display:inline-block}.row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.price{color:#9eff00;font-family:Orbitron;font-size:14px;font-weight:800}.buy{background:#9eff00;color:#000;border:0;padding:9px 14px;border-radius:10px;font-weight:900;font-size:10px}.sellBox{margin:0 18px 4px;background:linear-gradient(135deg,#1a1230,#151525);border:1px solid #8b5cf633;border-radius:18px;padding:16px;display:none}.sellBtns{display:flex;gap:10px}.sellBtn{flex:1;padding:12px;border-radius:12px;font-size:10px;font-weight:800;text-decoration:none;text-align:center}.sellBtn.wa{background:#0e2a14;border:1px solid #25D36666;color:#fff}.sellBtn.tg{background:#14204a;border:1px solid #229ED966;color:#fff}#modal{position:fixed;inset:0;background:#000000e6;display:none;align-items:center;justify-content:center;z-index:100;padding:22px}.mbox{background:#1c1c2e;border:1px solid #2a2a44;border-radius:24px;padding:24px;width:100%;max-width:340px;text-align:center}.mbtn{width:100%;padding:15px;border-radius:14px;border:0;font-weight:800;margin-top:12px;display:block;text-decoration:none;font-size:13px}#adminPanel{display:none;position:fixed;inset:0;background:#07070e;z-index:99999;overflow-y:auto}.a-head{position:sticky;top:0;background:#0a0a14f2;border-bottom:1px solid #222;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}.input{width:100%;background:#12121f;border:1px solid #2a2a44;padding:13px;border-radius:12px;color:#fff;margin-bottom:10px;font-size:13px}.section{background:#11111f;border:1px solid #1e1e32;border-radius:18px;padding:16px;margin-bottom:16px}.sec-title{font-family:Orbitron;font-size:11px;color:#9eff00;margin-bottom:12px}.lab{font-size:10px;opacity:.5;margin:8px 0 4px;display:block;font-weight:700}.preview{width:100%;height:130px;border-radius:12px;object-fit:cover;margin-bottom:10px;border:1px solid #222}</style></head><body>
+<div class="w"><div class="h"><div class="logo" id="siteLogo">MERLIN</div><div class="live">● LIVE</div></div><div class="chs"><a class="ch wa" id="waChannelBtn" href="https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e" target="_blank">WhatsApp Channel</a><a class="ch tg" id="tgChannelBtn" href="https://t.me/merlinroom" target="_blank">Telegram Channel</a></div><div class="hero"><h1 id="heroTitle">MERLIN<br><span>MARKET</span></h1><p id="heroSub">Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant</p><div class="tabs"><div class="tab a" id="cpmTab" onclick="switchTab('cpm')">CPM 🚗</div><div class="tab" id="ffTab" onclick="switchTab('ff')">FREE FIRE 🔥</div></div></div><div class="sellBox" id="sellBox"><h3 id="sellTitle">💰 WANT TO SELL YOUR ACCOUNT?</h3><p id="sellDesc">Have account to sell? DM Merlin now, fast payment!</p><div class="sellBtns"><a id="sellWa" class="sellBtn wa" href="#" target="_blank">WhatsApp DM</a><a id="sellTg" class="sellBtn tg" href="#" target="_blank">Telegram DM</a></div></div><div class="grid" id="grid"></div></div>
+<div id="modal" onclick="if(event.target.id==='modal')closeM()"><div class="mbox"><h3 id="mTitle"></h3><div id="mPrice" class="price" style="font-size:26px;margin:14px 0"></div><div id="mMeta" style="font-size:10px;opacity:.5"></div><a id="waLink" class="mbtn" style="background:#25D366;color:#fff" target="_blank">Buy via WhatsApp</a><a id="tgLink" class="mbtn" style="background:#229ED9;color:#fff" target="_blank">Buy via Telegram</a><button class="mbtn" style="background:#222236;color:#fff;border:1px solid #333" onclick="closeM()">Cancel</button></div></div>
+<div id="adminPanel"><div id="loginBox" style="max-width:390px;margin:70px auto;background:#151525;border:1px solid #222242;padding:28px;border-radius:24px;text-align:center"><div style="font-family:Orbitron;color:#9eff00;font-size:24px;font-weight:900">MERLIN ADMIN</div><input id="admU" class="input" placeholder="Username" style="margin-top:18px"><input id="admP" class="input" type="password" placeholder="Password"><button onclick="doLogin()" style="width:100%;background:#9eff00;color:#000;padding:15px;border-radius:13px;border:0;font-weight:900">LOGIN</button><p id="err" style="display:none;color:#ff3b3b;margin-top:10px">Wrong password</p></div><div id="adminContent" style="display:none;max-width:720px;margin:0 auto;padding:18px"><div class="a-head"><div style="font-family:Orbitron;font-weight:800">MERLIN EDITOR</div><button onclick="closeAdmin()" style="background:#1e1e32;color:#fff;border:1px solid #333;padding:9px 16px;border-radius:11px">Close</button></div><div class="section"><div class="sec-title">SITE TEXT & LINKS</div><span class="lab">Logo</span><input id="set_logo" class="input" value="MERLIN"><span class="lab">Hero Title</span><textarea id="set_heroTitle" class="input" style="height:70px">MERLIN<br><span>MARKET</span></textarea><span class="lab">Subtitle</span><input id="set_sub" class="input"><span class="lab">Sell Title</span><input id="set_sellTitle" class="input"><span class="lab">Sell Desc</span><textarea id="set_sellDesc" class="input" style="height:70px"></textarea><span class="lab">WA Number</span><input id="set_waNum" class="input"><span class="lab">TG Username</span><input id="set_tgUser" class="input"><span class="lab">WA Channel</span><input id="set_waChan" class="input"><span class="lab">TG Channel</span><input id="set_tgChan" class="input"></div><div class="section"><div class="sec-title">ACCOUNTS WITH STOCK</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px"><button onclick="addNew('cpm')" style="background:#102814;color:#9eff00;border:1px solid #9eff0055;padding:14px;border-radius:13px;font-weight:800">+ ADD CPM</button><button onclick="addNew('ff')" style="background:#1a1230;color:#a78bfa;border:1px solid #8b5cf655;padding:14px;border-radius:13px;font-weight:800">+ ADD FF</button></div><div id="adminList"></div></div><div class="section"><div class="sec-title">GENERATE CODE</div><button onclick="saveAll()" style="width:100%;background:#1e1e32;color:#fff;padding:14px;border-radius:13px;border:1px solid #333;font-weight:800">1. SAVE PREVIEW</button><button onclick="genCode()" style="width:100%;background:#9eff00;color:#000;padding:17px;border-radius:14px;border:0;font-weight:900;margin-top:12px">2. GENERATE CODE</button><textarea id="codeOut" style="display:none;width:100%;height:300px;background:#000;color:#0f0;font-size:10px;margin-top:14px;padding:12px;border-radius:12px"></textarea><button id="copyBtn" onclick="copyCode()" style="display:none;width:100%;background:#25D366;color:#fff;padding:15px;border-radius:13px;border:0;font-weight:900;margin-top:10px">COPY CODE</button><div id="doneMsg" style="display:none;margin-top:12px;background:#102814;border:1px solid #9eff0033;padding:12px;border-radius:12px;font-size:11px;color:#9eff00">Copied! Paste in GitHub index.html</div></div></div></div>
 <script>
-localStorage.removeItem('merlin_final');localStorage.removeItem('merlin_final_v2');localStorage.removeItem('merlin_full_v3');localStorage.removeItem('merlin_final_v3');localStorage.removeItem('merlin_products');
-let SITE_CONFIG={"logo":"神MERLIN¿?모","heroTitle":"MERLIN<br><span>MARKET</span>","sub":"Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant","waNum":"2348102684934","tgUser":"merlin162010","waChan":"https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e","tgChan":"https://t.me/merlinroom"};
-let DEFAULT_PRODS=[{"t":"cpm","title":"CPM Car Parking - Lv35 Account","meta":"Level 35 • 50k Coins • VIP Pass","price":4500,"stock":5,"img":"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600","badge":"CPM"},{"t":"cpm","title":"CPM King Level 80 Full Garage","meta":"Level 80 • 20M Money • KING","price":12000,"stock":3,"img":"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600","badge":"CPM"},{"t":"cpm","title":"CPM Starter Level 30+ Clean","meta":"Level 30 • 5M Money • Clean","price":5000,"stock":5,"img":"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600","badge":"CPM"},{"t":"ff","title":"Free Fire - Elite Bundle Account","meta":"Level 62 • 12 Skins • Diamond 500","price":8000,"stock":1,"img":"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600","badge":"FREE"},{"t":"ff","title":"FF Heroic Cobra Rage Lv68","meta":"Level 68 • 3 Evo • Heroic","price":15000,"stock":1,"img":"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600","badge":"FREE"},{"t":"ff","title":"FF Grandmaster Beast Lv78","meta":"Level 78 • 5 Evo Max • Rare","price":35000,"stock":2,"img":"https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600","badge":"FREE"}];
-let PRODUCTS=DEFAULT_PRODS;
-let current="cpm";
-function applyConfig(){
- document.getElementById('siteLogo').innerHTML=SITE_CONFIG.logo;
- document.getElementById('heroTitle').innerHTML=SITE_CONFIG.heroTitle;
- document.getElementById('heroSub').innerText=SITE_CONFIG.sub;
- document.getElementById('waChannelBtn').href=SITE_CONFIG.waChan;
- document.getElementById('tgChannelBtn').href=SITE_CONFIG.tgChan;
- document.getElementById('sellWa').href="https://wa.me/"+SITE_CONFIG.waNum+"?text="+encodeURIComponent("Hello Merlin, I want to sell my account");
- document.getElementById('sellTg').href="https://t.me/"+SITE_CONFIG.tgUser+"?text="+encodeURIComponent("Hello Merlin, I want to sell my account");
-}
-function switchTab(c){
- current=c;
- document.getElementById('cpmTab').className=c==='cpm'?'tab active':'tab';
- document.getElementById('ffTab').className=c==='ff'?'tab active':'tab';
- document.getElementById('sellBox').style.display=c==='ff'?'block':'none';
- render();
-}
-function render(){
- let list=PRODUCTS.filter(p=>p.t===current);
- if(list.length===0) list=PRODUCTS;
- document.getElementById('grid').innerHTML=list.map(p=>{
-  let stockHtml=p.t==='cpm'&&p.stock>1?`<div class="stock">📦 ${p.stock} PCS</div>`:(p.stock>1?`<div class="stock" style="background:#8b5cf6;color:#fff">📦 ${p.stock} PCS</div>`:'');
-  let cloneText=p.stock>1?`<div style="font-size:8px;color:#9eff00;margin-top:3px">Clone - ${p.stock} available</div>`:'';
-  return `<div class="card ${p.t}"><div class="imgbox"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/400'"><div class="tag ${p.t}">${p.badge}</div>${stockHtml}</div><div class="body"><div class="tit">${p.title}</div><div class="meta">${p.meta}</div>${cloneText}<div class="row"><div class="price">₦${p.price.toLocaleString()}</div><button class="buy" onclick="openBuy('${p.title.replace(/'/g,"")}')">BUY NOW</button></div></div></div>`;
- }).join('');
-}
-function openBuy(title){let p=PRODUCTS.find(x=>x.title===title);document.getElementById('mTitle').innerText=p.title;document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();let msg=encodeURIComponent("Hello Merlin, I want to buy:\n"+p.title+"\nPrice: ₦"+p.price+"\n"+p.meta+(p.stock>1?"\nStock: "+p.stock+" pcs":""));document.getElementById('waLink').href="https://wa.me/"+SITE_CONFIG.waNum+"?text="+msg;document.getElementById('tgLink').href="https://t.me/"+SITE_CONFIG.tgUser+"?text="+msg;document.getElementById('modal').style.display='flex';}
+let SITE_CONFIG={logo:"MERLIN",heroTitle:"MERLIN<br><span>MARKET</span>",sub:"Buy & Sell • CPM & Free Fire Accounts • Trusted & Instant",sellTitle:"💰 WANT TO SELL YOUR ACCOUNT?",sellDesc:"Have Free Fire or CPM account to sell? DM Merlin now, fast payment! We buy high price.",waNum:"2348102684934",tgUser:"merlin162010",waChan:"https://whatsapp.com/channel/0029VbDDlueIt5s069kMEs0e",tgChan:"https://t.me/merlinroom"};
+let DEFAULT_PRODS=[{t:"cpm",title:"CPM Car Parking - Lv35 Account",meta:"Level 35 • 50k Coins • VIP Pass",price:4500,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:"CPM",stock:5},{t:"cpm",title:"CPM King Level 80 Full Garage",meta:"Level 80 • 20M Money • KING",price:12000,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600",badge:"CPM",stock:3},{t:"cpm",title:"CPM Starter Level 30+ Clean",meta:"Level 30 • 5M Money • Clean",price:5000,img:"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600",badge:"CPM",stock:10},{t:"ff",title:"Free Fire - Elite Bundle Account",meta:"Level 62 • 12 Skins • Diamond 500",price:8000,img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600",badge:"FREE",stock:1},{t:"ff",title:"FF Heroic Cobra Rage Lv68",meta:"Level 68 • 3 Evo • Heroic",price:15000,img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600",badge:"FREE",stock:1},{t:"ff",title:"FF Grandmaster Beast Lv78",meta:"Level 78 • 5 Evo Max • Rare",price:35000,img:"https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600",badge:"FREE",stock:2}];
+let PRODUCTS=JSON.parse(JSON.stringify(DEFAULT_PRODS));let current="cpm";let tapCount=0;
+function applyConfig(){document.getElementById('siteLogo').innerHTML=SITE_CONFIG.logo;document.getElementById('heroTitle').innerHTML=SITE_CONFIG.heroTitle;document.getElementById('heroSub').innerText=SITE_CONFIG.sub;document.getElementById('sellTitle').innerText=SITE_CONFIG.sellTitle;document.getElementById('sellDesc').innerText=SITE_CONFIG.sellDesc;document.getElementById('waChannelBtn').href=SITE_CONFIG.waChan;document.getElementById('tgChannelBtn').href=SITE_CONFIG.tgChan;document.getElementById('sellWa').href="https://wa.me/"+SITE_CONFIG.waNum+"?text="+encodeURIComponent("Hello Merlin, I want to sell my account");document.getElementById('sellTg').href="https://t.me/"+SITE_CONFIG.tgUser+"?text="+encodeURIComponent("Hello Merlin, I want to sell my account");document.getElementById('set_sub').value=SITE_CONFIG.sub;document.getElementById('set_sellTitle').value=SITE_CONFIG.sellTitle;document.getElementById('set_sellDesc').value=SITE_CONFIG.sellDesc;}
+function switchTab(c){current=c;document.getElementById('cpmTab').className=c==='cpm'?'tab a':'tab';document.getElementById('ffTab').className=c==='ff'?'tab a':'tab';document.getElementById('sellBox').style.display=c==='ff'?'block':'none';render();}
+function render(){let list=PRODUCTS.filter(p=>p.t===current);if(list.length===0)list=PRODUCTS;document.getElementById('grid').innerHTML=list.map((p)=>{let s=p.stock||1;let badge=s>1?`<div class="stock">📦 ${s} PCS</div>`:"";let clone=s>1?`<div class="clone">Clone • ${s} available</div>`:"";return `<div class="card"><div class="imgbox"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/400'"><div class="tag">${p.badge}</div>${badge}</div><div class="body"><div class="tit">${p.title}</div><div class="meta">${p.meta}</div>${clone}<div class="row"><div class="price">₦${(p.price||0).toLocaleString()}</div><button class="buy" onclick="openBuy(${PRODUCTS.indexOf(p)})">BUY</button></div></div></div>`;}).join('');}
+function openBuy(i){let p=PRODUCTS[i];document.getElementById('mTitle').innerText=p.title;document.getElementById('mPrice').innerText="₦"+p.price.toLocaleString();document.getElementById('mMeta').innerText=p.meta+(p.stock>1?" • Stock: "+p.stock+" pcs":"");let msg=encodeURIComponent("Hello Merlin, I want to buy:\n"+p.title+"\nPrice: ₦"+p.price+"\n"+p.meta+(p.stock>1?"\nStock: "+p.stock+" pcs":""));document.getElementById('waLink').href="https://wa.me/"+SITE_CONFIG.waNum+"?text="+msg;document.getElementById('tgLink').href="https://t.me/"+SITE_CONFIG.tgUser+"?text="+msg;document.getElementById('modal').style.display='flex';}
 function closeM(){document.getElementById('modal').style.display='none';}
-function openAdmin(){document.getElementById('adminPanel').style.display='block';document.getElementById('set_logo').value=SITE_CONFIG.logo;document.getElementById('set_heroTitle').value=SITE_CONFIG.heroTitle;document.getElementById('set_sub').value=SITE_CONFIG.sub;document.getElementById('set_waNum').value=SITE_CONFIG.waNum;document.getElementById('set_tgUser').value=SITE_CONFIG.tgUser;document.getElementById('set_waChan').value=SITE_CONFIG.waChan;document.getElementById('set_tgChan').value=SITE_CONFIG.tgChan;loadAdmin();}
+function openAdmin(){document.getElementById('adminPanel').style.display='block';document.getElementById('set_logo').value=SITE_CONFIG.logo;document.getElementById('set_heroTitle').value=SITE_CONFIG.heroTitle;document.getElementById('set_sub').value=SITE_CONFIG.sub;document.getElementById('set_sellTitle').value=SITE_CONFIG.sellTitle;document.getElementById('set_sellDesc').value=SITE_CONFIG.sellDesc;document.getElementById('set_waNum').value=SITE_CONFIG.waNum;document.getElementById('set_tgUser').value=SITE_CONFIG.tgUser;document.getElementById('set_waChan').value=SITE_CONFIG.waChan;document.getElementById('set_tgChan').value=SITE_CONFIG.tgChan;loadAdmin();}
 function closeAdmin(){document.getElementById('adminPanel').style.display='none';history.replaceState(null,'',location.pathname);}
-function doLogin(){if(document.getElementById('admU').value==="Merlin" && document.getElementById('admP').value==="merlin1"){document.getElementById('loginBox').style.display='none';document.getElementById('adminContent').style.display='block';openAdmin();}else document.getElementById('err').style.display='block';}
-function loadAdmin(){
- let h="";PRODUCTS.forEach((p,i)=>{
-  h+=`<div class="section"><img class="preview" id="prev_${i}" src="${p.img}"><div style="display:flex;justify-content:space-between"><b style="font-size:12px">#${i+1} ${p.t.toUpperCase()}</b><button onclick="delProd(${i})" style="background:#ff1a1a;color:#fff;border:0;padding:6px 12px;border-radius:8px">Delete</button></div>
-  <span class="lab">TYPE</span><select class="input" id="t_${i}"><option value="cpm" ${p.t==='cpm'?'selected':''}>CPM</option><option value="ff" ${p.t==='ff'?'selected':''}>FREE FIRE</option></select>
-  <span class="lab">TITLE</span><input class="input" id="ti_${i}" value="${p.title}">
-  <span class="lab">META</span><input class="input" id="me_${i}" value="${p.meta}">
-  <span class="lab">PRICE</span><input class="input" type="number" id="pr_${i}" value="${p.price}">
-  <span class="lab">STOCK / HOW MANY CLONE PCS (e.g 5)</span><input class="input" type="number" id="st_${i}" value="${p.stock||1}">
-  <span class="lab">IMAGE URL</span><input class="input" id="im_${i}" value="${p.img}" oninput="document.getElementById('prev_${i}').src=this.value">
-  <span class="lab">BADGE</span><input class="input" id="ba_${i}" value="${p.badge}"></div>`;
- });
- document.getElementById('adminList').innerHTML=h;
-}
-window.addNew=function(type){PRODUCTS.unshift({t:type,title:type==='cpm'?"New CPM Account":"New Free Fire Account",meta:"Level 30 • 5M Money • Clean",price:5000,stock:5,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:type==='cpm'?"CPM":"FREE"});loadAdmin();render();};
+function doLogin(){if(document.getElementById('admU').value==="Merlin"&&document.getElementById('admP').value==="merlin1"){document.getElementById('loginBox').style.display='none';document.getElementById('adminContent').style.display='block';openAdmin();}else document.getElementById('err').style.display='block';}
+function loadAdmin(){let h="";PRODUCTS.forEach((p,i)=>{h+=`<div class="section"><img class="preview" id="prev_${i}" src="${p.img}"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><b>#${i+1} ${p.t.toUpperCase()}</b><button onclick="delProd(${i})" style="background:#ff1a1a;color:#fff;border:0;padding:7px 13px;border-radius:9px">Delete</button></div><span class="lab">Type</span><select class="input" id="t_${i}"><option value="cpm" ${p.t==='cpm'?'selected':''}>CPM</option><option value="ff" ${p.t==='ff'?'selected':''}>FF</option></select><span class="lab">Title</span><input class="input" id="ti_${i}" value="${p.title.replace(/"/g,'&quot;')}"><span class="lab">Meta</span><input class="input" id="me_${i}" value="${p.meta.replace(/"/g,'&quot;')}"><span class="lab">Price</span><input class="input" type="number" id="pr_${i}" value="${p.price}"><span class="lab">STOCK PCS</span><input class="input" type="number" id="st_${i}" value="${p.stock||1}" style="border-color:#9eff0066"><span class="lab">Image URL</span><input class="input" id="im_${i}" value="${p.img}" oninput="document.getElementById('prev_${i}').src=this.value"><span class="lab">Badge</span><input class="input" id="ba_${i}" value="${p.badge}"></div>`;});document.getElementById('adminList').innerHTML=h;}
+window.addNew=function(t){PRODUCTS.unshift({t:t,title:t==='cpm'?"New CPM Account":"New FF Account",meta:"Level 30 • 5M Money",price:5000,stock:5,img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600",badge:t==='cpm'?"CPM":"FREE"});loadAdmin();render();};
 window.delProd=function(i){if(confirm("Delete?")){PRODUCTS.splice(i,1);loadAdmin();render();}};
-window.saveAll=function(){
- SITE_CONFIG={logo:document.getElementById('set_logo').value,heroTitle:document.getElementById('set_heroTitle').value,sub:document.getElementById('set_sub').value,waNum:document.getElementById('set_waNum').value,tgUser:document.getElementById('set_tgUser').value,waChan:document.getElementById('set_waChan').value,tgChan:document.getElementById('set_tgChan').value};
- let arr=[];for(let i=0;i<PRODUCTS.length;i++){let el=document.getElementById('t_'+i);if(!el) continue;arr.push({t:el.value,title:document.getElementById('ti_'+i).value,meta:document.getElementById('me_'+i).value,price:parseInt(document.getElementById('pr_'+i).value)||0,stock:parseInt(document.getElementById('st_'+i).value)||1,img:document.getElementById('im_'+i).value,badge:document.getElementById('ba_'+i).value});}PRODUCTS=arr;
- applyConfig();render();alert("Saved preview!");
-};
-window.genCode=function(){
- saveAll();
- let newCode=`let SITE_CONFIG=${JSON.stringify(SITE_CONFIG)};\nlet DEFAULT_PRODS=${JSON.stringify(PRODUCTS)};`;
- let html=document.documentElement.outerHTML;
- html=html.replace(/let SITE_CONFIG=\{[\s\S]*?\};[\s\S]*?let DEFAULT_PRODS=\[[\s\S]*?\];/,newCode);
- let out="<!DOCTYPE html>\n"+html;
- document.getElementById('codeOut').style.display='block';
- document.getElementById('codeOut').value=out;
- document.getElementById('copyBtn').style.display='block';
-};
-window.copyCode=function(){let ta=document.getElementById('codeOut');ta.select();navigator.clipboard.writeText(ta.value).then(()=>alert("✅ COPIED! Paste in GitHub now"));};
-if(location.hash==="#merlinadmin") document.getElementById('adminPanel').style.display='block';
-window.addEventListener('hashchange',()=>{if(location.hash==="#merlinadmin") document.getElementById('adminPanel').style.display='block';});
+window.saveAll=function(){SITE_CONFIG={logo:document.getElementById('set_logo').value,heroTitle:document.getElementById('set_heroTitle').value,sub:document.getElementById('set_sub').value,sellTitle:document.getElementById('set_sellTitle').value,sellDesc:document.getElementById('set_sellDesc').value,waNum:document.getElementById('set_waNum').value,tgUser:document.getElementById('set_tgUser').value,waChan:document.getElementById('set_waChan').value,tgChan:document.getElementById('set_tgChan').value};let a=[];for(let i=0;i<PRODUCTS.length;i++){let el=document.getElementById('t_'+i);if(!el)continue;a.push({t:el.value,title:document.getElementById('ti_'+i).value,meta:document.getElementById('me_'+i).value,price:parseInt(document.getElementById('pr_'+i).value)||0,stock:parseInt(document.getElementById('st_'+i).value)||1,img:document.getElementById('im_'+i).value,badge:document.getElementById('ba_'+i).value});}PRODUCTS=a;applyConfig();render();alert("Saved!");};
+window.genCode=function(){saveAll();let c=`let SITE_CONFIG=${JSON.stringify(SITE_CONFIG)};\nlet DEFAULT_PRODS=${JSON.stringify(PRODUCTS)};`;let h=document.documentElement.outerHTML;h=h.replace(/let SITE_CONFIG=\{[\s\S]*?\};[\s\S]*?let DEFAULT_PRODS=\[[\s\S]*?\];/,c);let o="<!DOCTYPE html>\n"+h;document.getElementById('codeOut').style.display='block';document.getElementById('codeOut').value=o;document.getElementById('copyBtn').style.display='block';};
+window.copyCode=function(){let t=document.getElementById('codeOut');t.select();navigator.clipboard.writeText(t.value).then(()=>{document.getElementById('doneMsg').style.display='block';alert("COPIED! Paste in GitHub");});};
+document.getElementById('siteLogo').addEventListener('click',()=>{tapCount++;if(tapCount>=7){openAdmin();document.getElementById('adminPanel').style.display='block';tapCount=0;}setTimeout(()=>{tapCount=0},3000);});
+if(location.hash==="#merlinadmin")document.getElementById('adminPanel').style.display='block';
+window.addEventListener('hashchange',()=>{if(location.hash==="#merlinadmin")document.getElementById('adminPanel').style.display='block';});
 applyConfig();render();
-</script>
-
-
-</body></html>
+</script></body></html>
